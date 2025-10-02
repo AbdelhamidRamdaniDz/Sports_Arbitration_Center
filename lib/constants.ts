@@ -19,6 +19,28 @@ export const NAVIGATION_ITEMS = [
   {
     title: "من نحن",
     href: "/about",
+    children: [
+      {
+        title: "ملخص المركز",
+        href: "/about/overview",
+      },
+      {
+        title: "شركاؤنا",
+        href: "/about/partners",
+      },
+      {
+        title: "مبادراتنا وبرامجنا",
+        href: "/about/initiatives",
+      },
+      {
+        title: "الوظائف المتاحة",
+        href: "/careers",
+      },
+      {
+        title: "تواصل معنا",
+        href: "/contact",
+      },
+    ],
   },
   {
     title: "النزاعات والأحكام",
