@@ -6,10 +6,13 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Phone, Mail, MapPin, Clock } from "lucide-react"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen">
+      <Header />
       <PageHeader title="تواصل معنا" description="نحن هنا لمساعدتك في جميع استفساراتك القانونية والرياضية" />
 
       <div className="container mx-auto px-4 py-12">
@@ -123,6 +126,7 @@ export default function ContactPage() {
           </Card>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

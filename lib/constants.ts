@@ -40,6 +40,10 @@ export const NAVIGATION_ITEMS = [
         title: "تواصل معنا",
         href: "/contact",
       },
+      {
+        title: "التحول الرقمي",
+        href: "/about/digital-transformation",
+      },
     ],
   },
   {
@@ -61,9 +65,16 @@ export const NAVIGATION_ITEMS = [
     ],
   },
   {
-    title: "الخدمات",
+    title: "ADR خدمات",
     href: "/services",
-  },
+    children: [
+      { title: "التحكيم الرياضي", href: "/services/sports-arbitration" },
+      { title: "التدريب", href: "/services/training" },
+      { title: "الوساطة القانونية", href: "/services/legal-mediation" },
+      { title: "الاستشارات القانونية", href: "/services/legal-consultation" },
+      { title: "القاعات الخاصة", href: "/services/equipped-halls" },
+    ],
+  },  
   {
     title: "النماذج الرقمية",
     href: "/forms",

@@ -29,7 +29,7 @@ export function Footer() {
             <h3 className="text-lg font-semibold">روابط سريعة</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-sm opacity-90 hover:opacity-100 transition-opacity">
+                <Link href="/about/overview" className="text-sm opacity-90 hover:opacity-100 transition-opacity">
                   من نحن
                 </Link>
               </li>
