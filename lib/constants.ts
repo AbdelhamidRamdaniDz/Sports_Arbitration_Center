@@ -21,28 +21,56 @@ export const NAVIGATION_ITEMS = [
     href: "/about",
     children: [
       {
-        title: "ملخص المركز",
-        href: "/about/overview",
+        title: "عن المركز",
+        href: "/about",
+        children: [
+          {
+            title: "نبذة",
+            href: "/about/overview",
+          },
+          {
+            title: "قيمنا",
+            href: "/about/values",
+          },
+          {
+            title: "شركاؤنا",
+            href: "/about/partners",
+          },
+          {
+            title: "الأسئلة الشائعة",
+            href: "/faq",
+          },
+          {
+            title: "الوظائف",
+            href: "/careers",
+          },
+          {
+            title: "اتصل بنا",
+            href: "/contact",
+          },
+        ],
       },
       {
-        title: "شركاؤنا",
-        href: "/about/partners",
-      },
-      {
-        title: "مبادراتنا وبرامجنا",
-        href: "/about/initiatives",
-      },
-      {
-        title: "الوظائف المتاحة",
-        href: "/careers",
-      },
-      {
-        title: "تواصل معنا",
-        href: "/contact",
-      },
-      {
-        title: "التحول الرقمي",
-        href: "/about/digital-transformation",
+        title: "رؤية الجزائر 2030",
+        href: "/about/algeria-vision-2030",
+        children: [
+          {
+            title: "التحول الرقمي",
+            href: "/about/digital-transformation",
+          },
+          {
+            title: "الذكاء الاصطناعي",
+            href: "/about/ai",
+          },
+          {
+            title: "الالتزام بالمسؤولية الاجتماعية والاستدامة",
+            href: "/about/csr-sustainability",
+          },
+          {
+            title: "أكاديمية تنمية المواهب في حل النزاعات",
+            href: "/about/talent-academy",
+          },
+        ],
       },
     ],
   },
@@ -74,7 +102,7 @@ export const NAVIGATION_ITEMS = [
       { title: "الاستشارات القانونية", href: "/services/legal-consultation" },
       { title: "القاعات الخاصة", href: "/services/equipped-halls" },
     ],
-  },  
+  },
   {
     title: "النماذج الرقمية",
     href: "/forms",
