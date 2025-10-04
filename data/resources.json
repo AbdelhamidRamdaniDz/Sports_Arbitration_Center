@@ -1,0 +1,74 @@
+[
+  {
+    "id": "res-001",
+    "type": "image",
+    "title": "صور ورشة التحكيم الرياضي",
+    "description": "مجموعة صور من ورشة التحكيم الرياضي 2024.",
+    "url": "/sports-arbitration-training-workshop.jpg",
+    "thumbnail": "/sports-arbitration-training-workshop.jpg",
+    "date": "2024-03-10"
+  },
+  {
+    "id": "res-002",
+    "type": "image",
+    "title": "صورة قاعة المؤتمرات",
+    "description": "قاعة مؤتمرات حديثة مجهزة بالكامل.",
+    "url": "/modern-equipped-conference-room-with-professional-.jpg",
+    "thumbnail": "/modern-equipped-conference-room-with-professional-.jpg",
+    "date": "2024-02-28"
+  },
+  {
+    "id": "res-003",
+    "type": "video",
+    "title": "فيديو تعريفي عن المركز",
+    "description": "فيديو قصير يعرّف بخدمات المركز وأهدافه.",
+    "url": "https://www.youtube.com/watch?v=example1",
+    "thumbnail": "/modern-digital-arbitration-system.jpg",
+    "date": "2024-03-01"
+  },
+  {
+    "id": "res-004",
+    "type": "video",
+    "title": "تسجيل ورشة العمل",
+    "description": "تسجيل كامل لورشة العمل حول التحكيم الإلكتروني.",
+    "url": "https://www.youtube.com/watch?v=example2",
+    "thumbnail": "/sports-arbitration-training-workshop.jpg",
+    "date": "2024-02-20"
+  },
+  {
+    "id": "res-005",
+    "type": "logo",
+    "title": "شعار المركز SVG",
+    "description": "شعار المركز بصيغة SVG عالية الجودة.",
+    "url": "/placeholder-logo.svg",
+    "thumbnail": "/placeholder-logo.svg",
+    "date": "2024-01-15"
+  },
+  {
+    "id": "res-006",
+    "type": "logo",
+    "title": "شعار المركز PNG",
+    "description": "شعار المركز بصيغة PNG شفافة.",
+    "url": "/placeholder-logo.png",
+    "thumbnail": "/placeholder-logo.png",
+    "date": "2024-01-15"
+  },
+  {
+    "id": "res-007",
+    "type": "report",
+    "title": "التقرير السنوي 2023",
+    "description": "تقرير سنوي شامل عن إنجازات المركز لعام 2023.",
+    "url": "#",
+    "thumbnail": "/professional-arbitration-meeting-room-with-judges-.jpg",
+    "date": "2024-02-01"
+  },
+  {
+    "id": "res-008",
+    "type": "report",
+    "title": "إحصائيات النزاعات 2023",
+    "description": "ملف إحصائي حول النزاعات التي تم حلها خلال العام.",
+    "url": "#",
+    "thumbnail": "/professional-legal-consultation-meeting-with-lawye.jpg",
+    "date": "2024-02-01"
+  }
+]

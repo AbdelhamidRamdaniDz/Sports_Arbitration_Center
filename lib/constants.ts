@@ -13,16 +13,12 @@ export const SITE_CONFIG = {
 
 export const NAVIGATION_ITEMS = [
   {
-    title: "الرئيسية",
-    href: "/",
-  },
-  {
     title: "من نحن",
     href: "/about",
     children: [
       {
         title: "عن المركز",
-        href: "/about",
+        href: "/about/overview",
         children: [
           {
             title: "نبذة",
@@ -52,15 +48,11 @@ export const NAVIGATION_ITEMS = [
       },
       {
         title: "رؤية الجزائر 2030",
-        href: "/about/algeria-vision-2030",
+        href: "/about/digital-transformation",
         children: [
           {
             title: "التحول الرقمي",
             href: "/about/digital-transformation",
-          },
-          {
-            title: "الذكاء الاصطناعي",
-            href: "/about/ai",
           },
           {
             title: "الالتزام بالمسؤولية الاجتماعية والاستدامة",
@@ -68,12 +60,22 @@ export const NAVIGATION_ITEMS = [
           },
           {
             title: "أكاديمية تنمية المواهب في حل النزاعات",
-            href: "/about/talent-academy",
+            href: "/services/training",
           },
         ],
       },
     ],
   },
+  {
+    title: "المركز الإعلامي",
+    href: "/media",
+    children: [
+      { title: "الأخبار", href: "/media/news" },
+      { title: "معرض الصور", href: "/media/photos" },
+      { title: "معرض الفيديوهات", href: "/media/videos" },
+      { title: "بودكاست", href: "/media/podcast" },
+    ],
+  },  
   {
     title: "النزاعات والأحكام",
     href: "/disputes",
@@ -97,19 +99,28 @@ export const NAVIGATION_ITEMS = [
     href: "/services",
     children: [
       { title: "التحكيم الرياضي", href: "/services/sports-arbitration" },
-      { title: "التدريب", href: "/services/training" },
       { title: "الوساطة القانونية", href: "/services/legal-mediation" },
       { title: "الاستشارات القانونية", href: "/services/legal-consultation" },
       { title: "القاعات الخاصة", href: "/services/equipped-halls" },
     ],
   },
   {
-    title: "النماذج الرقمية",
+    title: "الموارد الرقمية",
     href: "/forms",
-  },
-  {
-    title: "قائمة الأعضاء",
-    href: "/members",
+    children: [
+      { title: "النمادح الإلكترونية", href: "/forms" },
+      { title: "المحكمين", href: "/members" },
+      { title: "القوانين والأنظمة", href: "/services/legal-consultation" },
+      { title: "التدريب والتأهيل", href: "/services/training" },
+      { title: "مكتبة رقمية",
+         href: "/regulations",
+         children: [
+      { title: "التشريعات الرياضية الوطنية", href: "/regulations/national-sports" },
+      { title: "التشريعات التجارية الوطنية", href: "/regulations/national-commercial" },
+      { title: "التشريعات الدولية", href: "/regulations/international" },
+    ], },
+    ],
+    
   },
 ]
 
