@@ -246,9 +246,12 @@ export default function PartnersPage() {
           <p className="text-xl mb-8 text-green-50 leading-relaxed">
             نرحب بالتعاون مع المؤسسات والشركات التي تشاركنا رؤيتنا في تطوير خدمات التحكيم
           </p>
-          <button className="bg-white text-corporate-green px-8 py-4 rounded-lg font-bold text-lg hover:bg-green-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+          <a
+            href="/contact"
+            className="inline-block bg-white text-corporate-green px-8 py-4 rounded-lg font-bold text-lg hover:bg-green-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+          >
             تواصل معنا للشراكة
-          </button>
+          </a>
         </div>
       </motion.section>
 

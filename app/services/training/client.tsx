@@ -65,11 +65,11 @@ export default function TrainingClient() {
                 <h1 className="mb-3 text-3xl font-extrabold leading-tight md:text-5xl">التدريب والتأهيل: اعتماد، خبرة، وتطبيق عملي</h1>
                 <p className="mb-6 text-base text-muted-foreground md:text-lg">طوّر مسارك في القانون الرياضي مع برامج مرنة تجمع بين التعلم التفاعلي والتطبيق الواقعي.</p>
                 <div className="flex flex-wrap items-center gap-3">
-                  <motion.a whileHover={{ scale: 1.04, boxShadow: "0 0 0 4px rgba(16,185,129,0.25)" }} whileTap={{ scale: 0.98 }} href="/forms/service-request" className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-corporate-green to-teal-500 px-5 py-3 text-white">
+                  <motion.a whileHover={{ scale: 1.04, boxShadow: "0 0 0 4px rgba(16,185,129,0.25)" }} whileTap={{ scale: 0.98 }} href="/forms" className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-corporate-green to-teal-500 px-5 py-3 text-white">
                     ابدأ الآن
                     <ChevronRight className="mr-2 h-5 w-5 -scale-x-100 transition-transform duration-200 group-hover:-translate-x-0.5" />
                   </motion.a>
-                  <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} href="/forms/free-consultation" className="inline-flex items-center justify-center rounded-lg border px-5 py-3">
+                  <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} href="/forms" className="inline-flex items-center justify-center rounded-lg border px-5 py-3">
                     اطلب استشارة
                   </motion.a>
                 </div>
@@ -218,7 +218,7 @@ export default function TrainingClient() {
       <section className="py-10">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <motion.a whileHover={{ scale: 1.04, boxShadow: "0 0 0 4px rgba(16,185,129,0.25)" }} whileTap={{ scale: 0.98 }} href="/forms/service-request" className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-corporate-green to-teal-500 px-5 py-3 text-white">
+            <motion.a whileHover={{ scale: 1.04, boxShadow: "0 0 0 4px rgba(16,185,129,0.25)" }} whileTap={{ scale: 0.98 }} href="/forms" className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-corporate-green to-teal-500 px-5 py-3 text-white">
               سجّل الآن
               <ChevronRight className="mr-2 h-5 w-5 -scale-x-100 transition-transform duration-200 group-hover:-translate-x-0.5" />
             </motion.a>
@@ -233,7 +233,7 @@ export default function TrainingClient() {
       <CTASection
         title="انطلق في مسارك المهني بثقة"
         description="اختر برنامجك، تعلم بمرونة، واحصل على شهادة معتمدة تفتح لك آفاقًا جديدة."
-        primaryButton={{ text: "ابدأ الآن", href: "/forms/service-request" }}
+        primaryButton={{ text: "ابدأ الآن", href: "/forms" }}
         secondaryButton={{ text: "اكتشف البرامج", href: "/services" }}
         variant="corporate"
       />

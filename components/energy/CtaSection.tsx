@@ -25,7 +25,22 @@ export default function CtaSection() {
   }, []);
 
   return (
-    <section className="py-20 bg-corporate-green text-white">
+    <section className="relative overflow-hidden py-20 text-corporate-green">
+      {/* Background gradient + subtle pattern */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-[#f8fafb] to-[#eef2f6]" />
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-emerald-300/20 blur-3xl" />
+        <div className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-teal-300/20 blur-3xl" />
+        <svg className="absolute inset-x-0 top-0 h-full w-full opacity-[0.08]" aria-hidden>
+          <defs>
+            <pattern id="grid-energy" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid-energy)" className="text-corporate-green" />
+        </svg>
+      </div>
+
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div
@@ -36,11 +51,11 @@ export default function CtaSection() {
             }`}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">هل أنت مستعد للانتقال إلى مستقبل الطاقة المستدامة؟</h2>
-            <p className="text-white/80 mb-8 max-w-2xl mx-auto">
+            <p className="mb-8 max-w-2xl mx-auto text-gray-600">
               تواصل معنا اليوم لمناقشة احتياجاتك واكتشاف كيف يمكننا مساعدتك في تحقيق أهدافك في مجال الطاقة.
             </p>
             <button
-              className="bg-white text-corporate-green px-8 py-3 rounded-full font-bold hover:bg-white/90 transition-all shadow-lg hover:scale-105 active:scale-95"
+              className="bg-gradient-to-r from-corporate-green to-teal-500 text-white px-8 py-3 rounded-full font-bold hover:from-corporate-green/90 hover:to-teal-500/90 transition-all shadow-lg hover:scale-105 active:scale-95"
             >
               تواصل معنا الآن
             </button>

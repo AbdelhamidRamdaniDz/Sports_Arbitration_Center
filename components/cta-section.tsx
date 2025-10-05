@@ -130,7 +130,7 @@ export function CTASection({
                   className={cn(
                     "group text-lg px-8 py-3",
                     isCorporate
-                      ? "border-white text-white hover:bg-white hover:text-corporate-green"
+                      ? "border-white text-corporate-green hover:bg-white hover:text-corporate-green"
                       : "border-corporate-green text-corporate-green hover:bg-corporate-green hover:text-white",
                   )}
                 >

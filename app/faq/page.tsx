@@ -272,7 +272,7 @@ export default function FAQ() {
                   تواصل معنا
                 </motion.a>
                 <motion.a
-                  href="/register"
+                  href="/forms"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center justify-center px-8 py-4 border-2 border-corporate-green text-corporate-green font-semibold rounded-lg hover:bg-corporate-green hover:text-white transition-all"

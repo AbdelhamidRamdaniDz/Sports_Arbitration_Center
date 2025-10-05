@@ -133,7 +133,7 @@ export default function OverviewPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-8 py-4 bg-corporate-green text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
-                href="/register"
+                href="/forms"
               >
                 <span>ابدأ التحكيم الآن</span>
                 <Sparkles className="h-5 w-5" />
@@ -343,7 +343,7 @@ export default function OverviewPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-8 py-4 bg-white text-corporate-green font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
-                href="/register"
+                href="/forms"
               >
                 <span>سجّل الآن</span>
                 <Sparkles className="h-5 w-5" />

@@ -104,13 +104,14 @@ export default function DigitalTransformationPage() {
               >
                 اكتشف المزيد
               </motion.button>
-              <motion.button
+              <motion.a
+                href="/contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-all"
+                className="px-8 py-4 border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-all flex items-center justify-center"
               >
                 تواصل معنا
-              </motion.button>
+              </motion.a>
             </div>
           </motion.div>
         </div>
