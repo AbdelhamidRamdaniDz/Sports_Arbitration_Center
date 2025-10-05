@@ -80,18 +80,10 @@ export const NAVIGATION_ITEMS = [
     title: "النزاعات والأحكام",
     href: "/disputes",
     children: [
+      { title: "قدّم قضيتك", href: "/forms" },
       { title: "تتبع القضايا", href: "/disputes/tracking" },
       { title: "ملخص أحكام التحكيم", href: "/disputes/rulings" },
       { title: "حاسبة النزاعات", href: "/disputes/calculator" },
-    ],
-  },
-  {
-    title: "اللوائح",
-    href: "/regulations",
-    children: [
-      { title: "التشريعات الرياضية الوطنية", href: "/regulations/national-sports" },
-      { title: "التشريعات التجارية الوطنية", href: "/regulations/national-commercial" },
-      { title: "التشريعات الدولية", href: "/regulations/international" },
     ],
   },
   {
@@ -102,6 +94,20 @@ export const NAVIGATION_ITEMS = [
       { title: "الوساطة القانونية", href: "/services/legal-mediation" },
       { title: "الاستشارات القانونية", href: "/services/legal-consultation" },
       { title: "القاعات الخاصة", href: "/services/equipped-halls" },
+    ],
+  },
+  {
+    title: "مجالات الممارسة",
+    href: "/practice-areas",
+    children: [
+      { title: "الطاقة", href: "/practice-areas/energy" },
+      { title: "الشركات الناشئة", href: "/practice-areas/startups" },
+      { title: "التعليم العالي", href: "/practice-areas/higher-education" },
+      { title: "الملكية الفكرية", href: "/practice-areas/intellectual-property" },
+      { title: "التأمين وإعادة التأمين", href: "/practice-areas/insurance" },
+      { title: "العقارات والممتلكات", href: "/practice-areas/real-estate" },
+      { title: "الرعاية الصحية", href: "/practice-areas/healthcare" },
+      { title: "الرياضة والترفيه", href: "/practice-areas/sports-entertainment" },
     ],
   },
   {
