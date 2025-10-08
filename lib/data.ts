@@ -36,6 +36,15 @@ export async function getLawyerById(id: string): Promise<Lawyer | null> {
   return lawyers.find((lawyer) => lawyer.id === id) || null
 }
 
+export async function getMemberById(
+  id: string,
+): Promise<{ member: Arbitrator | Lawyer | null; type: "arbitrator" | "lawyer" | null }> {
+  const [arb, law] = await Promise.all([getArbitratorById(id), getLawyerById(id)])
+  if (arb) return { member: arb, type: "arbitrator" }
+  if (law) return { member: law, type: "lawyer" }
+  return { member: null, type: null }
+}
+
 // Search and filter utilities
 export function filterMembers<T extends { name: string; specialization: string; location: string }>(
   members: T[],

@@ -1,3 +1,4 @@
+ 
 import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -23,6 +24,7 @@ import {
   Calendar,
 } from "lucide-react"
 import { SERVICES } from "@/lib/constants"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "خدماتنا | مركز التحكيم الرياضي",
@@ -33,14 +35,14 @@ export default function ServicesPage() {
   const detailedServices = [
     {
       title: "التحكيم الرياضي",
-      description: "خدمات التحكيم المتخصصة في النزاعات الرياضية بجميع أنواعها",
+      description: "خدمات التحكيم المتخصصة في النزاعات الرياضية داخل الجزائر وفق التشريعات الوطنية والمعايير الدولية",
       icon: <Gavel className="h-8 w-8" />,
       benefits: [
         "حل سريع للنزاعات خلال 30-60 يوم",
-        "فريق من المحكمين المعتمدين دولياً",
+        "فريق من المحكمين المعتمدين",
         "قرارات ملزمة ونهائية",
         "سرية تامة وحماية للأطراف",
-        "تكلفة أقل من المحاكم التقليدية",
+        "تكلفة معقولة مقارنةً بالتقاضي التقليدي",
         "مرونة في الإجراءات والمواعيد",
       ],
       process: [
@@ -49,18 +51,18 @@ export default function ServicesPage() {
         "جلسات الاستماع والمرافعات",
         "إصدار الحكم النهائي",
       ],
-      pricing: "تبدأ من 15,000 ريال",
+      pricing: "تبدأ من 180,000 دج",
       duration: "30-90 يوم",
       color: "green",
     },
     {
       title: "التدريب والتأهيل",
-      description: "برامج تدريبية متخصصة في القانون الرياضي والتحكيم",
+      description: "برامج تدريبية متخصصة في القانون الرياضي والتحكيم موجهة للإداريين والقانونيين في الجزائر",
       icon: <GraduationCap className="h-8 w-8" />,
       benefits: [
         "برامج معتمدة من المنظمات الدولية",
         "مدربون خبراء في القانون الرياضي",
-        "شهادات معترف بها محلياً ودولياً",
+        "شهادات معترف بها محلياً",
         "تدريب عملي على قضايا حقيقية",
         "ورش عمل تفاعلية ومتخصصة",
         "متابعة مستمرة بعد التدريب",
@@ -71,17 +73,17 @@ export default function ServicesPage() {
         "التطبيق العملي والتدريب",
         "الاختبار والحصول على الشهادة",
       ],
-      pricing: "تبدأ من 5,000 ريال",
+      pricing: "تبدأ من 25,000 دج",
       duration: "2-6 أسابيع",
       color: "blue",
     },
     {
       title: "الوساطة القانونية",
-      description: "خدمات الوساطة لحل النزاعات بطريقة ودية وسريعة",
+      description: "خدمات الوساطة لحل النزاعات الرياضية بطريقة ودية وسريعة داخل الجزائر",
       icon: <Handshake className="h-8 w-8" />,
       benefits: [
         "حلول سريعة خلال 15-30 يوم",
-        "تكلفة أقل من التحكيم التقليدي",
+        "تكلفة أقل من التحكيم",
         "الحفاظ على العلاقات بين الأطراف",
         "مرونة كاملة في الحلول",
         "سرية مطلقة للمناقشات",
@@ -93,7 +95,7 @@ export default function ServicesPage() {
         "جلسات الحوار والتفاوض",
         "التوصل إلى اتفاق مرضي",
       ],
-      pricing: "تبدأ من 8,000 ريال",
+      pricing: "تبدأ من 120,000 دج",
       duration: "15-45 يوم",
       color: "orange",
     },
@@ -104,13 +106,13 @@ export default function ServicesPage() {
       benefits: [
         "تجهيزات تقنية حديثة ومتطورة",
         "خصوصية تامة وأمان عالي",
-        "مواقع متميزة في المدن الرئيسية",
+        "مواقع متميزة في المدن الجزائرية الرئيسية",
         "خدمات مساندة شاملة",
         "إمكانية الحجز المرن",
         "دعم تقني متخصص",
       ],
       process: ["طلب حجز القاعة المناسبة", "تحديد التجهيزات المطلوبة", "تأكيد الحجز والدفع", "استخدام القاعة مع الدعم"],
-      pricing: "تبدأ من 500 ريال/ساعة",
+      pricing: "تبدأ من 3,000 دج/ساعة",
       duration: "حسب الحاجة",
       color: "purple",
     },
@@ -268,17 +270,21 @@ export default function ServicesPage() {
                       </div>
 
                       <div className="space-y-3">
-                        <Button className="w-full bg-corporate-green hover:bg-corporate-green/90">
-                          طلب الخدمة الآن
-                          <ArrowLeft className="mr-2 h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="outline"
-                          className="w-full border-corporate-green text-corporate-green hover:bg-corporate-green hover:text-white bg-transparent"
-                        >
-                          استشارة مجانية
-                          <Phone className="mr-2 h-4 w-4" />
-                        </Button>
+                        <Link href="/contact" className="block">
+                          <Button className="w-full bg-corporate-green hover:bg-corporate-green/90">
+                            طلب الخدمة الآن
+                            <ArrowLeft className="mr-2 h-4 w-4" />
+                          </Button>
+                        </Link>
+                        <Link href="/consultation" className="block">
+                          <Button
+                            variant="outline"
+                            className="w-full border-corporate-green text-corporate-green hover:bg-corporate-green hover:text-white bg-transparent"
+                          >
+                            استشارة مجانية
+                            <Phone className="mr-2 h-4 w-4" />
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -332,7 +338,7 @@ export default function ServicesPage() {
                   <Phone className="h-8 w-8 text-corporate-green mx-auto mb-3" />
                   <h3 className="font-bold text-corporate-green mb-2">اتصل بنا</h3>
                   <p className="text-sm text-muted-foreground mb-3">للاستفسارات العاجلة</p>
-                  <p className="text-sm font-medium">+966 11 123 4567</p>
+                  <p className="text-sm font-medium">+213 21 123 456</p>
                 </CardContent>
               </Card>
 
@@ -341,7 +347,7 @@ export default function ServicesPage() {
                   <Mail className="h-8 w-8 text-corporate-green mx-auto mb-3" />
                   <h3 className="font-bold text-corporate-green mb-2">راسلنا</h3>
                   <p className="text-sm text-muted-foreground mb-3">للاستفسارات التفصيلية</p>
-                  <p className="text-sm font-medium">info@sports-arbitration.sa</p>
+                  <p className="text-sm font-medium">info@sports-arbitration.dz</p>
                 </CardContent>
               </Card>
 
@@ -350,9 +356,11 @@ export default function ServicesPage() {
                   <Calendar className="h-8 w-8 text-corporate-green mx-auto mb-3" />
                   <h3 className="font-bold text-corporate-green mb-2">احجز موعد</h3>
                   <p className="text-sm text-muted-foreground mb-3">للاستشارات المجانية</p>
-                  <Button size="sm" className="bg-corporate-green hover:bg-corporate-green/90 text-xs px-4 py-1">
-                    احجز الآن
-                  </Button>
+                  <Link href="/booking">
+                    <Button size="sm" className="bg-corporate-green hover:bg-corporate-green/90 text-xs px-4 py-1">
+                      احجز الآن
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </div>

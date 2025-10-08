@@ -3,31 +3,32 @@ import { Scale, Phone, Mail, MapPin, Facebook, Twitter, Linkedin } from "lucide-
 import { SITE_CONFIG } from "@/lib/constants"
 
 export function Footer() {
+  const year = new Date().getFullYear()
   return (
-    <footer className="bg-corporate-green text-white">
+    <footer dir="rtl" className="text-white bg-corporate-green">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo and Description */}
-          <div className="space-y-4">
+          <div className="space-y-5">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-corporate-green">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-corporate-green shadow-sm">
                 <Scale className="h-6 w-6" />
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-bold">{SITE_CONFIG.name}</span>
-                <span className="text-sm opacity-80">{SITE_CONFIG.nameEn}</span>
+                <span className="text-lg font-bold tracking-tight">{SITE_CONFIG.name}</span>
+                <span className="text-sm/5 opacity-85">{SITE_CONFIG.nameEn}</span>
               </div>
             </div>
-            <p className="text-sm opacity-90 leading-relaxed">
-              مركز متخصص في التحكيم والوساطة الرياضية، يقدم خدمات قانونية متميزة للمؤسسات والأفراد في القطاع الرياضي
-              بأعلى معايير الجودة والمهنية.
+            <p className="text-sm/6 opacity-90 leading-relaxed">
+              مركز متخصص في التحكيم والوساطة الرياضية، نقدّم حلولًا قانونية عملية ومتوازنة للمؤسسات والأفراد وفق أفضل
+              المعايير المهنية.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
+          <div className="space-y-5">
             <h3 className="text-lg font-semibold">روابط سريعة</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5">
               <li>
                 <Link href="/about/overview" className="text-sm opacity-90 hover:opacity-100 transition-opacity">
                   من نحن
@@ -57,75 +58,94 @@ export function Footer() {
           </div>
 
           {/* Services */}
-          <div className="space-y-4">
+          <div className="space-y-5">
             <h3 className="text-lg font-semibold">خدماتنا</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5">
               <li>
-                <span className="text-sm opacity-90">التحكيم الرياضي</span>
+                <Link href="/services/sports-arbitration" className="text-sm opacity-90 hover:opacity-100 transition-opacity">
+                  التحكيم الرياضي
+                </Link>
               </li>
               <li>
-                <span className="text-sm opacity-90">الوساطة القانونية</span>
+                <Link href="/services/legal-mediation" className="text-sm opacity-90 hover:opacity-100 transition-opacity">
+                  الوساطة القانونية
+                </Link>
               </li>
               <li>
-                <span className="text-sm opacity-90">التدريب والتأهيل</span>
+                <Link href="/services/training" className="text-sm opacity-90 hover:opacity-100 transition-opacity">
+                  التدريب والتأهيل
+                </Link>
               </li>
               <li>
-                <span className="text-sm opacity-90">الاستشارات القانونية</span>
+                <Link href="/services/legal-consultation" className="text-sm opacity-90 hover:opacity-100 transition-opacity">
+                  الاستشارات القانونية
+                </Link>
               </li>
               <li>
-                <span className="text-sm opacity-90">القاعات المجهزة</span>
+                <Link href="/services/equipped-halls" className="text-sm opacity-90 hover:opacity-100 transition-opacity">
+                  القاعات المجهزة
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-4">
+          <div className="space-y-5">
             <h3 className="text-lg font-semibold">تواصل معنا</h3>
-            <div className="space-y-3">
+            <div className="space-y-3.5">
               <div className="flex items-center gap-3">
-                <Phone className="h-4 w-4 opacity-80" />
-                <span className="text-sm">+966 11 123 4567</span>
+                <Phone className="h-4 w-4 opacity-85" />
+                <span className="text-sm">+213 21 123 456</span>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="h-4 w-4 opacity-80" />
-                <span className="text-sm">info@sports-arbitration.sa</span>
+                <Mail className="h-4 w-4 opacity-85" />
+                <span className="text-sm">info@sports-arbitration.dz</span>
               </div>
               <div className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 opacity-80" />
-                <span className="text-sm">الرياض، المملكة العربية السعودية</span>
+                <MapPin className="h-4 w-4 opacity-85" />
+                <span className="text-sm">الجزائر العاصمة، الجمهورية الجزائرية الديمقراطية الشعبية</span>
               </div>
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center gap-4 pt-2">
-              <Link href="#" className="opacity-80 hover:opacity-100 transition-opacity">
-                <Facebook className="h-5 w-5" />
-                <span className="sr-only">فيسبوك</span>
+            <div className="flex items-center gap-3 pt-2">
+              <Link
+                href="#"
+                className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:-translate-y-0.5"
+                aria-label="فيسبوك"
+              >
+                <Facebook className="h-5 w-5 transition-transform duration-200 group-hover:scale-110" />
               </Link>
-              <Link href="#" className="opacity-80 hover:opacity-100 transition-opacity">
-                <Twitter className="h-5 w-5" />
-                <span className="sr-only">تويتر</span>
+              <Link
+                href="#"
+                className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:-translate-y-0.5"
+                aria-label="تويتر"
+              >
+                <Twitter className="h-5 w-5 transition-transform duration-200 group-hover:scale-110" />
               </Link>
-              <Link href="#" className="opacity-80 hover:opacity-100 transition-opacity">
-                <Linkedin className="h-5 w-5" />
-                <span className="sr-only">لينكد إن</span>
+              <Link
+                href="#"
+                className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:-translate-y-0.5"
+                aria-label="لينكد إن"
+              >
+                <Linkedin className="h-5 w-5 transition-transform duration-200 group-hover:scale-110" />
               </Link>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 border-t border-white/20 pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-sm opacity-80">© 2024 مركز التحكيم الرياضي. جميع الحقوق محفوظة.</p>
+        <div className="mt-12 border-t border-white/20 pt-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm opacity-85">© {year} {SITE_CONFIG.name}. جميع الحقوق محفوظة.</p>
             <div className="flex items-center gap-6">
-              <Link href="/privacy-policy" className="text-sm opacity-80 hover:opacity-100 transition-opacity">
+              <Link href="/privacy-policy" className="text-sm opacity-85 hover:opacity-100 transition-opacity">
                 سياسة الخصوصية
               </Link>
-              <Link href="/terms-of-use" className="text-sm opacity-80 hover:opacity-100 transition-opacity">
+              <Link href="/terms-of-use" className="text-sm opacity-85 hover:opacity-100 transition-opacity">
                 الشروط والأحكام
               </Link>
-              <Link href="/legal" className="text-sm opacity-80 hover:opacity-100 transition-opacity">
+              <Link href="/legal" className="text-sm opacity-85 hover:opacity-100 transition-opacity">
                 الإشعارات القانونية
               </Link>
             </div>
