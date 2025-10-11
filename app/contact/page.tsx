@@ -38,9 +38,19 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validate()) return
-    await new Promise((r) => setTimeout(r, 300))
-    toast({ title: "تم إرسال الرسالة", description: "نشكركم على تواصلكم. سنرد في أقرب الآجال." })
-    setForm({ firstName: "", lastName: "", email: "", phone: "", subject: "", message: "", preferred: "email" })
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      })
+      if (!res.ok) throw new Error('failed')
+      toast({ title: "تم إرسال الرسالة", description: "نشكركم على تواصلكم. سنرد في أقرب الآجال." })
+      setForm({ firstName: "", lastName: "", email: "", phone: "", subject: "", message: "", preferred: "email" })
+      setErrors({})
+    } catch {
+      toast({ title: "تعذر إرسال الرسالة", description: "يرجى المحاولة لاحقًا", variant: "destructive" as any })
+    }
   }
 
   return (

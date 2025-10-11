@@ -1,8 +1,8 @@
 export const SITE_CONFIG = {
-  name: "مركز التحكيم الرياضي",
-  nameEn: "Sports Arbitration Center",
-  description: "مركز متخصص في التحكيم والوساطة الرياضية",
-  descriptionEn: "Specialized center for sports arbitration and mediation",
+  name: "Tahkeem Tech",
+  nameEn: "centr of Arbitration & Trade & Sports",
+  description: "مركز متخصص في التحكيم والوساطة",
+  descriptionEn: "Specialized center for arbitration and mediation",
   url: "https://sports-arbitration.com",
   ogImage: "/og-image.jpg",
   links: {

@@ -1,9 +1,8 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Tajawal } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { Suspense } from "react"
 import "./globals.css"
+import Providers from "./providers"
 
 const tajawal = Tajawal({
   subsets: ["arabic"],
@@ -15,7 +14,6 @@ const tajawal = Tajawal({
 export const metadata: Metadata = {
   title: "مركز التحكيم الرياضي | Sports Arbitration Center",
   description: "مركز متخصص في التحكيم والوساطة الرياضية - Specialized center for sports arbitration and mediation",
-  generator: "v0.app",
   keywords: ["تحكيم رياضي", "وساطة", "قانون رياضي", "sports arbitration", "mediation", "sports law"],
   authors: [{ name: "Sports Arbitration Center" }],
   openGraph: {
@@ -34,8 +32,9 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body className={`font-sans ${tajawal.variable} antialiased`}>
-        <Suspense fallback={null}>{children}</Suspense>
-        <Analytics />
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )

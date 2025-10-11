@@ -1,5 +1,4 @@
 "use client"
-
 import { useRef, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -7,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, Scale, ChevronDown, ChevronLeft, Phone, Mail, Search, User } from "lucide-react"
 import { NAVIGATION_ITEMS, SITE_CONFIG } from "@/lib/constants"
 import { cn } from "@/lib/utils"
+import { useSession, signOut } from "next-auth/react"
 
 type NavItem = {
   title: string
@@ -21,6 +21,7 @@ export function Headerlanding() {
   const [hoveredChild, setHoveredChild] = useState<string | null>(null)
   const mainTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const childTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const { data: session } = useSession()
 
   const clearMainTimeout = () => {
     if (mainTimeoutRef.current) {
@@ -191,7 +192,7 @@ export function Headerlanding() {
                                       role="menu"
                                       onMouseEnter={handleDropdownEnter}
                                       onMouseLeave={handleChildLeave}
-                                      className="absolute top-0 left-full ml-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg p-2 text-right z-50"
+                                      className="absolute top-0 right-full ml-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg p-2 text-right z-50"
                                     >
                                       <ul className="space-y-1">
                                         {child.children!.map((grand) => (
@@ -233,12 +234,42 @@ export function Headerlanding() {
               </Button>
 
               {/* Login Button */}
-              <Button asChild variant="outline" className="hidden md:flex gap-2">
-                <Link href="/login">
-                  <User className="h-4 w-4" />
-                  <span>تسجيل الدخول</span>
-                </Link>
-              </Button>
+              {!session ? (
+                <Button asChild variant="outline" className="hidden md:flex gap-2">
+                  <Link href="/login">
+                    <User className="h-4 w-4" />
+                    <span>تسجيل الدخول</span>
+                  </Link>
+                </Button>
+              ) : (
+                <div className="relative group">
+                  <Button variant="outline" className="hidden md:flex items-center gap-2">
+                    <User className="h-4 w-4" />
+                    <span>{session.user?.name || "حسابي"}</span>
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+
+                  {/* القائمة المنسدلة لحساب المستخدم */}
+                  <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg hidden group-hover:block z-50 text-right">
+                    <ul className="py-2 text-sm">
+                      <li>
+                        <Link href="/profile" className="block px-4 py-2 hover:bg-gray-100">
+                          الملف الشخصي
+                        </Link>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => signOut({ callbackUrl: "/" })}
+                          className="w-full text-right px-4 py-2 hover:bg-gray-100"
+                        >
+                          تسجيل الخروج
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              )}
+
 
               {/* Submit Case Button */}
               <Button asChild className="hidden md:flex bg-corporate-green hover:bg-corporate-green/90">

@@ -9,7 +9,6 @@ import { NewsFilters } from "@/components/media-center/NewsFilters"
 import { NewsGrid } from "@/components/media-center/NewsGrid"
 import { PressReleasesSection } from "@/components/media-center/PressReleasesSection"
 import { MediaResourcesSection } from "@/components/media-center/MediaResourcesSection"
-import newsData from "@/data/news.json"
 import pressReleasesData from "@/data/press-releases.json"
 import resourcesData from "@/data/resources.json"
 
@@ -41,45 +40,95 @@ export default function MediaCenterPage() {
   const [newsPage, setNewsPage] = useState(1)
   const [loadingMore, setLoadingMore] = useState(false)
 
-  // Simulate async fetch with skeleton
+  // Fetch news from public API with filters + pagination
+  const fetchPage = async (page: number, category: string, search: string) => {
+    const params = new URLSearchParams()
+    params.set("page", String(page))
+    params.set("limit", String(PAGE_SIZE))
+    if (search) params.set("search", search)
+    // category filter is client-side in API; extend API later if needed
+    const res = await fetch(`/api/media/news?${params.toString()}`)
+    if (!res.ok) throw new Error("failed")
+    const json = await res.json()
+    const rows = (json?.data || []) as any[]
+    const storedFavs = JSON.parse(localStorage.getItem("media-favs") || "[]")
+    const mapped: NewsItem[] = rows.map((n) => ({
+      id: n.id,
+      title: n.title,
+      excerpt: n.excerpt || "",
+      date: n.createdAt || n.date || new Date().toISOString(),
+      category: n.category || "عام",
+      image: n.mainImage || "/placeholder.jpg",
+      featured: !!n.urgent,
+      views: n.views || 0,
+      favorited: storedFavs.includes(n.id),
+    }))
+    // apply category filter client-side
+    return category ? mapped.filter(m => m.category === category) : mapped
+  }
+
   useEffect(() => {
-    setLoading(true)
-    setTimeout(() => {
-      // Add mock views and favorited state
-      const storedFavs = JSON.parse(localStorage.getItem("media-favs") || "[]")
-      setNews(newsData.map((n, i) => ({
-        ...n,
-        views: Math.floor(Math.random() * 1000) + 100,
-        favorited: storedFavs.includes(n.id),
-      })))
-      setFavorites(storedFavs)
-      setLoading(false)
-    }, 1200)
+    let cancelled = false
+    const run = async () => {
+      try {
+        setLoading(true)
+        const first = await fetchPage(1, selectedCategory, searchTerm)
+        if (!cancelled) {
+          setNews(first)
+          const storedFavs = JSON.parse(localStorage.getItem("media-favs") || "[]")
+          setFavorites(storedFavs)
+        }
+      } catch {
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+    run()
+    return () => { cancelled = true }
+  }, [selectedCategory, searchTerm])
+
+  useEffect(() => {
+    let cancelled = false
+    const run = async () => {
+      try {
+        setPressLoading(true)
+        const res = await fetch('/api/media/press-releases')
+        const json = await res.json()
+        const rows = (json?.data || []) as any[]
+        const storedFavs = JSON.parse(localStorage.getItem("press-favs") || "[]")
+        const mapped = rows.map(n => ({
+          ...n,
+          views: Math.floor(Math.random() * 500) + 50,
+          favorited: storedFavs.includes(n.id),
+        }))
+        if (!cancelled) {
+          setPressReleases(mapped)
+          setPressFavorites(storedFavs)
+        }
+      } finally {
+        if (!cancelled) setPressLoading(false)
+      }
+    }
+    run()
+    return () => { cancelled = true }
   }, [])
 
   useEffect(() => {
-    setPressLoading(true)
-    setTimeout(() => {
-      const storedFavs = JSON.parse(localStorage.getItem("press-favs") || "[]")
-      setPressReleases(pressReleasesData.map((n: any) => ({
-        ...n,
-        views: Math.floor(Math.random() * 500) + 50,
-        favorited: storedFavs.includes(n.id),
-      })))
-      setPressFavorites(storedFavs)
-      setPressLoading(false)
-    }, 1200)
+    let cancelled = false
+    const run = async () => {
+      try {
+        setResourcesLoading(true)
+        const res = await fetch('/api/media/resources')
+        const json = await res.json()
+        if (!cancelled) setResources(json?.data || [])
+      } finally {
+        if (!cancelled) setResourcesLoading(false)
+      }
+    }
+    run()
+    return () => { cancelled = true }
   }, [])
 
-  useEffect(() => {
-    setResourcesLoading(true)
-    setTimeout(() => {
-      setResources(resourcesData)
-      setResourcesLoading(false)
-    }, 1200)
-  }, [])
-
-  // Reset page on filter/search change
   useEffect(() => {
     setNewsPage(1)
   }, [selectedCategory, searchTerm])
@@ -106,13 +155,17 @@ export default function MediaCenterPage() {
   const hasMoreNews = paginatedNews.length < filteredNews.length
 
   // Infinite scroll load more
-  const handleLoadMoreNews = () => {
+  const handleLoadMoreNews = async () => {
     if (loadingMore || !hasMoreNews) return
     setLoadingMore(true)
-    setTimeout(() => {
-      setNewsPage(p => p + 1)
+    try {
+      const nextPage = newsPage + 1
+      const next = await fetchPage(nextPage, selectedCategory, searchTerm)
+      setNews(prev => [...prev, ...next])
+      setNewsPage(nextPage)
+    } finally {
       setLoadingMore(false)
-    }, 800)
+    }
   }
 
   // Handle favorite
@@ -127,8 +180,7 @@ export default function MediaCenterPage() {
 
   // Handle card click (could open modal or route)
   const handleCardClick = (id: string) => {
-    // For now, just alert
-    alert(`عرض تفاصيل الخبر: ${id}`)
+    window.location.href = `/media/news/${id}`
   }
 
   const handlePressFavorite = (id: string) => {

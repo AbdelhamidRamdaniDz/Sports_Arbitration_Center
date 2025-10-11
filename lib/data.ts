@@ -4,19 +4,16 @@ import newsData from "@/data/news.json"
 import type { Arbitrator, Lawyer, NewsItem } from "./types"
 
 export async function getArbitrators(): Promise<Arbitrator[]> {
-  // Simulate API delay for realistic behavior
   await new Promise((resolve) => setTimeout(resolve, 100))
   return arbitratorsData as Arbitrator[]
 }
 
 export async function getLawyers(): Promise<Lawyer[]> {
-  // Simulate API delay for realistic behavior
   await new Promise((resolve) => setTimeout(resolve, 100))
   return lawyersData as Lawyer[]
 }
 
 export async function getNews(): Promise<NewsItem[]> {
-  // Simulate API delay for realistic behavior
   await new Promise((resolve) => setTimeout(resolve, 100))
   return newsData as NewsItem[]
 }
@@ -45,7 +42,6 @@ export async function getMemberById(
   return { member: null, type: null }
 }
 
-// Search and filter utilities
 export function filterMembers<T extends { name: string; specialization: string; location: string }>(
   members: T[],
   searchTerm: string,
