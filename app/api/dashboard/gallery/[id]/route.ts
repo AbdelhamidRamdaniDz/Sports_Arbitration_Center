@@ -1,8 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { prisma } from "@/lib/prisma";
-import { promises as fs } from "fs";
-import path from "path";
+import { del } from "@vercel/blob";
 
 function isSuperAdmin(email?: string | null) {
   const envAdmin = (process.env.SUPER_ADMIN_EMAIL || "admin@gmail.com").trim().toLowerCase();
@@ -25,11 +24,12 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
   const id = params.id;
   const photo = await prisma.photo.findUnique({ where: { id } });
   if (!photo) return NextResponse.json({ error: "not_found" }, { status: 404 });
-  if (photo.url) {
-    const rel = photo.url.replace(/^\//, "");
-    const filePath = path.join(process.cwd(), "public", rel);
-    try { await fs.unlink(filePath); } catch {}
-  }
+  try {
+    if (photo.url && /https?:\/\/.*vercel-storage\.com\//.test(photo.url)) {
+      await del(photo.url);
+    }
+  } catch {}
   await prisma.photo.delete({ where: { id } });
   return NextResponse.json({ ok: true });
 }
+
