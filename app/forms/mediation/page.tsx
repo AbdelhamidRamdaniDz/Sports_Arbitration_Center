@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useForm } from "react-hook-form"
+import { useForm, type SubmitHandler, type Resolver } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { Header } from "@/components/header"
@@ -66,21 +66,38 @@ export default function MediationFormPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const form = useForm<MediationFormData>({
-    resolver: zodResolver(mediationSchema),
+    resolver: zodResolver(mediationSchema) as Resolver<MediationFormData>,
     defaultValues: {
+      applicantName: "",
+      applicantEmail: "",
+      applicantPhone: "",
+      otherPartyName: "",
+      otherPartyEmail: "",
+      otherPartyPhone: "",
+      disputeType: "contract",
+      disputeCategory: "football",
+      disputeDescription: "",
+      preferredDate: "",
+      preferredTime: "morning",
+      sessionType: "in-person",
       urgentCase: false,
       allPartiesAgree: false,
       agreesToTerms: false,
-      sessionType: "in-person",
-      preferredTime: "morning",
     },
   })
 
-  const onSubmit = async (data: MediationFormData) => {
+  const onSubmit: SubmitHandler<MediationFormData> = async (data) => {
     setIsSubmitting(true)
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      const res = await fetch("/api/forms/mediation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({} as any))
+        throw new Error(err?.error || "request_failed")
+      }
 
       toast.success("تم تقديم طلب الوساطة بنجاح! سيتم التواصل معك قريباً.")
 
@@ -118,8 +135,8 @@ export default function MediationFormPage() {
             </Card>
           </ScrollReveal>
 
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <Form {...(form as any)}>
+            <form onSubmit={form.handleSubmit(onSubmit as any)} className="space-y-6">
               {/* Applicant Information */}
               <ScrollReveal direction="up" delay={300}>
                 <Card>
@@ -132,7 +149,7 @@ export default function MediationFormPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <FormField
-                      control={form.control}
+                      control={form.control as any}
                       name="applicantName"
                       render={({ field }) => (
                         <FormItem>
@@ -147,7 +164,7 @@ export default function MediationFormPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
-                        control={form.control}
+                        control={form.control as any}
                         name="applicantEmail"
                         render={({ field }) => (
                           <FormItem>
@@ -161,7 +178,7 @@ export default function MediationFormPage() {
                       />
 
                       <FormField
-                        control={form.control}
+                        control={form.control as any}
                         name="applicantPhone"
                         render={({ field }) => (
                           <FormItem>
@@ -190,7 +207,7 @@ export default function MediationFormPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <FormField
-                      control={form.control}
+                      control={form.control as any}
                       name="otherPartyName"
                       render={({ field }) => (
                         <FormItem>
@@ -205,7 +222,7 @@ export default function MediationFormPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
-                        control={form.control}
+                        control={form.control as any}
                         name="otherPartyEmail"
                         render={({ field }) => (
                           <FormItem>
@@ -219,7 +236,7 @@ export default function MediationFormPage() {
                       />
 
                       <FormField
-                        control={form.control}
+                        control={form.control as any}
                         name="otherPartyPhone"
                         render={({ field }) => (
                           <FormItem>
@@ -249,7 +266,7 @@ export default function MediationFormPage() {
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
-                        control={form.control}
+                        control={form.control as any}
                         name="disputeType"
                         render={({ field }) => (
                           <FormItem>
@@ -274,7 +291,7 @@ export default function MediationFormPage() {
                       />
 
                       <FormField
-                        control={form.control}
+                        control={form.control as any}
                         name="disputeCategory"
                         render={({ field }) => (
                           <FormItem>
@@ -302,7 +319,7 @@ export default function MediationFormPage() {
                     </div>
 
                     <FormField
-                      control={form.control}
+                      control={form.control as any}
                       name="disputeDescription"
                       render={({ field }) => (
                         <FormItem>
@@ -336,7 +353,7 @@ export default function MediationFormPage() {
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
-                        control={form.control}
+                        control={form.control as any}
                         name="preferredDate"
                         render={({ field }) => (
                           <FormItem>
@@ -350,7 +367,7 @@ export default function MediationFormPage() {
                       />
 
                       <FormField
-                        control={form.control}
+                        control={form.control as any}
                         name="preferredTime"
                         render={({ field }) => (
                           <FormItem>
@@ -374,7 +391,7 @@ export default function MediationFormPage() {
                     </div>
 
                     <FormField
-                      control={form.control}
+                      control={form.control as any}
                       name="sessionType"
                       render={({ field }) => (
                         <FormItem>
@@ -405,7 +422,7 @@ export default function MediationFormPage() {
                     />
 
                     <FormField
-                      control={form.control}
+                      control={form.control as any}
                       name="urgentCase"
                       render={({ field }) => (
                         <FormItem className="flex flex-row items-start space-x-3 space-x-reverse space-y-0 rounded-md border p-4">
@@ -434,7 +451,7 @@ export default function MediationFormPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <FormField
-                      control={form.control}
+                      control={form.control as any}
                       name="allPartiesAgree"
                       render={({ field }) => (
                         <FormItem className="flex flex-row items-start space-x-3 space-x-reverse space-y-0 rounded-md border p-4">
@@ -451,7 +468,7 @@ export default function MediationFormPage() {
                     />
 
                     <FormField
-                      control={form.control}
+                      control={form.control as any}
                       name="agreesToTerms"
                       render={({ field }) => (
                         <FormItem className="flex flex-row items-start space-x-3 space-x-reverse space-y-0 rounded-md border p-4">

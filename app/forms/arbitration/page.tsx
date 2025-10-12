@@ -239,8 +239,16 @@ export default function ArbitrationFormPage() {
   const onSubmit = async (data: ArbitrationFormData) => {
     setIsSubmitting(true)
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      const res = await fetch("/api/forms/arbitration", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({} as any))
+        throw new Error(err?.error || "request_failed")
+      }
+      const json = await res.json().catch(() => ({} as any))
 
       // Clear saved progress
       if (typeof window !== "undefined") {

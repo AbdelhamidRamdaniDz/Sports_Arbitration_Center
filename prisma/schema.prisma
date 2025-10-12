@@ -36,6 +36,26 @@ model ArbitrationDocument {
   arbitration    Arbitration  @relation(fields: [arbitrationId], references: [id])
 }
 
+model Mediation {
+  id           String               @id @default(cuid())
+  clientName   String
+  email        String
+  status       String               @default("new")
+  description  String?
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  documents    MediationDocument[]
+}
+
+model MediationDocument {
+  id            String     @id @default(cuid())
+  mediationId   String
+  name          String
+  url           String
+  createdAt     DateTime   @default(now())
+  mediation     Mediation  @relation(fields: [mediationId], references: [id])
+}
+
 model News {
   id          String   @id @default(cuid())
   title       String
