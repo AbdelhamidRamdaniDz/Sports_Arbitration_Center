@@ -87,6 +87,7 @@ export default function DashboardPage() {
             <SidebarItem icon={<Newspaper className="h-4 w-4" />} label="الأخبار" onClick={() => router.push("/dashboard/news")} />
             <SidebarItem icon={<Images className="h-4 w-4" />} label="الصور" onClick={() => router.push("/dashboard/gallery")} />
             <SidebarItem icon={<Video className="h-4 w-4" />} label="الفيديوهات" onClick={() => router.push("/dashboard/videos")} />
+            <SidebarItem icon={<FileText className="h-4 w-4" />} label="التشريعات" onClick={() => router.push("/dashboard/regulations")} />
             <Separator className="my-3 opacity-40" />
             <SidebarItem icon={<Shield className="h-4 w-4" />} label="إدارة الأعضاء" onClick={() => router.push("/dashboard/members")} />
             <SidebarItem icon={<Settings className="h-4 w-4" />} label="الإعدادات" onClick={() => router.push("/dashboard/settings")} />

@@ -126,6 +126,20 @@ model Booking {
   createdAt DateTime @default(now())
 }
 
+model Regulation {
+  id          String   @id @default(cuid())
+  area        String   // national-sports | international | national-commercial | etc
+  title       String
+  description String?
+  category    String?
+  date        String?
+  pages       Int?
+  size        String?
+  language    String?
+  url         String
+  createdAt   DateTime @default(now())
+}
+
 /// Stores submissions from /forms/arbitration and /forms/commercial
 model ArbitrationRequest {
   id                     String   @id @default(cuid())
