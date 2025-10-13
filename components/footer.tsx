@@ -62,7 +62,7 @@ export function Footer() {
             <h3 className="text-lg font-semibold">خدماتنا</h3>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/services/sports-arbitration" className="text-sm opacity-90 hover:opacity-100 transition-opacity">
+                <Link href="/arbitration/sports-arbitration" className="text-sm opacity-90 hover:opacity-100 transition-opacity">
                   التحكيم الرياضي
                 </Link>
               </li>
@@ -95,7 +95,7 @@ export function Footer() {
             <div className="space-y-3.5">
               <div className="flex items-center gap-3">
                 <Phone className="h-4 w-4 opacity-85" />
-                <span className="text-sm">+213 21 123 456</span>
+                <span className="text-sm ltr">+213 668631580</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 opacity-85" />
@@ -103,7 +103,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="h-4 w-4 opacity-85" />
-                <span className="text-sm">الجزائر العاصمة، الجمهورية الجزائرية الديمقراطية الشعبية</span>
+                <span className="text-sm">جامعة الجلفة، الجمهورية الجزائرية الديمقراطية الشعبية</span>
               </div>
             </div>
 

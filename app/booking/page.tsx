@@ -16,12 +16,33 @@ export default function BookingPage() {
   const router = useRouter()
   const { toast } = useToast()
   const [form, setForm] = useState({ name: "", email: "", phone: "", date: "", time: "", notes: "", city: "__algiers__" })
+  const [submitting, setSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    await new Promise((r) => setTimeout(r, 300))
-    toast({ title: "تم حجز الموعد", description: "سنتواصل معكم لتأكيد التفاصيل." })
-    setForm({ name: "", email: "", phone: "", date: "", time: "", notes: "", city: "__algiers__" })
+    try {
+      setSubmitting(true)
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone || undefined,
+          city: form.city,
+          date: form.date,
+          time: form.time,
+          notes: form.notes || undefined,
+        })
+      })
+      if (!res.ok) throw new Error()
+      toast({ title: "تم حجز الموعد", description: "سنتواصل معكم لتأكيد التفاصيل." })
+      setForm({ name: "", email: "", phone: "", date: "", time: "", notes: "", city: "__algiers__" })
+    } catch {
+      toast({ title: "فشل إرسال الحجز", description: "يرجى المحاولة لاحقًا.", variant: "destructive" as any })
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -76,7 +97,7 @@ export default function BookingPage() {
                     <Textarea id="notes" rows={5} value={form.notes} onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))} placeholder="أي تفاصيل إضافية ترغب بمشاركتها" />
                   </div>
                   <div className="flex items-center gap-2 pt-2">
-                    <Button type="submit" className="bg-corporate-green hover:bg-corporate-green/90">احجز الآن</Button>
+                    <Button disabled={submitting} type="submit" className="bg-corporate-green hover:bg-corporate-green/90">{submitting ? "جارٍ الإرسال..." : "احجز الآن"}</Button>
                     <Button type="button" variant="outline" onClick={() => router.back()}>رجوع</Button>
                   </div>
                 </form>
@@ -90,5 +111,3 @@ export default function BookingPage() {
     </div>
   )
 }
-
-

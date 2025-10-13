@@ -12,6 +12,7 @@ import { ScrollReveal } from "@/components/scroll-reveal"
 import { Calculator, Search, Gavel, GraduationCap, Handshake, Building, ArrowLeft, Calendar, Award } from "lucide-react"
 import { SERVICES } from "@/lib/constants"
 import { useMemo, useState, useEffect, useRef } from "react"
+import DevCardEasterEgg from "@/components/DevCardEasterEgg"
 
 export default function HomePage() {
   const stats = [
@@ -411,6 +412,7 @@ export default function HomePage() {
           variant="corporate"
         />
       </ScrollReveal>
+<DevCardEasterEgg />
 
       <Footer />
     </div>

@@ -18,7 +18,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
-import { BarChart3, Mail, Newspaper, Images, Video, Scale, Settings, LogOut, Home, MessageCircle, Handshake, Gavel, Shield, Bell, Plus, Reply, FileText, ImagePlus, RefreshCcw } from "lucide-react"
+import { BarChart3, Mail, Newspaper, Images, Video, Scale, Settings, LogOut, Home, MessageCircle, Handshake, Gavel, Shield, Bell, Plus, Reply, FileText, ImagePlus, RefreshCcw, CalendarDays } from "lucide-react"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -82,6 +82,7 @@ export default function DashboardPage() {
             <SidebarItem icon={<Gavel className="h-4 w-4" />} label="طلبات التحكيم" onClick={() => router.push("/dashboard/arbitration")} />
             <SidebarItem icon={<Handshake className="h-4 w-4" />} label="طلبات الوساطة" onClick={() => router.push("/dashboard/mediation")} />
             <SidebarItem icon={<MessageCircle className="h-4 w-4" />} label="الرسائل والاستفسارات" onClick={() => router.push("/dashboard/messages")} />
+            <SidebarItem icon={<CalendarDays className="h-4 w-4" />} label="الحجوزات" onClick={() => router.push("/dashboard/bookings")} />
             <Separator className="my-3 opacity-40" />
             <SidebarItem icon={<Newspaper className="h-4 w-4" />} label="الأخبار" onClick={() => router.push("/dashboard/news")} />
             <SidebarItem icon={<Images className="h-4 w-4" />} label="الصور" onClick={() => router.push("/dashboard/gallery")} />

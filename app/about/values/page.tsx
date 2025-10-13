@@ -49,9 +49,9 @@ export default function ValuesPage() {
   ]
 
   const stats = [
-    { icon: <Award className="h-6 w-6" />, label: "سنوات الخبرة", value: "15+" },
-    { icon: <Users className="h-6 w-6" />, label: "عميل راضٍ", value: "500+" },
-    { icon: <CheckCircle className="h-6 w-6" />, label: "قضية محلولة", value: "1000+" },
+    { icon: <Award className="h-6 w-6" />, label: "سنوات الخبرة", value: "1+" },
+    { icon: <Users className="h-6 w-6" />, label: "عميل راضٍ", value: "5+" },
+    { icon: <CheckCircle className="h-6 w-6" />, label: "قضية محلولة", value: "10+" },
     { icon: <TrendingUp className="h-6 w-6" />, label: "نسبة النجاح", value: "98%" },
   ]
 

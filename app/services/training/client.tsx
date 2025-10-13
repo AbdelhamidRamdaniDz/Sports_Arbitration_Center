@@ -131,7 +131,7 @@ export default function TrainingClient() {
               </div>
               <p className="mb-4 text-lg leading-relaxed text-muted-foreground">نقدّم تجربة تعلم شاملة تجمع بين الجلسات التفاعلية والتطبيق العملي؛ نصمم مسارات تلائم احتياجات المهنيين والطلاب.</p>
               <div className="flex flex-wrap gap-3">
-                <a href="/services/sports-arbitration" className="text-corporate-green underline-offset-4 hover:underline">التحكيم الرياضي</a>
+                <a href="/arbitration/sports-arbitration" className="text-corporate-green underline-offset-4 hover:underline">التحكيم الرياضي</a>
                 <span className="text-muted-foreground">/</span>
                 <a href="/services/legal-mediation" className="text-corporate-green underline-offset-4 hover:underline">الوساطة القانونية</a>
               </div>

@@ -100,7 +100,7 @@ export default function SportsArbitrationClient() {
                   <motion.a
                     whileHover={{ scale: 1.03, boxShadow: "0 0 0 4px rgba(16,185,129,0.25)" }}
                     whileTap={{ scale: 0.98 }}
-                    href="/forms/service-request"
+                    href="/forms/arbitration"
                     className="inline-flex items-center justify-center rounded-lg bg-corporate-green px-5 py-3 text-white"
                   >
                     ابدأ الآن
@@ -281,7 +281,7 @@ export default function SportsArbitrationClient() {
             <motion.a
               whileHover={{ scale: 1.04, boxShadow: "0 0 0 4px rgba(16,185,129,0.25)" }}
               whileTap={{ scale: 0.98 }}
-              href="/forms/service-request"
+              href="/forms/arbitration"
               className="inline-flex items-center justify-center rounded-lg bg-corporate-green px-5 py-3 text-white"
             >
               احجز بدء الإجراءات
@@ -302,7 +302,7 @@ export default function SportsArbitrationClient() {
       <CTASection
         title="جاهز لحسم نزاعك بثقة؟"
         description="ابدأ إجراءات التحكيم الآن مع فريق يتمتع بخبرة رياضية دولية ومعايير حياد صارمة."
-        primaryButton={{ text: "ابدأ الآن", href: "/forms/service-request" }}
+        primaryButton={{ text: "ابدأ الآن", href: "/forms/arbitration" }}
         secondaryButton={{ text: "تواصل معنا", href: "/contact" }}
         variant="corporate"
       />

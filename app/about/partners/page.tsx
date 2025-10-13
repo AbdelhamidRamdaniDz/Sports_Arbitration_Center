@@ -43,21 +43,21 @@ const partners = [
 const stats = [
   {
     icon: Users,
-    value: "30+",
+    value: "3+",
     label: "شريك تجاري",
     color: "text-blue-600",
     bgColor: "bg-blue-50"
   },
   {
     icon: Globe,
-    value: "10+",
+    value: "1",
     label: "مؤسسة دولية",
     color: "text-green-600",
     bgColor: "bg-green-50"
   },
   {
     icon: Trophy,
-    value: "5+",
+    value: "2+",
     label: "أندية رياضية",
     color: "text-yellow-600",
     bgColor: "bg-yellow-50"

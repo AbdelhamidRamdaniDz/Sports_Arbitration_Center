@@ -163,7 +163,7 @@ export function Header() {
                                     role="menu"
                                     onMouseEnter={handleDropdownEnter}
                                     onMouseLeave={handleChildLeave}
-                                    className="absolute top-0 left-full ml-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg p-2 text-right z-50"
+                                    className="absolute top-0 right-full ml-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg p-2 text-right z-50"
                                   >
                                     <ul className="space-y-1">
                                       {child.children!.map((grand) => (

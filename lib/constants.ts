@@ -87,10 +87,17 @@ export const NAVIGATION_ITEMS = [
     ],
   },
   {
+    title: "التحكيم",
+    href: "/arbitration",
+    children: [
+      { title: "التحكيم الرياضي", href: "/arbitration/sports-arbitration" },
+      { title: "التحكيم التجاري", href: "/arbitration/commercial" },
+    ],
+  },
+  {
     title: "ADR خدمات",
     href: "/services",
     children: [
-      { title: "التحكيم الرياضي", href: "/services/sports-arbitration" },
       { title: "الوساطة القانونية", href: "/services/legal-mediation" },
       { title: "الاستشارات القانونية", href: "/services/legal-consultation" },
       { title: "القاعات الخاصة", href: "/services/equipped-halls" },
