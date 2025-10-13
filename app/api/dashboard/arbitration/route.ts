@@ -14,18 +14,19 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "unauthorized" }, { status: 403 });
   }
 
-  const status = url.searchParams.get("status") || undefined;
+  const area = url.searchParams.get("area") || undefined; // sports | commercial
   const search = url.searchParams.get("search") || undefined;
   const page = parseInt(url.searchParams.get("page") || "1", 10);
   const limit = Math.min(parseInt(url.searchParams.get("limit") || "10", 10), 100);
   const sort = url.searchParams.get("sort") || "-createdAt"; // - for desc
 
   const where: any = {};
-  if (status) where.status = status;
+  if (area && area !== "all") where.area = area;
   if (search) {
     where.OR = [
-      { clientName: { contains: search, mode: "insensitive" } },
-      { id: { contains: search } },
+      { fullName: { contains: search, mode: "insensitive" } },
+      { email: { contains: search, mode: "insensitive" } },
+      { disputeTitle: { contains: search, mode: "insensitive" } },
     ];
   }
 
@@ -37,15 +38,12 @@ export async function GET(req: NextRequest) {
   }
 
   const [total, rows] = await Promise.all([
-    prisma.arbitration.count({ where }),
-    prisma.arbitration.findMany({
+    prisma.arbitrationRequest.count({ where }),
+    prisma.arbitrationRequest.findMany({
       where,
       orderBy,
       skip: (page - 1) * limit,
       take: limit,
-      include: {
-        documents: true,
-      },
     }),
   ]);
 
@@ -53,4 +51,22 @@ export async function GET(req: NextRequest) {
     data: rows,
     meta: { page, limit, total },
   });
+}
+
+export async function DELETE(req: NextRequest) {
+  const url = new URL(req.url);
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  if (!token || !isSuperAdmin((token as any).email)) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 403 });
+  }
+
+  const id = url.searchParams.get("id");
+  if (!id) return NextResponse.json({ error: "missing_id" }, { status: 400 });
+
+  try {
+    await prisma.arbitrationRequest.delete({ where: { id } });
+    return NextResponse.json({ ok: true });
+  } catch (e) {
+    return NextResponse.json({ error: "delete_failed" }, { status: 500 });
+  }
 }

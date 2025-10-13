@@ -125,3 +125,43 @@ model Booking {
   notes     String?
   createdAt DateTime @default(now())
 }
+
+/// Stores submissions from /forms/arbitration and /forms/commercial
+model ArbitrationRequest {
+  id                     String   @id @default(cuid())
+  area                   String   // sports | commercial
+  applicantType          String   // individual | organization
+  fullName               String
+  nationalId             String
+  email                  String
+  phone                  String
+  address                String
+  organizationName       String?
+  organizationRegistration String?
+  representativeName     String?
+  representativePosition String?
+  disputeType            String   // contract | disciplinary | financial | administrative | other
+  disputeCategory        String   // football | ... | other  OR custom for commercial
+  disputeTitle           String
+  disputeDescription     String
+  disputeValue           String?
+  disputeDate            String
+  otherPartyName         String
+  otherPartyType         String   // individual | organization
+  otherPartyContact      String?
+  otherPartyAddress      String
+  arbitratorPreference   String   // any | specific | exclude
+  preferredArbitrator    String?
+  excludedArbitrator     String?
+  arbitrationLanguage    String   // arabic | english | both
+  urgentCase             Boolean  @default(false)
+  hasLegalRepresentation Boolean  @default(false)
+  lawyerName             String?
+  lawyerLicense          String?
+  lawyerContact          String?
+  documentsDescription   String
+  agreesToTerms          Boolean  @default(false)
+  agreesToFees           Boolean  @default(false)
+  confirmAccuracy        Boolean  @default(false)
+  createdAt              DateTime @default(now())
+}

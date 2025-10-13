@@ -69,6 +69,50 @@ export async function POST(req: NextRequest) {
       },
     })
 
+    // Also persist a normalized record for dashboard listing
+    try {
+      await prisma.arbitrationRequest.create({
+        data: {
+          area: "sports",
+          applicantType: String(body.applicantType || ""),
+          fullName,
+          nationalId: String(body.nationalId || ""),
+          email,
+          phone,
+          address: String(body.address || ""),
+          organizationName: body.organizationName || null,
+          organizationRegistration: body.organizationRegistration || null,
+          representativeName: body.representativeName || null,
+          representativePosition: body.representativePosition || null,
+          disputeType,
+          disputeCategory: String(body.disputeCategory || ""),
+          disputeTitle,
+          disputeDescription,
+          disputeValue: body.disputeValue || null,
+          disputeDate: String(body.disputeDate || ""),
+          otherPartyName: String(body.otherPartyName || ""),
+          otherPartyType: String(body.otherPartyType || ""),
+          otherPartyContact: body.otherPartyContact || null,
+          otherPartyAddress: String(body.otherPartyAddress || ""),
+          arbitratorPreference: String(body.arbitratorPreference || ""),
+          preferredArbitrator: body.preferredArbitrator || null,
+          excludedArbitrator: body.excludedArbitrator || null,
+          arbitrationLanguage: String(body.arbitrationLanguage || ""),
+          urgentCase: Boolean(body.urgentCase ?? false),
+          hasLegalRepresentation: Boolean(body.hasLegalRepresentation ?? false),
+          lawyerName: body.lawyerName || null,
+          lawyerLicense: body.lawyerLicense || null,
+          lawyerContact: body.lawyerContact || null,
+          documentsDescription: String(body.documentsDescription || ""),
+          agreesToTerms: Boolean(body.agreesToTerms ?? false),
+          agreesToFees: Boolean(body.agreesToFees ?? false),
+          confirmAccuracy: Boolean(body.confirmAccuracy ?? false),
+        }
+      })
+    } catch (e) {
+      // best-effort; keep original creation result
+    }
+
     return NextResponse.json({ ok: true, id: created.id })
   } catch (err) {
     console.error("arbitration_submit_error", err)
