@@ -67,7 +67,7 @@ export default function SportsArbitrationClient() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/sports-arbitration-training-workshop.jpg"
+            src="/sport.jpg"
             alt="التحكيم الرياضي - لقطة احترافية"
             className="h-[68vh] w-full object-cover"
           />
@@ -165,7 +165,7 @@ export default function SportsArbitrationClient() {
               className="relative"
             >
               <img
-                src="/professional-arbitration-meeting-room-with-judges-.jpg"
+                src="/2.STADES-PHOTO.jpg"
                 alt="جلسة تحكيم"
                 className="h-[420px] w-full rounded-xl object-cover shadow-xl"
               />

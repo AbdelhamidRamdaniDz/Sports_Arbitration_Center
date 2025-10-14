@@ -88,6 +88,8 @@ export default function DashboardPage() {
             <SidebarItem icon={<Images className="h-4 w-4" />} label="الصور" onClick={() => router.push("/dashboard/gallery")} />
             <SidebarItem icon={<Video className="h-4 w-4" />} label="الفيديوهات" onClick={() => router.push("/dashboard/videos")} />
             <SidebarItem icon={<FileText className="h-4 w-4" />} label="التشريعات" onClick={() => router.push("/dashboard/regulations")} />
+            <SidebarItem icon={<FileText className="h-4 w-4" />} label="التشريعات التجارية" onClick={() => router.push("/dashboard/national-commercial")} />
+            <SidebarItem icon={<FileText className="h-4 w-4" />} label="التشريعات الدولية" onClick={() => router.push("/dashboard/international")} />
             <Separator className="my-3 opacity-40" />
             <SidebarItem icon={<Shield className="h-4 w-4" />} label="إدارة الأعضاء" onClick={() => router.push("/dashboard/members")} />
             <SidebarItem icon={<Settings className="h-4 w-4" />} label="الإعدادات" onClick={() => router.push("/dashboard/settings")} />
@@ -282,33 +284,39 @@ export default function DashboardPage() {
                   ) : (
                     <div className="h-72 w-full">
                       <ResponsiveContainer width="100%" height="100%">
-                        {chartType === 'bar' && (
-                          <RBarChart data={overview?.trend ?? []}>
-                            <XAxis dataKey="date" hide tickMargin={8} />
-                            <YAxis hide />
-                            <Tooltip contentStyle={{ direction: "rtl" }} />
-                            <Bar dataKey="arbitration" stackId="a" fill="#003366" radius={[6,6,0,0]} />
-                            <Bar dataKey="mediation" stackId="a" fill="#00B4D8" radius={[6,6,0,0]} />
-                          </RBarChart>
-                        )}
-                        {chartType === 'line' && (
-                          <AreaChart data={overview?.trend ?? []}>
-                            <XAxis dataKey="date" hide />
-                            <YAxis hide />
-                            <Tooltip contentStyle={{ direction: "rtl" }} />
-                            <Area type="monotone" dataKey="arbitration" stroke="#003366" fill="transparent" strokeWidth={2} />
-                            <Area type="monotone" dataKey="mediation" stroke="#00B4D8" fill="transparent" strokeWidth={2} />
-                          </AreaChart>
-                        )}
-                        {chartType === 'area' && (
-                          <AreaChart data={overview?.trend ?? []}>
-                            <XAxis dataKey="date" hide />
-                            <YAxis hide />
-                            <Tooltip contentStyle={{ direction: "rtl" }} />
-                            <Area type="monotone" dataKey="arbitration" stroke="#003366" fill="#003366" fillOpacity={0.2} strokeWidth={2} />
-                            <Area type="monotone" dataKey="mediation" stroke="#00B4D8" fill="#00B4D8" fillOpacity={0.2} strokeWidth={2} />
-                          </AreaChart>
-                        )}
+                        {(() => {
+                          if (chartType === 'bar') {
+                            return (
+                              <RBarChart data={overview?.trend ?? []}>
+                                <XAxis dataKey="date" hide tickMargin={8} />
+                                <YAxis hide />
+                                <Tooltip contentStyle={{ direction: "rtl" }} />
+                                <Bar dataKey="arbitration" stackId="a" fill="#003366" radius={[6,6,0,0]} />
+                                <Bar dataKey="mediation" stackId="a" fill="#00B4D8" radius={[6,6,0,0]} />
+                              </RBarChart>
+                            )
+                          }
+                          if (chartType === 'line') {
+                            return (
+                              <AreaChart data={overview?.trend ?? []}>
+                                <XAxis dataKey="date" hide />
+                                <YAxis hide />
+                                <Tooltip contentStyle={{ direction: "rtl" }} />
+                                <Area type="monotone" dataKey="arbitration" stroke="#003366" fill="transparent" strokeWidth={2} />
+                                <Area type="monotone" dataKey="mediation" stroke="#00B4D8" fill="transparent" strokeWidth={2} />
+                              </AreaChart>
+                            )
+                          }
+                          return (
+                            <AreaChart data={overview?.trend ?? []}>
+                              <XAxis dataKey="date" hide />
+                              <YAxis hide />
+                              <Tooltip contentStyle={{ direction: "rtl" }} />
+                              <Area type="monotone" dataKey="arbitration" stroke="#003366" fill="#003366" fillOpacity={0.2} strokeWidth={2} />
+                              <Area type="monotone" dataKey="mediation" stroke="#00B4D8" fill="#00B4D8" fillOpacity={0.2} strokeWidth={2} />
+                            </AreaChart>
+                          )
+                        })()}
                       </ResponsiveContainer>
                       <div className="flex items-center gap-4 mt-3 text-xs text-muted-foreground">
                         <div className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#003366]"></span> تحكيم</div>

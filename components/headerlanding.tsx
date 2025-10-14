@@ -81,34 +81,34 @@ export function Headerlanding() {
       className="sticky top-0 z-50 w-full bg-background"
     >
       {/* Top Bar */}
-      <div className="border-b bg-corporate-green text-white">
+      <div className="border-b bg-white text-white">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="flex h-14 items-center justify-between">
             {/* الشعار - على اليمين */}
             <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-corporate-green">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-corporate-green text-white">
                 <Scale className="h-6 w-6" />
               </div>
               <div className="flex flex-col text-right">
-                <span className="text-lg font-bold text-white">{SITE_CONFIG.name}</span>
-                <span className="text-xs text-white/80">{SITE_CONFIG.nameEn}</span>
+                <span className="text-lg font-bold text-corporate-green">{SITE_CONFIG.name}</span>
+                <span className="text-xs text-corporate-green">{SITE_CONFIG.nameEn}</span>
               </div>
             </Link>
 
             {/* معلومات الاتصال - على اليسار */}
-            <div className="flex items-center gap-6 text-sm">
+            <div className="flex items-center gap-6 text-sm text-corporate-green">
               <a 
-                href="mailto:info@example.dz" 
+                href="mailto:info@sports-arbitration.dz" 
                 className="flex items-center gap-2 hover:opacity-80 transition-opacity"
               >
-                <span className="hidden md:inline">info@example.dz</span>
+                <span className="hidden md:inline">info@sports-arbitration.dz</span>
                 <Mail className="h-4 w-4" />
               </a>
               <a 
-                href="tel:+213123456789" 
+                href="tel:+213 668631580" 
                 className="flex items-center gap-2 hover:opacity-80 transition-opacity"
               >
-                <span className="hidden sm:inline">+213 123 456 789</span>
+                <span className="hidden sm:inline ltr">+213 668631580</span>
                 <Phone className="h-4 w-4" />
               </a>
             </div>

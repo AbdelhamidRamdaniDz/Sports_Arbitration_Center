@@ -134,11 +134,11 @@ export default function HomePage() {
       <Headerlanding />
 
       {/* Hero Section */}
-      <section className="relative text-white overflow-hidden">
+      <section className="relative text-white overflow-hidden min-h-screen">
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src="/hero-background.webp"
+            src="/hero-background.jpg"
             alt="خلفية البطل"
             className="w-full h-full object-cover scale-105 md:scale-100 transition-transform duration-700 ease-out will-change-transform"
             style={{ transform: `translateY(${parallaxY * 0.5}px) scale(1.05)` }}
