@@ -50,12 +50,12 @@ export default function CtaSection() {
                 : "opacity-0 translate-y-5"
             }`}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">هل أنت مستعد للانتقال إلى مستقبل الطاقة المستدامة؟</h2>
-            <p className="mb-8 max-w-2xl mx-auto text-gray-600">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-slate-900">هل أنت مستعد للانتقال إلى مستقبل الطاقة المستدامة؟</h2>
+            <p className="mb-8 max-w-2xl mx-auto text-gray-600 leading-relaxed">
               تواصل معنا اليوم لمناقشة احتياجاتك واكتشاف كيف يمكننا مساعدتك في تحقيق أهدافك في مجال الطاقة.
             </p>
             <button
-              className="bg-gradient-to-r from-corporate-green to-teal-500 text-white px-8 py-3 rounded-full font-bold hover:from-corporate-green/90 hover:to-teal-500/90 transition-all shadow-lg hover:scale-105 active:scale-95"
+              className="bg-gradient-to-r from-corporate-green to-teal-500 text-white px-8 py-3 rounded-full font-semibold hover:from-corporate-green/90 hover:to-teal-500/90 transition-all shadow-lg hover:scale-[1.03] active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             >
               تواصل معنا الآن
             </button>

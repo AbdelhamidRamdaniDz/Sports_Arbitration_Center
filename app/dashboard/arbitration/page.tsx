@@ -13,7 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useToast } from "@/components/ui/use-toast"
-import { FileText, Inbox, UserCheck, Download, Upload, Edit, Trash, Calendar, Folder, Copy, Eye, Search, ChevronUp, ChevronDown, AlertCircle, CheckCircle2, UploadCloud, Info } from "lucide-react"
+import { FileText, Inbox, UserCheck, Download, Upload, Edit, Trash, Calendar, Folder, Copy, Eye, Search, ChevronUp, ChevronDown, AlertCircle, CheckCircle2, UploadCloud, Info, Filter, X, RefreshCcw } from "lucide-react"
 
 type Arbitration = {
   id: string
@@ -28,17 +28,19 @@ type Arbitration = {
 }
 
 function StatusBadge({ status }: { status: string }) {
-  const cls =
-    status === "new"
-      ? "bg-[#DBEAFE] text-[#3B82F6]"
-      : status === "in_review"
-      ? "bg-[#FEF3C7] text-[#F59E0B]"
-      : status === "assigned"
-      ? "bg-[#EDE9FE] text-[#8B5CF6]"
-      : status === "closed"
-      ? "bg-[#D1FAE5] text-[#10B981]"
-      : "bg-gray-100 text-gray-700"
-  return <Badge className={`rounded-full px-3 py-1 text-sm ${cls}`}>{status}</Badge>
+  const config = {
+    new: { bg: "bg-gradient-to-r from-blue-500 to-blue-600", text: "text-white", label: "جديد", icon: "🆕" },
+    in_review: { bg: "bg-gradient-to-r from-amber-500 to-orange-600", text: "text-white", label: "قيد المراجعة", icon: "⏳" },
+    assigned: { bg: "bg-gradient-to-r from-purple-500 to-violet-600", text: "text-white", label: "مُسند", icon: "👤" },
+    closed: { bg: "bg-gradient-to-r from-emerald-500 to-teal-600", text: "text-white", label: "مكتمل", icon: "✓" },
+  }
+  const cfg = config[status as keyof typeof config] || { bg: "bg-slate-200", text: "text-slate-700", label: status, icon: "" }
+  return (
+    <Badge className={`${cfg.bg} ${cfg.text} border-0 shadow-md px-3 py-1.5 text-xs font-semibold rounded-full`}>
+      <span className="mr-1">{cfg.icon}</span>
+      {cfg.label}
+    </Badge>
+  )
 }
 
 function PageInner() {
@@ -85,7 +87,6 @@ function PageInner() {
     keepPreviousData: true,
   })
 
-  // Stats counts (using meta.total)
   const allCount = useQuery({
     queryKey: ["arb-count", "all"],
     queryFn: async () => {
@@ -157,8 +158,9 @@ function PageInner() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey })
       if (detailsId) qc.invalidateQueries({ queryKey: ["arbitration", detailsId] })
-      toast({ description: "تم رفع الملفات" })
+      toast({ description: "تم رفع الملفات بنجاح" })
       setUploadContextId(null)
+      setPendingFiles([])
       if (fileInputRef.current) fileInputRef.current.value = ""
     },
     onError: () => toast({ description: "فشل رفع الملفات" }),
@@ -173,7 +175,7 @@ function PageInner() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey })
       if (detailsId) qc.invalidateQueries({ queryKey: ["arbitration", detailsId] })
-      toast({ description: "تم حذف الملف" })
+      toast({ description: "تم حذف الملف بنجاح" })
     },
     onError: () => toast({ description: "فشل حذف الملف" }),
   })
@@ -197,269 +199,651 @@ function PageInner() {
   const start = meta ? (meta.page - 1) * meta.limit + 1 : 0
   const end = meta ? Math.min(meta.page * meta.limit, meta.total) : 0
   const isDateDesc = sort.startsWith("-")
+  const hasFilters = statusFilter || search || from || to
 
   return (
-    <div dir="rtl" className="min-h-screen bg-[#F5F7FA] p-6 text-right">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div dir="rtl" className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 p-4 sm:p-6 lg:p-8">
+      <div className="max-w-[1800px] mx-auto space-y-6">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Card className="rounded-2xl shadow-md border border-gray-100">
-            <CardContent className="p-5 flex items-center justify-between">
-              <div>
-                <div className="text-sm text-[#64748B]">إجمالي الطلبات</div>
-                <div className="text-3xl font-bold text-[#003366]">{allCount.data?.meta.total ?? 0}</div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-6">
+          <Card className="rounded-3xl border-0 shadow-xl bg-white/80 backdrop-blur hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer group">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-slate-500 to-slate-700 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <Inbox className="h-7 w-7 text-white" />
+                </div>
+                <div className="text-right">
+                  <div className="text-sm font-semibold text-slate-600 mb-1">إجمالي الطلبات</div>
+                  <div className="text-4xl font-bold bg-gradient-to-l from-slate-600 to-slate-800 bg-clip-text text-transparent">
+                    {allCount.data?.meta.total ?? 0}
+                  </div>
+                </div>
               </div>
-              <div className="h-10 w-10 rounded-xl bg-[#003366]/10 text-[#003366] flex items-center justify-center"><Inbox className="h-5 w-5" aria-hidden /></div>
+              <div className="h-1 w-full bg-gradient-to-l from-slate-500 to-slate-700 rounded-full"></div>
             </CardContent>
           </Card>
-          <Card className="rounded-2xl shadow-md border border-gray-100">
-            <CardContent className="p-5 flex items-center justify-between">
-              <div>
-                <div className="text-sm text-[#64748B]">طلبات جديدة</div>
-                <div className="text-3xl font-bold text-[#3B82F6]">{newCount.data?.meta.total ?? 0}</div>
+
+          <Card className="rounded-3xl border-0 shadow-xl bg-white/80 backdrop-blur hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer group">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <FileText className="h-7 w-7 text-white" />
+                </div>
+                <div className="text-right">
+                  <div className="text-sm font-semibold text-slate-600 mb-1">طلبات جديدة</div>
+                  <div className="text-4xl font-bold bg-gradient-to-l from-blue-500 to-blue-600 bg-clip-text text-transparent">
+                    {newCount.data?.meta.total ?? 0}
+                  </div>
+                </div>
               </div>
-              <div className="h-10 w-10 rounded-xl bg-[#3B82F6]/10 text-[#3B82F6] flex items-center justify-center"><FileText className="h-5 w-5" aria-hidden /></div>
+              <div className="h-1 w-full bg-gradient-to-l from-blue-500 to-blue-600 rounded-full"></div>
             </CardContent>
           </Card>
-          <Card className="rounded-2xl shadow-md border border-gray-100">
-            <CardContent className="p-5 flex items-center justify-between">
-              <div>
-                <div className="text-sm text-[#64748B]">قيد المراجعة</div>
-                <div className="text-3xl font-bold text-[#F59E0B]">{reviewCount.data?.meta.total ?? 0}</div>
+
+          <Card className="rounded-3xl border-0 shadow-xl bg-white/80 backdrop-blur hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer group">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <AlertCircle className="h-7 w-7 text-white" />
+                </div>
+                <div className="text-right">
+                  <div className="text-sm font-semibold text-slate-600 mb-1">قيد المراجعة</div>
+                  <div className="text-4xl font-bold bg-gradient-to-l from-amber-500 to-orange-600 bg-clip-text text-transparent">
+                    {reviewCount.data?.meta.total ?? 0}
+                  </div>
+                </div>
               </div>
-              <div className="h-10 w-10 rounded-xl bg-[#F59E0B]/10 text-[#F59E0B] flex items-center justify-center"><AlertCircle className="h-5 w-5" aria-hidden /></div>
+              <div className="h-1 w-full bg-gradient-to-l from-amber-500 to-orange-600 rounded-full"></div>
             </CardContent>
           </Card>
-          <Card className="rounded-2xl shadow-md border border-gray-100">
-            <CardContent className="p-5 flex items-center justify-between">
-              <div>
-                <div className="text-sm text-[#64748B]">مكتملة</div>
-                <div className="text-3xl font-bold text-[#10B981]">{closedCount.data?.meta.total ?? 0}</div>
+
+          <Card className="rounded-3xl border-0 shadow-xl bg-white/80 backdrop-blur hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer group">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <CheckCircle2 className="h-7 w-7 text-white" />
+                </div>
+                <div className="text-right">
+                  <div className="text-sm font-semibold text-slate-600 mb-1">مكتملة</div>
+                  <div className="text-4xl font-bold bg-gradient-to-l from-emerald-500 to-teal-600 bg-clip-text text-transparent">
+                    {closedCount.data?.meta.total ?? 0}
+                  </div>
+                </div>
               </div>
-              <div className="h-10 w-10 rounded-xl bg-[#10B981]/10 text-[#10B981] flex items-center justify-center"><CheckCircle2 className="h-5 w-5" aria-hidden /></div>
+              <div className="h-1 w-full bg-gradient-to-l from-emerald-500 to-teal-600 rounded-full"></div>
             </CardContent>
           </Card>
         </div>
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-semibold text-[#003366]">طلبات التحكيم</h1>
-          <div className="flex items-center gap-2">
-            <Button className="bg-[#00B4D8] hover:bg-[#00B4D8]/90" onClick={exportCsv}><Download className="h-4 w-4 ml-2" />تصدير CSV</Button>
+
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-to-l from-[#003366] to-[#00B4D8] bg-clip-text text-transparent">
+              طلبات التحكيم
+            </h1>
+            <p className="text-sm text-slate-600 mt-1 flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              إدارة ومتابعة جميع طلبات التحكيم
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <Button 
+              variant="outline"
+              onClick={() => listQuery.refetch()}
+              className="rounded-xl hover:bg-slate-50 transition-all"
+              disabled={listQuery.isFetching}
+            >
+              <RefreshCcw className={`h-4 w-4 ml-2 ${listQuery.isFetching ? 'animate-spin' : ''}`} />
+              تحديث
+            </Button>
+            <Button 
+              className="bg-gradient-to-r from-[#00B4D8] to-[#0096C7] hover:from-[#0096C7] hover:to-[#0077B6] shadow-lg rounded-xl font-semibold" 
+              onClick={exportCsv}
+            >
+              <Download className="h-4 w-4 ml-2" />
+              تصدير CSV
+            </Button>
           </div>
         </div>
-        <Card className="rounded-2xl shadow-md">
-          <CardHeader>
-            <CardTitle>إدارة الطلبات</CardTitle>
+
+        {/* Main Card */}
+        <Card className="rounded-3xl border-0 shadow-xl bg-white/80 backdrop-blur">
+          <CardHeader className="border-b border-slate-200 bg-gradient-to-b from-white to-slate-50/50">
+            <CardTitle className="text-2xl font-bold text-[#003366] flex items-center gap-2">
+              <Filter className="h-6 w-6 text-[#00B4D8]" />
+              إدارة الطلبات
+            </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-              <div className="flex gap-2 items-center">
-                <Select value={statusFilter} onValueChange={(v) => { setStatusFilter(v === "all" ? "" : v); setPage(1) }}>
-                  <SelectTrigger className="w-40"><SelectValue placeholder="الحالة" /></SelectTrigger>
-                  <SelectContent align="end">
+          <CardContent className="p-6">
+            {/* Filters */}
+            <div className="space-y-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+                <Select value={statusFilter || "all"} onValueChange={(v) => { setStatusFilter(v === "all" ? "" : v); setPage(1) }}>
+                  <SelectTrigger className="rounded-xl bg-white border-slate-200">
+                    <SelectValue placeholder="الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
                     <SelectItem value="all">الكل</SelectItem>
-                    <SelectItem value="new">جديد</SelectItem>
-                    <SelectItem value="in_review">قيد المراجعة</SelectItem>
-                    <SelectItem value="assigned">مُسند</SelectItem>
-                    <SelectItem value="closed">مغلق</SelectItem>
+                    <SelectItem value="new">🆕 جديد</SelectItem>
+                    <SelectItem value="in_review">⏳ قيد المراجعة</SelectItem>
+                    <SelectItem value="assigned">👤 مُسند</SelectItem>
+                    <SelectItem value="closed">✓ مغلق</SelectItem>
                   </SelectContent>
                 </Select>
-                <div className="relative w-56">
-                  <Search className="h-4 w-4 text-[#94A3B8] absolute left-3 top-1/2 -translate-y-1/2" aria-hidden />
-                  <Input placeholder="بحث بالرقم أو الاسم" value={search} onChange={(e) => { setSearch(e.target.value); setPage(1) }} className="pl-9" />
+
+                <div className="relative">
+                  <Search className="h-4 w-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <Input 
+                    placeholder="بحث بالرقم أو الاسم..." 
+                    value={search} 
+                    onChange={(e) => { setSearch(e.target.value); setPage(1) }} 
+                    className="pl-10 rounded-xl bg-white border-slate-200"
+                  />
                 </div>
-                <div className="relative w-40">
-                  <Calendar className="h-4 w-4 text-[#94A3B8] absolute left-3 top-1/2 -translate-y-1/2" aria-hidden />
-                  <Input type="date" value={from} onChange={(e) => setFrom(e.target.value)} className="pl-9" />
+
+                <div className="relative">
+                  <Calendar className="h-4 w-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <Input 
+                    type="date" 
+                    value={from} 
+                    onChange={(e) => setFrom(e.target.value)} 
+                    className="pl-10 rounded-xl bg-white border-slate-200"
+                    placeholder="من تاريخ"
+                  />
                 </div>
-                <div className="relative w-40">
-                  <Calendar className="h-4 w-4 text-[#94A3B8] absolute left-3 top-1/2 -translate-y-1/2" aria-hidden />
-                  <Input type="date" value={to} onChange={(e) => setTo(e.target.value)} className="pl-9" />
+
+                <div className="relative">
+                  <Calendar className="h-4 w-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <Input 
+                    type="date" 
+                    value={to} 
+                    onChange={(e) => setTo(e.target.value)} 
+                    className="pl-10 rounded-xl bg-white border-slate-200"
+                    placeholder="إلى تاريخ"
+                  />
                 </div>
-              </div>
-              <div className="flex items-center gap-2">
+
                 <Select value={String(limit)} onValueChange={(v) => { setLimit(Number(v)); setPage(1) }}>
-                  <SelectTrigger className="w-32"><SelectValue placeholder="حجم الصفحة" /></SelectTrigger>
-                  <SelectContent align="end">
-                    <SelectItem value="10">10</SelectItem>
-                    <SelectItem value="20">20</SelectItem>
-                    <SelectItem value="50">50</SelectItem>
+                  <SelectTrigger className="rounded-xl bg-white border-slate-200">
+                    <SelectValue placeholder="عدد النتائج" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="10">10 نتائج</SelectItem>
+                    <SelectItem value="20">20 نتيجة</SelectItem>
+                    <SelectItem value="50">50 نتيجة</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
-            </div>
-            <div className="text-sm text-[#64748B] mt-2">عرض {rows.length ? start : 0}-{rows.length ? end : 0} من أصل {meta?.total ?? 0}</div>
-            <Separator className="my-4" />
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader className="bg-[#F8FAFC]">
-                  <TableRow>
-                    <TableHead className="text-right">رقم الطلب</TableHead>
-                    <TableHead className="text-right">اسم المرسل</TableHead>
-                    <TableHead className="text-right">نوع القضية</TableHead>
-                    <TableHead className="text-right cursor-pointer select-none" onClick={() => setSort(sort.startsWith("-") ? "createdAt" : "-createdAt")}>تاريخ الإنشاء {isDateDesc ? <ChevronDown className="inline h-4 w-4 ml-1" /> : <ChevronUp className="inline h-4 w-4 ml-1" />}</TableHead>
-                    <TableHead className="text-right">الحالة</TableHead>
-                    <TableHead className="text-right">محكّم مسؤول</TableHead>
-                    <TableHead className="text-right">آخر تحديث</TableHead>
-                    <TableHead className="text-right">إجراءات</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {rows.map((r: Arbitration) => (
-                    <TableRow key={r.id} className="hover:bg-[#F5F7FA] transition-colors">
-                      <TableCell className="font-mono">{r.id.slice(0, 8)}…</TableCell>
-                      <TableCell>{r.clientName}</TableCell>
-                      <TableCell>{r.type}</TableCell>
-                      <TableCell>{new Date(r.createdAt).toLocaleString()}</TableCell>
-                      <TableCell><StatusBadge status={r.status} /></TableCell>
-                      <TableCell>{r.assignedTo || "—"}</TableCell>
-                      <TableCell>{new Date(r.updatedAt).toLocaleString()}</TableCell>
-                      <TableCell>
-                        <div className="flex gap-1">
-                          <Button size="sm" variant="outline" className="hover:bg-[#F1F5F9]" onClick={() => setDetailsId(r.id)}><FileText className="h-4 w-4 ml-1" />عرض</Button>
-                          <Button size="sm" variant="outline" className="hover:bg-[#F1F5F9]" onClick={() => { setStatusId(r.id); setNewStatus(r.status) }}><Edit className="h-4 w-4 ml-1" />حالة</Button>
-                          <Button size="sm" variant="outline" className="hover:bg-[#F1F5F9]" onClick={() => setUploadContextId(r.id)}><Upload className="h-4 w-4 ml-1" />رفع</Button>
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                  {rows.length === 0 && (
-                    <TableRow>
-                      <TableCell colSpan={8} className="text-center text-muted-foreground">لا توجد بيانات</TableCell>
-                    </TableRow>
+
+              {hasFilters && (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-slate-600 font-medium">الفلاتر النشطة:</span>
+                  {statusFilter && (
+                    <Badge variant="secondary" className="rounded-full px-3 py-1">
+                      {statusFilter}
+                      <X className="h-3 w-3 mr-1 cursor-pointer" onClick={() => setStatusFilter("")} />
+                    </Badge>
                   )}
-                </TableBody>
-              </Table>
+                  {search && (
+                    <Badge variant="secondary" className="rounded-full px-3 py-1">
+                      بحث: {search}
+                      <X className="h-3 w-3 mr-1 cursor-pointer" onClick={() => setSearch("")} />
+                    </Badge>
+                  )}
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={() => { setStatusFilter(""); setSearch(""); setFrom(""); setTo("") }}
+                    className="text-xs rounded-xl"
+                  >
+                    مسح الكل
+                  </Button>
+                </div>
+              )}
+
+              <div className="flex items-center justify-between">
+                <div className="text-sm text-slate-600 font-medium bg-slate-100 px-4 py-2 rounded-xl">
+                  عرض <span className="font-bold text-[#003366]">{rows.length ? start : 0}-{rows.length ? end : 0}</span> من أصل <span className="font-bold text-[#003366]">{meta?.total ?? 0}</span>
+                </div>
+                {listQuery.isFetching && (
+                  <div className="flex items-center gap-2 text-sm text-slate-600">
+                    <div className="h-4 w-4 border-2 border-[#00B4D8] border-t-transparent rounded-full animate-spin"></div>
+                    جاري التحميل...
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="flex items-center justify-between mt-4">
-              <div className="text-sm text-[#64748B]">الصفحة {meta?.page || 1} من {meta ? Math.max(1, Math.ceil(meta.total / meta.limit)) : 1}</div>
-              <div className="flex gap-2 items-center">
-                <Button variant="outline" disabled={page <= 1 || listQuery.isFetching} onClick={() => setPage((p) => Math.max(1, p - 1))}>السابق</Button>
-                <div className="text-sm text-[#003366] font-medium">{meta?.page || 1}</div>
-                <Button variant="outline" disabled={!!meta && page >= Math.ceil(meta.total / meta.limit) || listQuery.isFetching} onClick={() => setPage((p) => p + 1)}>التالي</Button>
+
+            <Separator className="my-6" />
+
+            {/* Table */}
+            <div className="rounded-2xl border border-slate-200 overflow-hidden">
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="bg-gradient-to-l from-slate-50 to-blue-50/30 hover:bg-gradient-to-l">
+                      <TableHead className="text-right font-bold text-slate-700">رقم الطلب</TableHead>
+                      <TableHead className="text-right font-bold text-slate-700">اسم المرسل</TableHead>
+                      <TableHead className="text-right font-bold text-slate-700">نوع القضية</TableHead>
+                      <TableHead 
+                        className="text-right font-bold text-slate-700 cursor-pointer select-none hover:text-[#00B4D8] transition-colors" 
+                        onClick={() => setSort(sort.startsWith("-") ? "createdAt" : "-createdAt")}
+                      >
+                        <div className="flex items-center gap-2">
+                          تاريخ الإنشاء
+                          {isDateDesc ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
+                        </div>
+                      </TableHead>
+                      <TableHead className="text-right font-bold text-slate-700">الحالة</TableHead>
+                      <TableHead className="text-right font-bold text-slate-700">محكّم مسؤول</TableHead>
+                      <TableHead className="text-right font-bold text-slate-700">آخر تحديث</TableHead>
+                      <TableHead className="text-right font-bold text-slate-700">إجراءات</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {rows.map((r: Arbitration, idx: number) => (
+                      <TableRow 
+                        key={r.id} 
+                        className={`hover:bg-slate-50 transition-colors ${idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}`}
+                      >
+                        <TableCell className="font-mono text-sm font-semibold text-[#003366]">
+                          {r.id.slice(0, 8)}…
+                        </TableCell>
+                        <TableCell className="font-medium">{r.clientName}</TableCell>
+                        <TableCell>
+                          <Badge variant="outline" className="rounded-full border-slate-300">
+                            {r.type}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-sm text-slate-600">
+                          {new Date(r.createdAt).toLocaleDateString('ar-SA', { 
+                            year: 'numeric', 
+                            month: 'short', 
+                            day: 'numeric' 
+                          })}
+                        </TableCell>
+                        <TableCell>
+                          <StatusBadge status={r.status} />
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex items-center gap-2">
+                            {r.assignedTo ? (
+                              <>
+                                <div className="h-7 w-7 rounded-full bg-gradient-to-br from-[#003366] to-[#00B4D8] flex items-center justify-center text-white text-xs font-bold">
+                                  {r.assignedTo.charAt(0).toUpperCase()}
+                                </div>
+                                <span className="text-sm font-medium">{r.assignedTo}</span>
+                              </>
+                            ) : (
+                              <span className="text-slate-400 text-sm">غير مُسند</span>
+                            )}
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-sm text-slate-600">
+                          {new Date(r.updatedAt).toLocaleDateString('ar-SA', { 
+                            year: 'numeric', 
+                            month: 'short', 
+                            day: 'numeric' 
+                          })}
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex items-center gap-2">
+                            <Button 
+                              size="sm" 
+                              variant="ghost"
+                              className="hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all" 
+                              onClick={() => setDetailsId(r.id)}
+                            >
+                              <Eye className="h-4 w-4 ml-1" />
+                              عرض
+                            </Button>
+                            <Button 
+                              size="sm" 
+                              variant="ghost"
+                              className="hover:bg-purple-50 hover:text-purple-600 rounded-xl transition-all" 
+                              onClick={() => { setStatusId(r.id); setNewStatus(r.status) }}
+                            >
+                              <Edit className="h-4 w-4 ml-1" />
+                              تعديل
+                            </Button>
+                            <Button 
+                              size="sm" 
+                              variant="ghost"
+                              className="hover:bg-emerald-50 hover:text-emerald-600 rounded-xl transition-all" 
+                              onClick={() => setUploadContextId(r.id)}
+                            >
+                              <Upload className="h-4 w-4 ml-1" />
+                              رفع
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                    {rows.length === 0 && !listQuery.isFetching && (
+                      <TableRow>
+                        <TableCell colSpan={8} className="text-center py-12">
+                          <div className="flex flex-col items-center gap-3">
+                            <Inbox className="h-16 w-16 text-slate-300" />
+                            <div className="text-slate-500 font-medium">لا توجد طلبات حالياً</div>
+                            <p className="text-sm text-slate-400">جرّب تغيير الفلاتر أو البحث</p>
+                          </div>
+                        </TableCell>
+                        </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+
+            {/* Pagination */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
+              <div className="text-sm text-slate-600 font-medium bg-slate-100 px-4 py-2 rounded-xl">
+                الصفحة <span className="font-bold text-[#003366]">{meta?.page || 1}</span> من <span className="font-bold text-[#003366]">{meta ? Math.max(1, Math.ceil(meta.total / meta.limit)) : 1}</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Button 
+                  variant="outline" 
+                  disabled={page <= 1 || listQuery.isFetching} 
+                  onClick={() => setPage((p) => Math.max(1, p - 1))}
+                  className="rounded-xl hover:bg-slate-50 font-semibold disabled:opacity-50"
+                >
+                  السابق
+                </Button>
+                <div className="flex items-center gap-2">
+                  <div className="h-10 px-4 rounded-xl bg-gradient-to-l from-[#003366] to-[#00B4D8] text-white font-bold flex items-center justify-center shadow-lg">
+                    {meta?.page || 1}
+                  </div>
+                </div>
+                <Button 
+                  variant="outline" 
+                  disabled={!!meta && page >= Math.ceil(meta.total / meta.limit) || listQuery.isFetching} 
+                  onClick={() => setPage((p) => p + 1)}
+                  className="rounded-xl hover:bg-slate-50 font-semibold disabled:opacity-50"
+                >
+                  التالي
+                </Button>
               </div>
             </div>
           </CardContent>
         </Card>
       </div>
 
+      {/* Details Dialog */}
       <Dialog open={!!detailsId} onOpenChange={(o) => { if (!o) setDetailsId(null) }}>
-        <DialogContent className="sm:max-w-3xl p-0 overflow-hidden">
-          <DialogHeader>
-            <DialogTitle className="sr-only">تفاصيل طلب التحكيم</DialogTitle>
-          </DialogHeader>
-          <div className="bg-gradient-to-b from-white to-[#F8FAFC] border-b border-[#E2E8F0] px-6 py-5">
+        <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto p-0 rounded-3xl border-0 shadow-2xl">
+          <div className="sticky top-0 z-10 bg-gradient-to-l from-[#003366] via-[#00509E] to-[#00B4D8] text-white px-8 py-6 rounded-t-3xl">
             <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-[#003366]">تفاصيل طلب التحكيم</h2>
-                <p className="mt-2 text-sm text-[#64748B] bg-[#F1F5F9] inline-block px-3 py-1 rounded-full">
-                  {detailsQuery.data ? detailsQuery.data.id.slice(0, 12).toUpperCase() : "—"}
-                </p>
+              <div className="flex-1">
+                <h2 className="text-2xl lg:text-3xl font-bold mb-2">تفاصيل طلب التحكيم</h2>
+                <div className="flex items-center gap-3">
+                  <p className="text-sm bg-white/20 backdrop-blur px-4 py-1.5 rounded-full font-mono">
+                    {detailsQuery.data ? detailsQuery.data.id.slice(0, 12).toUpperCase() : "—"}
+                  </p>
+                  {detailsQuery.data && <StatusBadge status={detailsQuery.data.status} />}
+                </div>
               </div>
-              {detailsQuery.data && <StatusBadge status={detailsQuery.data.status} />}
             </div>
           </div>
-          <div className="px-6 py-5 space-y-5">
+
+          <div className="px-8 py-6 space-y-6">
             {detailsQuery.isLoading && (
-              <div className="space-y-3">
-                <div className="h-24 bg-[#E2E8F0] rounded-2xl animate-pulse" />
-                <div className="h-40 bg-[#E2E8F0] rounded-2xl animate-pulse" />
+              <div className="space-y-4">
+                <div className="h-32 bg-slate-200 rounded-3xl animate-pulse" />
+                <div className="h-48 bg-slate-200 rounded-3xl animate-pulse" />
+                <div className="h-64 bg-slate-200 rounded-3xl animate-pulse" />
               </div>
             )}
+            
             {detailsQuery.data && (
-              <div className="space-y-5" dir="rtl">
-                <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="group">
-                      <div className="text-[12px] text-[#64748B] font-medium flex items-center gap-2"><UserCheck className="h-4 w-4 text-[#94A3B8]" />اسم العميل</div>
-                      <div className="text-[16px] text-[#1E293B] font-semibold group-hover:text-[#003366] transition-colors">{detailsQuery.data.clientName}</div>
-                    </div>
-                    <div className="group md:border-r md:pr-6 border-[#E2E8F0]">
-                      <div className="text-[12px] text-[#64748B] font-medium flex items-center gap-2"><FileText className="h-4 w-4 text-[#94A3B8]" />نوع القضية</div>
-                      <div className="text-[16px] text-[#1E293B] font-semibold group-hover:text-[#003366] transition-colors">{detailsQuery.data.type}</div>
-                    </div>
-                    <div className="group">
-                      <div className="text-[12px] text-[#64748B] font-medium flex items-center gap-2"><Inbox className="h-4 w-4 text-[#94A3B8]" />رقم الطلب</div>
-                      <div className="text-[16px] text-[#1E293B] font-semibold">{detailsQuery.data.id}</div>
-                    </div>
-                    <div className="group md:border-r md:pr-6 border-[#E2E8F0]">
-                      <div className="text-[12px] text-[#64748B] font-medium flex items-center gap-2"><Calendar className="h-4 w-4 text-[#94A3B8]" />تاريخ الإنشاء</div>
-                      <div className="text-[16px] text-[#1E293B] font-semibold">{new Date(detailsQuery.data.createdAt).toLocaleString()}</div>
-                    </div>
-                    <div className="group">
-                      <div className="text-[12px] text-[#64748B] font-medium flex items-center gap-2"><Calendar className="h-4 w-4 text-[#94A3B8]" />آخر تحديث</div>
-                      <div className="text-[16px] text-[#1E293B] font-semibold">{new Date(detailsQuery.data.updatedAt).toLocaleString()}</div>
-                    </div>
-                    <div className="group md:border-r md:pr-6 border-[#E2E8F0]">
-                      <div className="text-[12px] text-[#64748B] font-medium flex items-center gap-2"><UserCheck className="h-4 w-4 text-[#94A3B8]" />محكّم مسؤول</div>
-                      <div className="text-[16px] text-[#1E293B] font-semibold">{detailsQuery.data.assignedTo || "—"}</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white rounded-2xl shadow-md p-6 border border-[#E2E8F0] relative">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-[20px] font-bold text-[#003366] border-b-2 border-[#00B4D8] inline-block pb-1">وصف القضية</h3>
-                    <Button variant="ghost" size="sm" aria-label="نسخ النص" onClick={() => { if (navigator?.clipboard) navigator.clipboard.writeText(detailsQuery.data!.description || "") }}>
-                      <Copy className="h-4 w-4 text-[#64748B]" />
-                    </Button>
-                  </div>
-                  <div className="text-[15px] leading-8 text-[#334155] font-normal whitespace-pre-wrap" style={{ direction: "rtl", textAlign: "right" }}>
-                    {detailsQuery.data.description && detailsQuery.data.description.length > 300 ? (
-                      <>
-                        {detailsQuery.data.description.slice(0, 300)}{""}
-                        <span className="select-none">{detailsQuery.data.description.length > 300 ? "…" : ""}</span>
-                        <span className="block mt-3">
-                          <Button variant="outline" size="sm" onClick={() => window.alert(detailsQuery.data!.description)} aria-label="عرض كامل">عرض كامل</Button>
-                        </span>
-                      </>
-                    ) : (
-                      detailsQuery.data.description || "—"
-                    )}
-                  </div>
-                  <div className="mt-3 text-[12px] text-[#94A3B8]">عدد الأحرف: {detailsQuery.data.description?.length || 0}</div>
-                </div>
-
-                <div className="bg-white rounded-2xl shadow-md p-6 border border-[#E2E8F0]">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <Folder className="h-5 w-5 text-[#003366]" />
-                      <h3 className="text-[18px] font-semibold text-[#1E293B]">المستندات المرفقة</h3>
-                      <Badge variant="secondary" className="bg-[#F1F5F9] text-[#003366]">{detailsQuery.data.documents.length}</Badge>
-                    </div>
-                    <Button variant="outline" onClick={() => setUploadContextId(detailsQuery.data!.id)} aria-label="إضافة مستند">+ إضافة مستند</Button>
-                  </div>
-                  {detailsQuery.data.documents.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center text-center text-[#64748B] py-10 border border-dashed border-[#E2E8F0] rounded-xl">
-                      <Folder className="h-10 w-10 text-[#CBD5E1] mb-3" />
-                      <div className="mb-2">لا توجد مستندات مرفقة حالياً</div>
-                      <Button onClick={() => setUploadContextId(detailsQuery.data!.id)} aria-label="إضافة أول مستند">+ إضافة أول مستند</Button>
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {detailsQuery.data.documents.map((d: { id: string; name: string; url: string; createdAt?: string }) => (
-                        <div key={d.id} className="bg-white rounded-xl border border-[#E2E8F0] p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-[2px]">
-                          <div className="flex items-center gap-2 mb-3">
-                            <FileText className="h-5 w-5 text-[#64748B]" />
-                            <div className="truncate text-[#003366] font-medium" title={d.name}>{d.name}</div>
-                          </div>
-                          <div className="text-sm text-[#64748B] space-y-1 mb-4">
-                            {d.createdAt && <div>تاريخ الرفع: {new Date(d.createdAt).toLocaleDateString()}</div>}
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <a className="px-2.5 py-1.5 rounded-md text-white bg-[#00B4D8] hover:opacity-90 text-sm" href={d.url} download aria-label="تحميل">تحميل</a>
-                            <a className="px-2.5 py-1.5 rounded-md text-[#64748B] border border-[#E2E8F0] text-sm" href={d.url} target="_blank" rel="noreferrer" aria-label="معاينة"><Eye className="inline h-4 w-4 ml-1" />معاينة</a>
-                            <Button variant="outline" size="sm" className="text-[#EF4444] border-[#FEE2E2]" onClick={() => deleteDoc.mutate({ arbitrationId: detailsQuery.data!.id, docId: d.id })} aria-label="حذف"><Trash className="h-4 w-4 ml-1" />حذف</Button>
-                          </div>
+              <div className="space-y-6">
+                {/* Info Card */}
+                <Card className="rounded-3xl border-0 shadow-lg bg-gradient-to-br from-white to-slate-50">
+                  <CardContent className="p-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      <div className="space-y-2 group">
+                        <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                          <UserCheck className="h-4 w-4 text-[#00B4D8]" />
+                          اسم العميل
                         </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                        <div className="text-lg font-bold text-[#003366] group-hover:text-[#00B4D8] transition-colors">
+                          {detailsQuery.data.clientName}
+                        </div>
+                      </div>
 
-                <div className="bg-[#F8FAFC] border-t border-[#E2E8F0] px-6 py-4 rounded-xl flex flex-col md:flex-row gap-3 md:items-center md:justify-end">
-                  <Button className="bg-gradient-to-tr from-[#00B4D8] to-[#0096C7] text-white shadow-lg" onClick={() => { setStatusId(detailsQuery.data!.id); setNewStatus(detailsQuery.data!.status) }} aria-label="تغيير الحالة">تغيير الحالة</Button>
-                  <Button variant="outline" className="border-2 border-[#00B4D8] text-[#00B4D8]" onClick={() => setUploadContextId(detailsQuery.data!.id)} aria-label="رفع مستند">رفع مستند</Button>
-                  <Button variant="ghost" onClick={() => setDetailsId(null)} aria-label="إغلاق">إغلاق</Button>
+                      <div className="space-y-2 group">
+                        <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                          <FileText className="h-4 w-4 text-[#00B4D8]" />
+                          نوع القضية
+                        </div>
+                        <div className="text-lg font-bold text-[#003366] group-hover:text-[#00B4D8] transition-colors">
+                          {detailsQuery.data.type}
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 group">
+                        <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                          <Inbox className="h-4 w-4 text-[#00B4D8]" />
+                          رقم الطلب
+                        </div>
+                        <div className="text-sm font-mono font-bold text-[#003366] break-all">
+                          {detailsQuery.data.id}
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 group">
+                        <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                          <Calendar className="h-4 w-4 text-[#00B4D8]" />
+                          تاريخ الإنشاء
+                        </div>
+                        <div className="text-lg font-bold text-[#003366]">
+                          {new Date(detailsQuery.data.createdAt).toLocaleDateString('ar-SA', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                          })}
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 group">
+                        <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                          <Calendar className="h-4 w-4 text-[#00B4D8]" />
+                          آخر تحديث
+                        </div>
+                        <div className="text-lg font-bold text-[#003366]">
+                          {new Date(detailsQuery.data.updatedAt).toLocaleDateString('ar-SA', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                          })}
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 group">
+                        <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                          <UserCheck className="h-4 w-4 text-[#00B4D8]" />
+                          محكّم مسؤول
+                        </div>
+                        <div className="text-lg font-bold text-[#003366]">
+                          {detailsQuery.data.assignedTo || (
+                            <span className="text-slate-400 text-sm">غير مُسند</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Description Card */}
+                <Card className="rounded-3xl border-0 shadow-lg bg-white">
+                  <CardHeader className="border-b border-slate-200 bg-gradient-to-b from-slate-50 to-white">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-xl font-bold text-[#003366] flex items-center gap-2">
+                        <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#003366] to-[#00B4D8] flex items-center justify-center">
+                          <FileText className="h-5 w-5 text-white" />
+                        </div>
+                        وصف القضية
+                      </CardTitle>
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="rounded-xl hover:bg-slate-100"
+                        onClick={() => {
+                          if (navigator?.clipboard && detailsQuery.data?.description) {
+                            navigator.clipboard.writeText(detailsQuery.data.description)
+                            toast({ description: "تم نسخ النص" })
+                          }
+                        }}
+                      >
+                        <Copy className="h-4 w-4 ml-1" />
+                        نسخ
+                      </Button>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="p-6">
+                    <div className="prose prose-slate max-w-none">
+                      <div className="text-base leading-8 text-slate-700 whitespace-pre-wrap">
+                        {detailsQuery.data.description || (
+                          <span className="text-slate-400 italic">لا يوجد وصف</span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-slate-200">
+                      <div className="flex items-center gap-4 text-xs text-slate-500">
+                        <span>عدد الأحرف: <span className="font-bold text-slate-700">{detailsQuery.data.description?.length || 0}</span></span>
+                        <span>عدد الكلمات: <span className="font-bold text-slate-700">{detailsQuery.data.description?.split(/\s+/).filter(Boolean).length || 0}</span></span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Documents Card */}
+                <Card className="rounded-3xl border-0 shadow-lg bg-white">
+                  <CardHeader className="border-b border-slate-200 bg-gradient-to-b from-slate-50 to-white">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-xl font-bold text-[#003366] flex items-center gap-3">
+                        <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+                          <Folder className="h-5 w-5 text-white" />
+                        </div>
+                        المستندات المرفقة
+                        <Badge className="bg-gradient-to-r from-[#003366] to-[#00B4D8] border-0 text-white">
+                          {detailsQuery.data.documents.length}
+                        </Badge>
+                      </CardTitle>
+                      <Button 
+                        className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 rounded-xl shadow-lg font-semibold"
+                        onClick={() => setUploadContextId(detailsQuery.data!.id)}
+                      >
+                        <Upload className="h-4 w-4 ml-1" />
+                        رفع مستند
+                      </Button>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="p-6">
+                    {detailsQuery.data.documents.length === 0 ? (
+                      <div className="flex flex-col items-center justify-center text-center py-16 border-2 border-dashed border-slate-300 rounded-2xl bg-slate-50/50">
+                        <Folder className="h-16 w-16 text-slate-300 mb-4" />
+                        <div className="text-slate-500 font-medium mb-2">لا توجد مستندات مرفقة</div>
+                        <p className="text-sm text-slate-400 mb-4">ابدأ برفع المستندات المتعلقة بهذا الطلب</p>
+                        <Button 
+                          className="bg-gradient-to-r from-[#003366] to-[#00B4D8] hover:from-[#00509E] hover:to-[#0096C7] rounded-xl"
+                          onClick={() => setUploadContextId(detailsQuery.data!.id)}
+                        >
+                          <Upload className="h-4 w-4 ml-1" />
+                          رفع أول مستند
+                        </Button>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {detailsQuery.data.documents.map((d) => (
+                          <div 
+                            key={d.id} 
+                            className="group relative rounded-2xl border-2 border-slate-200 p-5 bg-gradient-to-br from-white to-slate-50 hover:shadow-xl hover:scale-[1.02] hover:border-[#00B4D8] transition-all duration-300"
+                          >
+                            <div className="flex items-start gap-3 mb-4">
+                              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                <FileText className="h-6 w-6 text-white" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="font-bold text-[#003366] truncate group-hover:text-[#00B4D8] transition-colors" title={d.name}>
+                                  {d.name}
+                                </div>
+                                {d.createdAt && (
+                                  <div className="text-xs text-slate-500 mt-1">
+                                    {new Date(d.createdAt).toLocaleDateString('ar-SA', {
+                                      year: 'numeric',
+                                      month: 'short',
+                                      day: 'numeric'
+                                    })}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+
+                            <div className="flex items-center gap-2">
+                              <a 
+                                href={d.url} 
+                                download 
+                                className="flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-xl bg-gradient-to-r from-[#00B4D8] to-[#0096C7] text-white font-semibold text-sm hover:shadow-lg transition-all"
+                              >
+                                <Download className="h-4 w-4" />
+                                تحميل
+                              </a>
+                              <a 
+                                href={d.url} 
+                                target="_blank" 
+                                rel="noreferrer"
+                                className="flex items-center justify-center gap-1 px-3 py-2 rounded-xl border-2 border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 transition-all"
+                              >
+                                <Eye className="h-4 w-4" />
+                              </a>
+                              <Button 
+                                variant="ghost"
+                                size="sm"
+                                className="px-3 py-2 rounded-xl text-rose-600 hover:bg-rose-50 hover:text-rose-700 transition-all"
+                                onClick={() => {
+                                  if (confirm('هل أنت متأكد من حذف هذا المستند؟')) {
+                                    deleteDoc.mutate({ arbitrationId: detailsQuery.data!.id, docId: d.id })
+                                  }
+                                }}
+                              >
+                                <Trash className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+
+                {/* Actions */}
+                <div className="flex flex-col sm:flex-row gap-3 justify-end pt-4 border-t border-slate-200">
+                  <Button 
+                    className="bg-gradient-to-r from-[#003366] to-[#00B4D8] hover:from-[#00509E] hover:to-[#0096C7] shadow-lg rounded-xl font-semibold"
+                    onClick={() => { setStatusId(detailsQuery.data!.id); setNewStatus(detailsQuery.data!.status) }}
+                  >
+                    <Edit className="h-4 w-4 ml-1" />
+                    تغيير الحالة
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    className="border-2 border-[#00B4D8] text-[#00B4D8] hover:bg-blue-50 rounded-xl font-semibold"
+                    onClick={() => setUploadContextId(detailsQuery.data!.id)}
+                  >
+                    <Upload className="h-4 w-4 ml-1" />
+                    رفع مستند
+                  </Button>
+                  <Button 
+                    variant="ghost"
+                    onClick={() => setDetailsId(null)}
+                    className="rounded-xl hover:bg-slate-100"
+                  >
+                    إغلاق
+                  </Button>
                 </div>
               </div>
             )}
@@ -467,75 +851,225 @@ function PageInner() {
         </DialogContent>
       </Dialog>
 
+      {/* Status Update Dialog */}
       <Dialog open={!!statusId} onOpenChange={(o) => { if (!o) { setStatusId(null); setNewStatus(""); setCloseNote("") } }}>
-        <DialogContent>
+        <DialogContent className="rounded-3xl border-0 shadow-2xl">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-[#00B4D8]" />تغيير الحالة</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-[#003366] flex items-center gap-3">
+              <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center">
+                <Edit className="h-6 w-6 text-white" />
+              </div>
+              تغيير حالة الطلب
+            </DialogTitle>
           </DialogHeader>
-          <div className="space-y-3">
-            <Select value={newStatus} onValueChange={setNewStatus}>
-              <SelectTrigger className="w-full"><SelectValue placeholder="اختر الحالة" /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="new">🟦 جديد</SelectItem>
-                <SelectItem value="in_review">🟧 قيد المراجعة</SelectItem>
-                <SelectItem value="assigned">🟪 مُسند</SelectItem>
-                <SelectItem value="closed">🟩 مغلق</SelectItem>
-              </SelectContent>
-            </Select>
-            <div className={`transition-all ${newStatus === "closed" ? "max-h-24 opacity-100" : "max-h-0 opacity-0 overflow-hidden"}`}>
-              <Input placeholder="ملاحظة إغلاق" value={closeNote} onChange={(e) => setCloseNote(e.target.value)} />
+          <div className="space-y-4 py-4">
+            <div>
+              <label className="text-sm font-semibold text-slate-700 mb-2 block">اختر الحالة الجديدة</label>
+              <Select value={newStatus} onValueChange={setNewStatus}>
+                <SelectTrigger className="w-full rounded-xl border-2 border-slate-200">
+                  <SelectValue placeholder="اختر الحالة" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="new">🆕 جديد</SelectItem>
+                  <SelectItem value="in_review">⏳ قيد المراجعة</SelectItem>
+                  <SelectItem value="assigned">👤 مُسند</SelectItem>
+                  <SelectItem value="closed">✓ مغلق</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {newStatus === "closed" && (
+              <div className="space-y-2 animate-in fade-in slide-in-from-top-2 duration-300">
+                <label className="text-sm font-semibold text-slate-700 flex items-center gap-2">
+                  <Info className="h-4 w-4 text-[#00B4D8]" />
+                  ملاحظة الإغلاق (اختياري)
+                </label>
+                <Input 
+                  placeholder="أضف ملاحظة حول سبب الإغلاق..." 
+                  value={closeNote} 
+                  onChange={(e) => setCloseNote(e.target.value)}
+                  className="rounded-xl border-2 border-slate-200"
+                />
+              </div>
+            )}
+
+            <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 flex items-start gap-3">
+              <Info className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
+              <div className="text-sm text-blue-900">
+                <p className="font-semibold mb-1">ملاحظة هامة</p>
+                <p>سيتم إشعار جميع الأطراف المعنية بتغيير الحالة</p>
+              </div>
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => { setStatusId(null); setNewStatus(""); setCloseNote("") }}>إلغاء</Button>
-            <Button disabled={!newStatus || updateStatus.isPending} onClick={() => { if (!statusId || !newStatus) return; updateStatus.mutate({ id: statusId, status: newStatus, note: closeNote || undefined }) }}>{updateStatus.isPending ? "جاري الحفظ..." : "حفظ"}</Button>
+            <Button 
+              variant="outline" 
+              onClick={() => { setStatusId(null); setNewStatus(""); setCloseNote("") }}
+              className="rounded-xl hover:bg-slate-50"
+            >
+              إلغاء
+            </Button>
+            <Button 
+              disabled={!newStatus || updateStatus.isPending} 
+              onClick={() => { 
+                if (!statusId || !newStatus) return
+                updateStatus.mutate({ id: statusId, status: newStatus, note: closeNote || undefined }) 
+              }}
+              className="bg-gradient-to-r from-[#003366] to-[#00B4D8] hover:from-[#00509E] hover:to-[#0096C7] rounded-xl shadow-lg font-semibold"
+            >
+              {updateStatus.isPending ? (
+                <>
+                  <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin ml-2"></div>
+                  جاري الحفظ...
+                </>
+              ) : (
+                <>
+                  <CheckCircle2 className="h-4 w-4 ml-2" />
+                  حفظ التغييرات
+                </>
+              )}
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
+      {/* Upload Dialog */}
       <Dialog open={!!uploadContextId} onOpenChange={(o) => { if (!o) { setUploadContextId(null); setPendingFiles([]); if (fileInputRef.current) fileInputRef.current.value = "" } }}>
-        <DialogContent>
+        <DialogContent className="rounded-3xl border-0 shadow-2xl">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2"><UploadCloud className="h-5 w-5 text-[#00B4D8]" />رفع مستندات</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-[#003366] flex items-center gap-3">
+              <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
+                <UploadCloud className="h-6 w-6 text-white" />
+              </div>
+              رفع مستندات جديدة
+            </DialogTitle>
           </DialogHeader>
-          <div className="space-y-4">
+          <div className="space-y-5 py-4">
             <div
-              className={`border-2 border-dashed rounded-xl p-6 text-center transition-colors ${isDragging ? "border-[#00B4D8] bg-[#F0FDFF]" : "border-[#E2E8F0]"}`}
+              className={`relative border-3 border-dashed rounded-2xl p-8 text-center transition-all duration-300 ${
+                isDragging 
+                  ? "border-[#00B4D8] bg-blue-50 scale-[1.02]" 
+                  : "border-slate-300 bg-slate-50 hover:border-slate-400 hover:bg-slate-100"
+              }`}
               onDragOver={(e) => { e.preventDefault(); setIsDragging(true) }}
               onDragLeave={() => setIsDragging(false)}
               onDrop={(e) => {
-                e.preventDefault();
+                e.preventDefault()
                 setIsDragging(false)
                 const files = Array.from(e.dataTransfer.files || [])
                 setPendingFiles(files)
               }}
             >
-              <div className="flex flex-col items-center gap-2">
-                <UploadCloud className="h-8 w-8 text-[#00B4D8]" />
-                <div className="text-[#475569]">اسحب الملفات هنا أو انقر للاختيار</div>
-                <div className="text-sm text-[#64748B]">الأنواع المدعومة: PDF, DOCX, PNG, JPG • الحد الأقصى: 10MB</div>
-                <label className="mt-2 inline-block px-3 py-1.5 rounded-md border border-[#E2E8F0] text-[#003366] cursor-pointer hover:bg-[#F8FAFC]">
-                  اختر ملفات
-                  <input ref={fileInputRef} type="file" multiple accept=".pdf,.docx,.png,.jpg,.jpeg" className="hidden" onChange={(e) => setPendingFiles(Array.from(e.target.files || []))} />
+              <div className="flex flex-col items-center gap-4">
+                <div className={`h-16 w-16 rounded-2xl flex items-center justify-center transition-all ${
+                  isDragging 
+                    ? "bg-[#00B4D8] scale-110" 
+                    : "bg-slate-200"
+                }`}>
+                  <UploadCloud className={`h-8 w-8 ${isDragging ? "text-white" : "text-slate-500"}`} />
+                </div>
+                <div>
+                  <div className="text-lg font-bold text-slate-700 mb-1">
+                    {isDragging ? "أفلت الملفات هنا" : "اسحب الملفات أو انقر للاختيار"}
+                  </div>
+                  <div className="text-sm text-slate-500">
+                    الأنواع المدعومة: PDF, DOCX, PNG, JPG • الحد الأقصى: 10MB
+                  </div>
+                </div>
+                <label className="cursor-pointer">
+                  <div className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#003366] to-[#00B4D8] text-white font-semibold hover:shadow-lg transition-all">
+                    اختر ملفات من جهازك
+                  </div>
+                  <input 
+                    ref={fileInputRef} 
+                    type="file" 
+                    multiple 
+                    accept=".pdf,.docx,.png,.jpg,.jpeg" 
+                    className="hidden" 
+                    onChange={(e) => setPendingFiles(Array.from(e.target.files || []))} 
+                  />
                 </label>
               </div>
             </div>
+
             {pendingFiles.length > 0 && (
-              <div className="text-sm text-[#64748B]">
-                سيتم رفع {pendingFiles.length} ملف
+              <div className="space-y-3 animate-in fade-in slide-in-from-top-2 duration-300">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm font-bold text-slate-700">
+                    الملفات المحددة ({pendingFiles.length})
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={() => setPendingFiles([])}
+                    className="text-xs text-rose-600 hover:text-rose-700 hover:bg-rose-50 rounded-lg"
+                  >
+                    <X className="h-3 w-3 ml-1" />
+                    مسح الكل
+                  </Button>
+                </div>
+                <div className="space-y-2 max-h-40 overflow-y-auto">
+                  {pendingFiles.map((file, idx) => (
+                    <div key={idx} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200">
+                      <FileText className="h-5 w-5 text-[#00B4D8] shrink-0" />
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm font-medium text-slate-700 truncate">{file.name}</div>
+                        <div className="text-xs text-slate-500">{(file.size / 1024).toFixed(1)} KB</div>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setPendingFiles(files => files.filter((_, i) => i !== idx))}
+                        className="shrink-0 h-8 w-8 p-0 hover:bg-rose-50 hover:text-rose-600 rounded-lg"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
-            <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg p-3 flex items-start gap-2">
-              <Info className="h-4 w-4 text-[#00B4D8] mt-0.5" />
-              <div className="text-sm text-[#475569]">تأكد من وضوح المستندات وخلوها من كلمات المرور. سيتم رفض الملفات التي تتجاوز الحجم المسموح.</div>
+
+            <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-4 flex items-start gap-3">
+              <Info className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
+              <div className="text-sm text-amber-900">
+                <p className="font-semibold mb-1">تعليمات مهمة</p>
+                <ul className="list-disc list-inside space-y-1 text-xs">
+                  <li>تأكد من وضوح المستندات وخلوها من كلمات المرور</li>
+                  <li>سيتم رفض الملفات التي تتجاوز الحجم المسموح (10MB)</li>
+                  <li>الصيغ المدعومة: PDF, DOCX, PNG, JPG</li>
+                </ul>
+              </div>
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => { setUploadContextId(null); setPendingFiles([]); if (fileInputRef.current) fileInputRef.current.value = "" }}>إلغاء</Button>
-            <Button disabled={!pendingFiles.length || uploadDocs.isPending} onClick={() => {
-              if (!uploadContextId || !pendingFiles.length) return
-              uploadDocs.mutate({ id: uploadContextId, files: pendingFiles })
-            }}>{uploadDocs.isPending ? "جاري الرفع..." : "رفع"}</Button>
+            <Button 
+              variant="outline" 
+              onClick={() => { setUploadContextId(null); setPendingFiles([]); if (fileInputRef.current) fileInputRef.current.value = "" }}
+              className="rounded-xl hover:bg-slate-50"
+            >
+              إلغاء
+            </Button>
+            <Button 
+              disabled={!pendingFiles.length || uploadDocs.isPending} 
+              onClick={() => {
+                if (!uploadContextId || !pendingFiles.length) return
+                uploadDocs.mutate({ id: uploadContextId, files: pendingFiles })
+              }}
+              className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 rounded-xl shadow-lg font-semibold"
+            >
+              {uploadDocs.isPending ? (
+                <>
+                  <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin ml-2"></div>
+                  جاري الرفع...
+                </>
+              ) : (
+                <>
+                  <Upload className="h-4 w-4 ml-2" />
+                  رفع الملفات ({pendingFiles.length})
+                </>
+              )}
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

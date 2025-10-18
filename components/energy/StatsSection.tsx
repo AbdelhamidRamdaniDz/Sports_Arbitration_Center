@@ -36,27 +36,27 @@ export default function StatsSection({ stats }: StatsSectionProps) {
         <div
           className={`text-center mb-12 animate-slide-up ${isVisible ? 'opacity-100' : 'opacity-0'}`}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-corporate-green mb-4">الأرقام تتحدث عن نفسها</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">إحصائيات وأرقام تعكس حجم قطاع الطاقة في الجزائر وأهميته الاستراتيجية</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-corporate-green mb-3 tracking-tight">الأرقام تتحدث عن نفسها</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">إحصائيات وأرقام تعكس حجم قطاع الطاقة في الجزائر وأهميته الاستراتيجية</p>
         </div>
 
         <div 
-          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 animate-fade-in animate-delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 animate-fade-in animate-delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
         >
           {stats.map((stat, index) => (
             <div
               key={stat.id}
-              className={`bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all border-t-4 border-corporate-green transition-scale hover-scale animate-slide-up ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+              className={`bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all border border-slate-200/60 hover:border-corporate-green/40 ring-1 ring-transparent hover:ring-corporate-green/20 animate-slide-up ${isVisible ? 'opacity-100' : 'opacity-0'}`}
               style={{ animationDelay: `${0.1 * index + 0.3}s` }}
             >
-              <div className="text-3xl md:text-4xl font-bold mb-2 flex items-center justify-center text-corporate-green">
+              <div className="text-3xl md:text-4xl font-extrabold mb-2 flex items-center justify-center text-corporate-green tracking-tight">
                 <AnimatedCounter 
                   end={stat.value} 
                   duration={2.5} 
                 />
-                <span className="mr-1">{stat.unit}</span>
+                <span className="mr-1 text-slate-700 font-semibold">{stat.unit}</span>
               </div>
-              <div className="text-gray-700 text-center">{stat.title}</div>
+              <div className="text-gray-700 text-center leading-relaxed">{stat.title}</div>
             </div>
           ))}
         </div>

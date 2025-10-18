@@ -78,15 +78,15 @@ export function Header() {
       dir="rtl"
       className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
     >
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+      <div className="container mx-auto px-3 md:px-4 lg:px-6">
+        <div className="flex h-12 items-center justify-between">
           {/* Logo - على اليمين */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-corporate-green text-white">
-              <Scale className="h-6 w-6" />
+          <Link href="/" className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-corporate-green text-white">
+              <Scale className="h-5 w-5" />
             </div>
             <div className="flex flex-col text-right">
-              <span className="text-lg font-bold text-corporate-green">{SITE_CONFIG.name}</span>
+              <span className="text-base font-semibold text-corporate-green">{SITE_CONFIG.name}</span>
               <span className="text-xs text-muted-foreground">{SITE_CONFIG.nameEn}</span>
             </div>
           </Link>
@@ -110,13 +110,13 @@ export function Header() {
                       <button
                         aria-expanded={hoveredMain === item.href}
                         onClick={() => setHoveredMain((s) => (s === item.href ? null : item.href))}
-                        className="px-4 py-2 text-base font-medium rounded-md hover:bg-gray-50 transition-colors flex items-center gap-1 whitespace-nowrap"
+                        className="px-3 py-1.5 text-sm font-medium rounded-md hover:bg-gray-50 transition-colors flex items-center gap-1 whitespace-nowrap"
                       >
                         {item.title}
-                        <ChevronDown className="h-4 w-4" />
+                        <ChevronDown className="h-3 w-3" />
                       </button>
                     ) : (
-                      <Link href={item.href} className="px-4 py-2 text-base font-medium rounded-md hover:bg-gray-50 transition-colors whitespace-nowrap">
+                      <Link href={item.href} className="px-3 py-1.5 text-sm font-medium rounded-md hover:bg-gray-50 transition-colors whitespace-nowrap">
                         {item.title}
                       </Link>
                     )}
@@ -127,7 +127,7 @@ export function Header() {
                         role="menu"
                         onMouseEnter={handleDropdownEnter}
                         onMouseLeave={handleMainLeave}
-                        className="absolute right-0 top-full mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg p-2 text-right z-50"
+                        className="absolute right-0 top-full mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg p-1.5 text-right z-50"
                       >
                         <ul className="space-y-1">
                           {item.children!.map((child) => {
@@ -143,7 +143,7 @@ export function Header() {
                                   <Link
                                     href={child.href}
                                     className={cn(
-                                      "flex-1 block py-2 pr-3 pl-2 rounded-md text-sm text-right",
+                                      "flex-1 block py-1.5 pr-2.5 pl-2 rounded-md text-xs text-right",
                                       "hover:bg-corporate-green/10 hover:text-corporate-green transition-colors"
                                     )}
                                   >
@@ -151,8 +151,8 @@ export function Header() {
                                   </Link>
                                   
                                   {childHasChildren && (
-                                    <span className="px-2">
-                                      <ChevronLeft className="h-4 w-4 text-gray-400" />
+                                    <span className="px-1.5">
+                                      <ChevronLeft className="h-3 w-3 text-gray-400" />
                                     </span>
                                   )}
                                 </div>
@@ -163,14 +163,14 @@ export function Header() {
                                     role="menu"
                                     onMouseEnter={handleDropdownEnter}
                                     onMouseLeave={handleChildLeave}
-                                    className="absolute top-0 right-full ml-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg p-2 text-right z-50"
+                                    className="absolute top-0 right-full ml-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg p-1.5 text-right z-50"
                                   >
                                     <ul className="space-y-1">
                                       {child.children!.map((grand) => (
                                         <li key={grand.href}>
                                           <Link
                                             href={grand.href}
-                                            className="block py-2 pr-3 pl-2 rounded-md text-sm hover:bg-corporate-green/10 hover:text-corporate-green transition-colors"
+                                            className="block py-1.5 pr-2.5 pl-2 rounded-md text-xs hover:bg-corporate-green/10 hover:text-corporate-green transition-colors"
                                           >
                                             {grand.title}
                                           </Link>
@@ -192,8 +192,8 @@ export function Header() {
           </nav>
 
           {/* CTA - على اليسار */}
-          <div className="flex items-center gap-4">
-            <Button asChild className="hidden md:flex bg-corporate-green hover:bg-corporate-green/90">
+          <div className="flex items-center gap-3">
+            <Button asChild size="sm" className="hidden md:flex bg-corporate-green hover:bg-corporate-green/90">
               <Link href="/forms">تقديم قضية</Link>
             </Button>
 
@@ -201,7 +201,7 @@ export function Header() {
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="lg:hidden">
                 <Button variant="ghost" size="icon">
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-5 w-5" />
                   <span className="sr-only">فتح القائمة</span>
                 </Button>
               </SheetTrigger>
@@ -242,7 +242,7 @@ function MobileNavItem({ item, closeSheet }: { item: NavItem; closeSheet: () => 
       <Link 
         href={item.href} 
         onClick={closeSheet} 
-        className="block py-2 pr-2 pl-2 text-lg font-medium hover:bg-gray-50 rounded-md text-right"
+        className="block py-1.5 pr-2 pl-2 text-base font-medium hover:bg-gray-50 rounded-md text-right"
       >
         {item.title}
       </Link>
@@ -260,11 +260,11 @@ function MobileNavItem({ item, closeSheet }: { item: NavItem; closeSheet: () => 
             setOpenLevel2Href(null)
           }
         }}
-        className="flex w-full items-center justify-between py-2 pr-2 pl-2 text-lg font-medium hover:bg-gray-50 rounded-md"
+        className="flex w-full items-center justify-between py-1.5 pr-2 pl-2 text-base font-medium hover:bg-gray-50 rounded-md"
       >
         <ChevronDown 
           className={cn(
-            "h-5 w-5 transition-transform duration-200",
+            "h-4 w-4 transition-transform duration-200",
             isLevel1Open && "rotate-180"
           )} 
         />
@@ -290,7 +290,7 @@ function MobileNavItem({ item, closeSheet }: { item: NavItem; closeSheet: () => 
                   key={level2Item.href}
                   href={level2Item.href}
                   onClick={closeSheet}
-                  className="block py-2 pr-2 pl-2 text-base rounded-md hover:bg-corporate-green/10 hover:text-corporate-green text-right transition-colors"
+                  className="block py-1.5 pr-2 pl-2 text-sm rounded-md hover:bg-corporate-green/10 hover:text-corporate-green text-right transition-colors"
                 >
                   {level2Item.title}
                 </Link>
@@ -304,11 +304,11 @@ function MobileNavItem({ item, closeSheet }: { item: NavItem; closeSheet: () => 
                   onClick={() => {
                     setOpenLevel2Href(isLevel2Open ? null : level2Item.href)
                   }}
-                  className="flex w-full items-center justify-between py-2 pr-2 pl-2 text-base font-medium hover:bg-gray-50 rounded-md"
+                  className="flex w-full items-center justify-between py-1.5 pr-2 pl-2 text-sm font-medium hover:bg-gray-50 rounded-md"
                 >
                   <ChevronDown 
                     className={cn(
-                      "h-4 w-4 transition-transform duration-200",
+                      "h-3.5 w-3.5 transition-transform duration-200",
                       isLevel2Open && "rotate-180"
                     )} 
                   />
@@ -328,7 +328,7 @@ function MobileNavItem({ item, closeSheet }: { item: NavItem; closeSheet: () => 
                         key={level3Item.href}
                         href={level3Item.href}
                         onClick={closeSheet}
-                        className="block py-2 pr-2 pl-2 text-sm rounded-md hover:bg-corporate-green/10 hover:text-corporate-green text-right transition-colors"
+                        className="block py-1.5 pr-2 pl-2 text-xs rounded-md hover:bg-corporate-green/10 hover:text-corporate-green text-right transition-colors"
                       >
                         {level3Item.title}
                       </Link>

@@ -72,25 +72,25 @@ export default function AdvantagesSection() {
         <div 
           className={`text-center mb-12 animate-fade-in animate-slide-up ${isVisible ? 'opacity-100' : 'opacity-0'}`}
         >
-          <h2 className="text-2xl md:text-3xl font-semibold mb-4">لماذا نحن؟</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-semibold mb-3 tracking-tight text-slate-900">لماذا نحن؟</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
             نجمع بين الخبرة القانونية والمعرفة التقنية لتقديم حلول متكاملة في قطاع الطاقة
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {advantages.map((advantage, index) => (
             <div
               key={index}
-              className={`bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-corporate-green/5 animate-fade-in animate-slide-up ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+              className={`bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all border border-slate-200/60 hover:border-corporate-green/40 ring-1 ring-transparent hover:ring-corporate-green/20 animate-fade-in animate-slide-up ${isVisible ? 'opacity-100' : 'opacity-0'}`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="w-14 h-14 bg-corporate-green/10 rounded-full flex items-center justify-center mb-4 text-corporate-green">
+              <div className="w-14 h-14 bg-corporate-green/10 rounded-xl flex items-center justify-center mb-4 text-corporate-green">
                 {getIcon(advantage.icon)}
               </div>
               
-              <h3 className="text-xl font-semibold mb-3">{advantage.title}</h3>
-              <p className="text-gray-600">{advantage.description}</p>
+              <h3 className="text-lg md:text-xl font-semibold mb-2.5 tracking-tight text-slate-800">{advantage.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{advantage.description}</p>
             </div>
           ))}
         </div>

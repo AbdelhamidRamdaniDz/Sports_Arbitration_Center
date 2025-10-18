@@ -38,36 +38,39 @@ import { useMemo, useState, useEffect, useRef } from "react"
 import DevCardEasterEgg from "@/components/DevCardEasterEgg"
 
 export default function HomePage() {
-  const stats = [
-    { 
-      value: "500+", 
-      label: "قضية محلولة", 
-      description: "نزاعات رياضية",
-      icon: <FileCheck className="h-6 w-6" />,
-      trend: "+25%"
-    },
-    { 
-      value: "50+", 
-      label: "محكم معتمد", 
-      description: "خبراء متخصصون",
-      icon: <Users className="h-6 w-6" />,
-      trend: "+15%"
-    },
-    { 
-      value: "15+", 
-      label: "سنة خبرة", 
-      description: "في التحكيم الرياضي",
-      icon: <Award className="h-6 w-6" />,
-      trend: "قوي"
-    },
-    { 
-      value: "98%", 
-      label: "رضا العملاء", 
-      description: "معدل النجاح",
-      icon: <Star className="h-6 w-6" />,
-      trend: "+5%"
-    },
-  ]
+  type Stat = {
+    value: string
+    label: string
+    description: string
+    icon: JSX.Element
+    trend?: string
+  }
+const stats: Stat[] = [
+  { 
+    value: "قريباً", 
+    label: "بداية استقبال القضايا", 
+    description: "سيتم الإعلان بعد الإطلاق",
+    icon: <FileCheck className="h-6 w-6" />,
+  },
+  { 
+    value: "قيد التأسيس", 
+    label: "فريق التحكيم", 
+    description: "قيد التقييم والاعتماد",
+    icon: <Users className="h-6 w-6" />,
+  },
+  { 
+    value: "—", 
+    label: "سنوات الخبرة", 
+    description: "المركز في مرحلة التأسيس",
+    icon: <Award className="h-6 w-6" />,
+  },
+  { 
+    value: "—", 
+    label: "تقييم العملاء", 
+    description: "لم يبدأ التشغيل بعد",
+    icon: <Star className="h-6 w-6" />,
+  },
+]
 
   const tools = [
     {
@@ -141,52 +144,29 @@ export default function HomePage() {
     },
   ]
 
-  const testimonials = [
-    {
-      name: "أحمد بن علي",
-      role: "مدير نادي رياضي",
-      content: "خدمة احترافية وسريعة للغاية. تم حل النزاع في وقت قياسي مع الحفاظ على سرية تامة وعدالة كاملة.",
-      rating: 5,
-      avatar: "/placeholder.svg",
-    },
-    {
-      name: "فاطمة مرابط",
-      role: "محامية رياضية",
-      content: "برامج تدريبية ممتازة ساعدتني في تطوير مهاراتي في القانون الرياضي بشكل احترافي ومتميز.",
-      rating: 5,
-      avatar: "/placeholder.svg",
-    },
-    {
-      name: "كريم زروقي",
-      role: "رئيس اتحاد رياضي",
-      content: "الوساطة كانت فعالة جداً وحافظت على علاقتنا مع الطرف الآخر. أنصح بشدة بخدماتهم المتميزة.",
-      rating: 5,
-      avatar: "/placeholder.svg",
-    },
-  ]
+const achievements = [
+  {
+    icon: <Shield className="h-8 w-8" />,
+    title: "إطار قانوني معتمد",
+    description: "العمل وفق القوانين الجزائرية والمعايير الدولية للتحكيم",
+  },
+  {
+    icon: <Clock className="h-8 w-8" />,
+    title: "منصة تحت التطوير",
+    description: "بناء نظام إلكتروني لإدارة القضايا والتحكيم عن بُعد",
+  },
+  {
+    icon: <Target className="h-8 w-8" />,
+    title: "خبراء مؤهلون",
+    description: "تعاون مع محكمين ومحامين معتمدين من هيئات رسمية",
+  },
+  {
+    icon: <Globe className="h-8 w-8" />,
+    title: "مجالات متعددة",
+    description: "خدمات التحكيم والوساطة في التجارة، الاستثمار، العقار، والطاقة",
+  },
+]
 
-  const achievements = [
-    {
-      icon: <Shield className="h-8 w-8" />,
-      title: "معتمد دولياً",
-      description: "اعتماد من أكبر المنظمات الرياضية العالمية",
-    },
-    {
-      icon: <Clock className="h-8 w-8" />,
-      title: "سرعة في الإنجاز",
-      description: "متوسط حل النزاعات 45 يوم فقط",
-    },
-    {
-      icon: <Target className="h-8 w-8" />,
-      title: "دقة عالية",
-      description: "98% من القرارات نهائية وملزمة",
-    },
-    {
-      icon: <Globe className="h-8 w-8" />,
-      title: "تغطية شاملة",
-      description: "خدمات في جميع أنحاء المنطقة",
-    },
-  ]
 
   // News category filters
   const categories = useMemo(() => {
@@ -606,61 +586,6 @@ export default function HomePage() {
               </Button>
             </div>
           </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white">
-        <div className="container mx-auto px-4">
-          <ScrollReveal direction="up" delay={200}>
-            <div className="text-center mb-12">
-              <Badge className="mb-4 bg-corporate-green/10 text-corporate-green">
-                <MessageSquare className="h-4 w-4 ml-1 inline" />
-                آراء عملائنا
-              </Badge>
-              <h2 className="text-3xl font-bold text-corporate-green mb-4 md:text-4xl">
-                ماذا يقول عملاؤنا
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                تجارب حقيقية من عملاء راضين عن خدماتنا المتميزة
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <ScrollReveal key={index} direction="up" delay={300 + index * 100}>
-                <Card className="group relative overflow-hidden border-2 hover:border-corporate-green transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-corporate-green to-emerald-600" />
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-1 mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
-                      ))}
-                    </div>
-                    
-                    <p className="text-sm text-muted-foreground mb-6 italic leading-relaxed">
-                      "{testimonial.content}"
-                    </p>
-                    
-                    <div className="flex items-center gap-3 pt-4 border-t">
-                      <div className="h-12 w-12 rounded-full bg-gradient-to-br from-corporate-green/20 to-emerald-600/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <MessageSquare className="h-5 w-5 text-corporate-green" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-sm text-corporate-green">
-                          {testimonial.name}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          {testimonial.role}
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </ScrollReveal>
-            ))}
-          </div>
         </div>
       </section>
 
