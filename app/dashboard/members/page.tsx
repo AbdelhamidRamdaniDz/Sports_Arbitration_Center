@@ -39,7 +39,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
@@ -567,6 +567,9 @@ function MemberDetailDialog({ member, open, onClose, onUpdate }: {
             </Avatar>
             {member.name}
           </DialogTitle>
+          <DialogDescription>
+            عرض تفاصيل العضو المحدد ومعلوماته.
+          </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6">
@@ -884,6 +887,9 @@ function EditMemberButton({ member, onUpdated }: { member: Member; onUpdated: ()
             <Settings className="h-5 w-5" />
             تعديل معلومات العضو
           </DialogTitle>
+          <DialogDescription>
+            تعديل بيانات العضو وحفظ التغييرات.
+          </DialogDescription>
         </DialogHeader>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -1122,6 +1128,9 @@ function AddMemberDialog({ onCreated }: { onCreated: () => void }) {
           <p className="text-sm text-muted-foreground">
             أضف محكم أو محامي جديد إلى النظام
           </p>
+          <DialogDescription>
+            إنشاء حساب عضو جديد وإدخال معلوماته الأساسية والمهنية.
+          </DialogDescription>
         </DialogHeader>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
