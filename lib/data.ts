@@ -1,21 +1,64 @@
-import arbitratorsData from "@/data/arbitrators.json"
-import lawyersData from "@/data/lawyers.json"
-import newsData from "@/data/news.json"
 import type { Arbitrator, Lawyer, NewsItem } from "./types"
 
+async function fetchMembers(params: Record<string, string>): Promise<any[]> {
+  const qs = new URLSearchParams(params).toString()
+  const res = await fetch(`/api/members?${qs}`, { cache: "no-store" })
+  if (!res.ok) throw new Error("failed_members_fetch")
+  const json = await res.json()
+  return Array.isArray(json.data) ? json.data : []
+}
+
+function toExperienceString(exp?: number | null): string {
+  if (typeof exp === "number") return `${exp} سنة خبرة`
+  return "-"
+}
+
 export async function getArbitrators(): Promise<Arbitrator[]> {
-  await new Promise((resolve) => setTimeout(resolve, 100))
-  return arbitratorsData as Arbitrator[]
+  const data = await fetchMembers({ role: "arbitrator", status: "active" })
+  return data.map((u: any) => ({
+    id: u.id,
+    type: "arbitrator",
+    name: u.name,
+    title: "محكم",
+    specialization: u.specialization || "-",
+    experience: toExperienceString(u.experience),
+    education: u.education || "-",
+    languages: Array.isArray(u.languages) ? u.languages : [],
+    location: u.city || "-",
+    rating: 0,
+    cases: 0,
+    certifications: Array.isArray(u.certifications) ? u.certifications : [],
+    image: u.image || "/placeholder.svg",
+    phone: u.phone || "-",
+    email: u.email,
+  })) as Arbitrator[]
 }
 
 export async function getLawyers(): Promise<Lawyer[]> {
-  await new Promise((resolve) => setTimeout(resolve, 100))
-  return lawyersData as Lawyer[]
+  const data = await fetchMembers({ role: "lawyer", status: "active" })
+  return data.map((u: any) => ({
+    id: u.id,
+    type: "lawyer",
+    name: u.name,
+    title: "محامي",
+    specialization: u.specialization || "-",
+    experience: toExperienceString(u.experience),
+    education: u.education || "-",
+    languages: Array.isArray(u.languages) ? u.languages : [],
+    location: u.city || "-",
+    rating: 0,
+    cases: 0,
+    certifications: Array.isArray(u.certifications) ? u.certifications : [],
+    image: u.image || "/placeholder.svg",
+    phone: u.phone || "-",
+    email: u.email,
+  })) as Lawyer[]
 }
 
 export async function getNews(): Promise<NewsItem[]> {
-  await new Promise((resolve) => setTimeout(resolve, 100))
-  return newsData as NewsItem[]
+  // Keep existing news JSON behavior (if present) by lazy import to avoid bundling
+  const mod = await import("@/data/news.json")
+  return (mod.default as NewsItem[]) || []
 }
 
 export async function getFeaturedNews(): Promise<NewsItem[]> {

@@ -13,6 +13,7 @@ model User {
   email     String   @unique
   password  String
   role      Role?
+  image     String?
   city      String?
   experience Int?
   specialization String?

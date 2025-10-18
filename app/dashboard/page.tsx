@@ -18,7 +18,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
-import { BarChart3, Mail, Newspaper, Images, Video, Scale, Settings, LogOut, Home, MessageCircle, Handshake, Gavel, Shield, Bell, Plus, Reply, FileText, ImagePlus, RefreshCcw, CalendarDays } from "lucide-react"
+import { BarChart3, Mail, Newspaper, Images, Video, Scale, Settings, LogOut, Home, MessageCircle, Handshake, Gavel, Shield, Bell, Plus, Reply, FileText, ImagePlus, RefreshCcw, CalendarDays, TrendingUp, TrendingDown } from "lucide-react"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -67,143 +67,180 @@ export default function DashboardPage() {
   }, [status, session, router])
 
   return (
-    <div dir="rtl" className="min-h-screen bg-[#F5F7FA] text-right">
+    <div dir="rtl" className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
       <div className="flex min-h-screen">
-        <aside className="hidden md:flex flex-col w-72 bg-[#003366] text-white px-4 py-6 sticky top-0 h-screen">
-          <div className="flex items-center gap-2 px-2 mb-6">
-            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#003366] to-[#00B4D8] flex items-center justify-center">
-              <Scale className="h-6 w-6 text-white" />
+        <aside className="hidden lg:flex flex-col w-80 bg-gradient-to-b from-[#002147] via-[#003366] to-[#002147] text-white shadow-2xl border-l border-white/10 sticky top-0 h-screen overflow-y-auto">
+          <div className="p-6 border-b border-white/10">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-[#00B4D8] via-[#0096C7] to-[#0077B6] flex items-center justify-center shadow-lg shadow-blue-500/30 ring-2 ring-white/20">
+                <Scale className="h-7 w-7 text-white" />
+              </div>
+              <div>
+                <div className="font-bold text-lg tracking-tight">مركز التحكيم</div>
+                <div className="text-xs text-blue-200 font-medium">نظام الإدارة المتكامل</div>
+              </div>
             </div>
-            <div className="font-semibold">لوحة تحكم التحكيم</div>
           </div>
 
-          <nav className="space-y-1 text-sm">
+          <nav className="flex-1 px-4 py-6 space-y-1.5">
+            <div className="text-xs font-semibold text-blue-300 px-3 mb-3 uppercase tracking-wider">القائمة الرئيسية</div>
             <SidebarItem icon={<Home className="h-4 w-4" />} label="الرئيسية" active onClick={() => router.push("/dashboard")} />
             <SidebarItem icon={<Gavel className="h-4 w-4" />} label="طلبات التحكيم" onClick={() => router.push("/dashboard/arbitration")} />
             <SidebarItem icon={<Handshake className="h-4 w-4" />} label="طلبات الوساطة" onClick={() => router.push("/dashboard/mediation")} />
             <SidebarItem icon={<MessageCircle className="h-4 w-4" />} label="الرسائل والاستفسارات" onClick={() => router.push("/dashboard/messages")} />
             <SidebarItem icon={<CalendarDays className="h-4 w-4" />} label="الحجوزات" onClick={() => router.push("/dashboard/bookings")} />
-            <Separator className="my-3 opacity-40" />
+            
+            <Separator className="my-4 bg-white/10" />
+            
+            <div className="text-xs font-semibold text-blue-300 px-3 mb-3 uppercase tracking-wider">المركز الإعلامي</div>
             <SidebarItem icon={<Newspaper className="h-4 w-4" />} label="الأخبار" onClick={() => router.push("/dashboard/news")} />
             <SidebarItem icon={<Images className="h-4 w-4" />} label="الصور" onClick={() => router.push("/dashboard/gallery")} />
             <SidebarItem icon={<Video className="h-4 w-4" />} label="الفيديوهات" onClick={() => router.push("/dashboard/videos")} />
+            
+            <Separator className="my-4 bg-white/10" />
+            
+            <div className="text-xs font-semibold text-blue-300 px-3 mb-3 uppercase tracking-wider">التشريعات</div>
             <SidebarItem icon={<FileText className="h-4 w-4" />} label="التشريعات" onClick={() => router.push("/dashboard/regulations")} />
             <SidebarItem icon={<FileText className="h-4 w-4" />} label="التشريعات التجارية" onClick={() => router.push("/dashboard/national-commercial")} />
             <SidebarItem icon={<FileText className="h-4 w-4" />} label="التشريعات الدولية" onClick={() => router.push("/dashboard/international")} />
-            <Separator className="my-3 opacity-40" />
+            
+            <Separator className="my-4 bg-white/10" />
+            
             <SidebarItem icon={<Shield className="h-4 w-4" />} label="إدارة الأعضاء" onClick={() => router.push("/dashboard/members")} />
             <SidebarItem icon={<Settings className="h-4 w-4" />} label="الإعدادات" onClick={() => router.push("/dashboard/settings")} />
             <SidebarItem icon={<LogOut className="h-4 w-4" />} label="تسجيل الخروج" onClick={() => router.push("/dashboard/logout")} />
           </nav>
         </aside>
 
-        <main className="flex-1 flex flex-col">
-          <header className="w-full bg-gradient-to-l from-[#003366] to-[#00B4D8] text-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="md:hidden h-10 w-10 rounded-xl bg-white/10 flex items-center justify-center">
-                  <Scale className="h-6 w-6 text-white" />
-                </div>
-                <h1 className="text-lg sm:text-xl font-semibold">لوحة تحكم التحكيم</h1>
-                <Badge variant="secondary" className="text-[#003366]">Super Admin</Badge>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="hidden sm:block w-64">
-                  <Input placeholder="ابحث هنا.." className="bg-white/15 border-white/20 placeholder-white/70 text-white" />
-                </div>
-                <Sheet open={notifOpen} onOpenChange={setNotifOpen}>
-                  <SheetTrigger asChild>
-                    <Button variant="ghost" className="relative text-white hover:bg-white/10">
-                      <Bell className="h-5 w-5" />
-                      {overview?.notifications?.length ? (
-                        <span className="absolute -top-1 -left-1 h-5 min-w-5 px-1 rounded-full bg-red-500 text-[10px] leading-5 text-white text-center">
-                          {overview.notifications.length}
-                        </span>
-                      ) : null}
-                    </Button>
-                  </SheetTrigger>
-                  <SheetContent side="left" className="w-[360px] sm:w-[420px]">
-                    <SheetHeader>
-                      <SheetTitle>لوحة الإشعارات</SheetTitle>
-                    </SheetHeader>
-                    <div className="mt-4 space-y-3">
-                      <Tabs defaultValue="all">
-                        <TabsList className="grid grid-cols-3">
-                          <TabsTrigger value="all">الكل</TabsTrigger>
-                          <TabsTrigger value="unread">غير المقروء</TabsTrigger>
-                          <TabsTrigger value="important">مهم</TabsTrigger>
-                        </TabsList>
-                      </Tabs>
-                      <div className="space-y-2 max-h-[70vh] overflow-auto pr-2">
-                        {(overview?.notifications ?? []).map((n: any) => (
-                          <div key={n.id} className="flex items-center justify-between rounded-lg border p-3">
-                            <div className="truncate mr-2">
-                              <div className="text-sm font-medium text-[#003366] truncate">{n.title}</div>
-                              <div className="text-xs text-muted-foreground">{timeAgo(n.createdAt)}</div>
-                            </div>
-                            <Badge variant="outline" className="border-[#00B4D8] text-[#003366]">{n.type === 'message' ? 'رسالة' : 'خبر'}</Badge>
-                          </div>
-                        ))}
-                        {(!overview?.notifications || overview.notifications.length === 0) && (
-                          <div className="text-sm text-muted-foreground">لا توجد إشعارات جديدة</div>
-                        )}
-                      </div>
+        <main className="flex-1 flex flex-col min-h-screen">
+          <header className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-xl border-b border-slate-200/60 shadow-sm">
+            <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="lg:hidden h-11 w-11 rounded-xl bg-gradient-to-br from-[#003366] to-[#00B4D8] flex items-center justify-center shadow-lg">
+                    <Scale className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-l from-[#003366] to-[#00B4D8] bg-clip-text text-transparent">
+                      لوحة تحكم التحكيم
+                    </h1>
+                    <div className="flex items-center gap-2 mt-0.5">
+                      <Badge variant="secondary" className="bg-gradient-to-l from-[#003366] to-[#00B4D8] text-white border-0 shadow-sm text-xs">
+                        Super Admin
+                      </Badge>
+                      <span className="text-xs text-slate-500">• مرحباً بك</span>
                     </div>
-                  </SheetContent>
-                </Sheet>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="text-white hover:bg-white/10">
-                      <div className="flex items-center gap-3">
-                        <div className="hidden sm:flex flex-col items-end">
-                          <span className="text-sm font-medium">{session?.user?.name || "المشرف"}</span>
-                          <span className="text-xs opacity-80">{session?.user?.email}</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="hidden md:block">
+                    <Input 
+                      placeholder="ابحث هنا..." 
+                      className="w-64 bg-slate-50/50 border-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-[#00B4D8]/20 transition-all" 
+                    />
+                  </div>
+                  
+                  <Sheet open={notifOpen} onOpenChange={setNotifOpen}>
+                    <SheetTrigger asChild>
+                      <Button 
+                        variant="ghost" 
+                        size="icon"
+                        className="relative h-10 w-10 rounded-xl hover:bg-slate-100 transition-all"
+                      >
+                        <Bell className="h-5 w-5 text-slate-600" />
+                        {overview?.notifications?.length ? (
+                          <span className="absolute -top-1 -left-1 h-5 min-w-[20px] px-1 rounded-full bg-gradient-to-r from-rose-500 to-rose-600 text-[10px] font-bold leading-5 text-white shadow-lg animate-pulse">
+                            {overview.notifications.length}
+                          </span>
+                        ) : null}
+                      </Button>
+                    </SheetTrigger>
+                    <SheetContent side="left" className="w-[360px] sm:w-[440px]">
+                      <SheetHeader>
+                        <SheetTitle className="text-xl font-bold text-[#003366]">الإشعارات</SheetTitle>
+                      </SheetHeader>
+                      <div className="mt-6 space-y-4">
+                        <Tabs defaultValue="all">
+                          <TabsList className="grid grid-cols-3 bg-slate-100">
+                            <TabsTrigger value="all" className="data-[state=active]:bg-white">الكل</TabsTrigger>
+                            <TabsTrigger value="unread" className="data-[state=active]:bg-white">غير المقروء</TabsTrigger>
+                            <TabsTrigger value="important" className="data-[state=active]:bg-white">مهم</TabsTrigger>
+                          </TabsList>
+                        </Tabs>
+                        <div className="space-y-3 max-h-[calc(100vh-200px)] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent">
+                          {(overview?.notifications ?? []).map((n: any) => (
+                            <div key={n.id} className="group flex items-start gap-3 rounded-xl border border-slate-200 p-4 hover:bg-slate-50 hover:shadow-md transition-all cursor-pointer">
+                              <div className="flex-1 min-w-0">
+                                <div className="text-sm font-semibold text-[#003366] line-clamp-2 group-hover:text-[#00B4D8] transition-colors">
+                                  {n.title}
+                                </div>
+                                <div className="text-xs text-slate-500 mt-1">{timeAgo(n.createdAt)}</div>
+                              </div>
+                              <Badge variant="outline" className="border-[#00B4D8] text-[#00B4D8] shrink-0">
+                                {n.type === 'message' ? 'رسالة' : 'خبر'}
+                              </Badge>
+                            </div>
+                          ))}
+                          {(!overview?.notifications || overview.notifications.length === 0) && (
+                            <div className="text-center py-12">
+                              <Bell className="h-12 w-12 text-slate-300 mx-auto mb-3" />
+                              <div className="text-sm text-slate-500 font-medium">لا توجد إشعارات جديدة</div>
+                            </div>
+                          )}
                         </div>
-                        <Avatar className="h-9 w-9 ring-2 ring-white/50">
-                          <AvatarImage src={session?.user?.image || undefined} alt="avatar" />
-                          <AvatarFallback>SA</AvatarFallback>
-                        </Avatar>
                       </div>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="min-w-48">
-                    <DropdownMenuLabel>الحساب</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={() => router.push("/profile")}>تعديل الملف الشخصي</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => signOut()}>تسجيل الخروج</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                    </SheetContent>
+                  </Sheet>
+                  
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button 
+                        variant="ghost" 
+                        className="h-auto p-2 rounded-xl hover:bg-slate-100 transition-all"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="hidden sm:flex flex-col items-end">
+                            <span className="text-sm font-semibold text-slate-700">{session?.user?.name || "المشرف"}</span>
+                            <span className="text-xs text-slate-500">{session?.user?.email}</span>
+                          </div>
+                          <Avatar className="h-10 w-10 ring-2 ring-[#00B4D8]/20 ring-offset-2">
+                            <AvatarImage src={session?.user?.image || undefined} alt="avatar" />
+                            <AvatarFallback className="bg-gradient-to-br from-[#003366] to-[#00B4D8] text-white font-bold">SA</AvatarFallback>
+                          </Avatar>
+                        </div>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="min-w-[200px]">
+                      <DropdownMenuLabel>الحساب</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={() => router.push("/profile")} className="cursor-pointer">
+                        تعديل الملف الشخصي
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => signOut()} className="cursor-pointer text-rose-600">
+                        تسجيل الخروج
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
               </div>
-            </div>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-3">
-              <Breadcrumb>
-                <BreadcrumbList>
-                  <BreadcrumbItem>
-                    <BreadcrumbLink onClick={() => router.push("/dashboard")} className="cursor-pointer">الرئيسية</BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                  <BreadcrumbItem>
-                    <BreadcrumbLink>لوحة التحكم</BreadcrumbLink>
-                  </BreadcrumbItem>
-                </BreadcrumbList>
-              </Breadcrumb>
             </div>
           </header>
 
-          <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
-            {/* Loading bar */}
-            {isLoading && <div className="h-0.5 w-full bg-gradient-to-l from-[#00B4D8] to-[#003366] animate-pulse mb-2" />}
+          <div className="flex-1 max-w-[1800px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+            {isLoading && (
+              <div className="h-1 w-full bg-gradient-to-l from-[#00B4D8] via-[#003366] to-[#00B4D8] rounded-full mb-6 animate-pulse shadow-lg" />
+            )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
               {isLoading ? (
                 <>
                   {Array.from({ length: 4 }).map((_, i) => (
-                    <Card key={i} className="rounded-2xl shadow-md">
-                      <CardContent className="p-4">
-                        <Skeleton className="h-6 w-1/3 mb-4" />
-                        <Skeleton className="h-8 w-1/2" />
-                        <Skeleton className="h-8 w-full mt-3" />
+                    <Card key={i} className="rounded-3xl border-0 shadow-lg">
+                      <CardContent className="p-6">
+                        <Skeleton className="h-6 w-1/3 mb-4 rounded-full" />
+                        <Skeleton className="h-10 w-1/2 rounded-lg" />
+                        <Skeleton className="h-16 w-full mt-4 rounded-xl" />
                       </CardContent>
                     </Card>
                   ))}
@@ -217,6 +254,7 @@ export default function DashboardPage() {
                     icon={<Gavel className="h-5 w-5" />}
                     spark={(overview?.trend ?? []).map((t: any) => t.arbitration)}
                     onClick={() => router.push("/dashboard/arbitration")}
+                    gradient="from-violet-500 to-purple-600"
                   />
                   <StatCard
                     title="طلبات الوساطة"
@@ -225,6 +263,7 @@ export default function DashboardPage() {
                     icon={<Handshake className="h-5 w-5" />}
                     spark={(overview?.trend ?? []).map((t: any) => t.mediation)}
                     onClick={() => router.push("/dashboard/mediation")}
+                    gradient="from-emerald-500 to-teal-600"
                   />
                   <StatCard
                     title="الرسائل الجديدة"
@@ -233,6 +272,7 @@ export default function DashboardPage() {
                     icon={<Mail className="h-5 w-5" />}
                     spark={undefined}
                     onClick={() => router.push("/dashboard/messages")}
+                    gradient="from-amber-500 to-orange-600"
                   />
                   <StatCard
                     title="محتوى المركز الإعلامي"
@@ -241,19 +281,20 @@ export default function DashboardPage() {
                     icon={<BarChart3 className="h-5 w-5" />}
                     spark={undefined}
                     onClick={() => router.push("/dashboard/news")}
+                    gradient="from-blue-500 to-cyan-600"
                   />
                 </>
               )}
             </div>
 
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-              <Card className="rounded-2xl shadow-md xl:col-span-2">
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle>نظرة عامة</CardTitle>
-                    <div className="flex items-center gap-2">
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
+              <Card className="rounded-3xl border-0 shadow-xl xl:col-span-2 bg-white/80 backdrop-blur">
+                <CardHeader className="pb-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <CardTitle className="text-2xl font-bold text-[#003366]">نظرة عامة</CardTitle>
+                    <div className="flex flex-wrap items-center gap-2">
                       <UiSelect value={String(range)} onValueChange={(v) => setRange(Number(v) as 7 | 30 | 90)}>
-                        <UiSelectTrigger className="h-8 w-32 bg-white">
+                        <UiSelectTrigger className="h-9 w-36 bg-white border-slate-200 rounded-xl">
                           <UiSelectValue placeholder="آخر 7 أيام" />
                         </UiSelectTrigger>
                         <UiSelectContent>
@@ -263,26 +304,33 @@ export default function DashboardPage() {
                         </UiSelectContent>
                       </UiSelect>
                       <Tabs value={chartType} onValueChange={(v) => setChartType(v as any)}>
-                        <TabsList>
-                          <TabsTrigger value="bar">أعمدة</TabsTrigger>
-                          <TabsTrigger value="line">خط</TabsTrigger>
-                          <TabsTrigger value="area">مساحة</TabsTrigger>
+                        <TabsList className="bg-slate-100">
+                          <TabsTrigger value="bar" className="data-[state=active]:bg-white">أعمدة</TabsTrigger>
+                          <TabsTrigger value="line" className="data-[state=active]:bg-white">خط</TabsTrigger>
+                          <TabsTrigger value="area" className="data-[state=active]:bg-white">مساحة</TabsTrigger>
                         </TabsList>
                       </Tabs>
-                      <Button variant="outline" size="sm" onClick={() => mutate()}>
-                        <RefreshCcw className="h-4 w-4 mr-1" /> تحديث
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        onClick={() => mutate()}
+                        className="rounded-xl hover:bg-slate-50 transition-all"
+                      >
+                        <RefreshCcw className="h-4 w-4 ml-1" /> تحديث
                       </Button>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
                   {error ? (
-                    <div className="py-10 text-center">
-                      <div className="text-rose-600 font-medium mb-2">حدث خطأ في تحميل البيانات</div>
-                      <Button onClick={() => mutate()}>إعادة المحاولة</Button>
+                    <div className="py-16 text-center">
+                      <div className="text-rose-600 font-semibold mb-3 text-lg">حدث خطأ في تحميل البيانات</div>
+                      <Button onClick={() => mutate()} className="bg-[#003366] hover:bg-[#003366]/90 rounded-xl">
+                        إعادة المحاولة
+                      </Button>
                     </div>
                   ) : (
-                    <div className="h-72 w-full">
+                    <div className="h-80 w-full">
                       <ResponsiveContainer width="100%" height="100%">
                         {(() => {
                           if (chartType === 'bar') {
@@ -290,9 +338,16 @@ export default function DashboardPage() {
                               <RBarChart data={overview?.trend ?? []}>
                                 <XAxis dataKey="date" hide tickMargin={8} />
                                 <YAxis hide />
-                                <Tooltip contentStyle={{ direction: "rtl" }} />
-                                <Bar dataKey="arbitration" stackId="a" fill="#003366" radius={[6,6,0,0]} />
-                                <Bar dataKey="mediation" stackId="a" fill="#00B4D8" radius={[6,6,0,0]} />
+                                <Tooltip 
+                                  contentStyle={{ 
+                                    direction: "rtl",
+                                    borderRadius: "12px",
+                                    border: "none",
+                                    boxShadow: "0 10px 40px rgba(0,0,0,0.1)"
+                                  }} 
+                                />
+                                <Bar dataKey="arbitration" stackId="a" fill="#003366" radius={[8,8,0,0]} />
+                                <Bar dataKey="mediation" stackId="a" fill="#00B4D8" radius={[8,8,0,0]} />
                               </RBarChart>
                             )
                           }
@@ -301,9 +356,16 @@ export default function DashboardPage() {
                               <AreaChart data={overview?.trend ?? []}>
                                 <XAxis dataKey="date" hide />
                                 <YAxis hide />
-                                <Tooltip contentStyle={{ direction: "rtl" }} />
-                                <Area type="monotone" dataKey="arbitration" stroke="#003366" fill="transparent" strokeWidth={2} />
-                                <Area type="monotone" dataKey="mediation" stroke="#00B4D8" fill="transparent" strokeWidth={2} />
+                                <Tooltip 
+                                  contentStyle={{ 
+                                    direction: "rtl",
+                                    borderRadius: "12px",
+                                    border: "none",
+                                    boxShadow: "0 10px 40px rgba(0,0,0,0.1)"
+                                  }} 
+                                />
+                                <Area type="monotone" dataKey="arbitration" stroke="#003366" fill="transparent" strokeWidth={3} />
+                                <Area type="monotone" dataKey="mediation" stroke="#00B4D8" fill="transparent" strokeWidth={3} />
                               </AreaChart>
                             )
                           }
@@ -311,115 +373,194 @@ export default function DashboardPage() {
                             <AreaChart data={overview?.trend ?? []}>
                               <XAxis dataKey="date" hide />
                               <YAxis hide />
-                              <Tooltip contentStyle={{ direction: "rtl" }} />
-                              <Area type="monotone" dataKey="arbitration" stroke="#003366" fill="#003366" fillOpacity={0.2} strokeWidth={2} />
-                              <Area type="monotone" dataKey="mediation" stroke="#00B4D8" fill="#00B4D8" fillOpacity={0.2} strokeWidth={2} />
+                              <Tooltip 
+                                contentStyle={{ 
+                                  direction: "rtl",
+                                  borderRadius: "12px",
+                                  border: "none",
+                                  boxShadow: "0 10px 40px rgba(0,0,0,0.1)"
+                                }} 
+                              />
+                              <Area type="monotone" dataKey="arbitration" stroke="#003366" fill="#003366" fillOpacity={0.3} strokeWidth={3} />
+                              <Area type="monotone" dataKey="mediation" stroke="#00B4D8" fill="#00B4D8" fillOpacity={0.3} strokeWidth={3} />
                             </AreaChart>
                           )
                         })()}
                       </ResponsiveContainer>
-                      <div className="flex items-center gap-4 mt-3 text-xs text-muted-foreground">
-                        <div className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#003366]"></span> تحكيم</div>
-                        <div className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#00B4D8]"></span> وساطة</div>
+                      <div className="flex items-center justify-center gap-6 mt-6 text-sm font-medium">
+                        <div className="flex items-center gap-2">
+                          <span className="h-3 w-3 rounded-full bg-[#003366] shadow-lg"></span> 
+                          <span className="text-slate-600">تحكيم</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="h-3 w-3 rounded-full bg-[#00B4D8] shadow-lg"></span> 
+                          <span className="text-slate-600">وساطة</span>
+                        </div>
                       </div>
                     </div>
                   )}
                 </CardContent>
               </Card>
 
-              <Card className="rounded-2xl shadow-md">
+              <Card className="rounded-3xl border-0 shadow-xl bg-white/80 backdrop-blur">
                 <CardHeader>
-                  <CardTitle>آخر الإشعارات</CardTitle>
+                  <CardTitle className="text-xl font-bold text-[#003366]">آخر الإشعارات</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
+                <CardContent className="space-y-3 max-h-[400px] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent">
                   {(overview?.notifications ?? []).map((n: any) => (
                     <NotificationItem key={n.id} title={n.title} time={timeAgo(n.createdAt)} />
                   ))}
                   {(!overview?.notifications || overview.notifications.length === 0) && (
-                    <div className="text-sm text-muted-foreground">لا توجد إشعارات</div>
+                    <div className="text-center py-8">
+                      <Bell className="h-10 w-10 text-slate-300 mx-auto mb-2" />
+                      <div className="text-sm text-slate-500">لا توجد إشعارات</div>
+                    </div>
                   )}
                 </CardContent>
               </Card>
             </div>
 
-            <div className="mt-6">
-              <Card className="rounded-2xl shadow-md">
+            <div className="mb-8">
+              <Card className="rounded-3xl border-0 shadow-xl bg-gradient-to-br from-slate-50 to-blue-50/30">
                 <CardHeader>
-                  <CardTitle>إجراءات سريعة</CardTitle>
+                  <CardTitle className="text-xl font-bold text-[#003366]">إجراءات سريعة</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    <Button className="bg-[#003366] hover:bg-[#003366]/90" onClick={() => router.push('/dashboard/news')}>
-                      <Plus className="h-4 w-4 mr-1" /> إضافة خبر جديد
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <Button 
+                      className="h-auto py-4 rounded-2xl bg-gradient-to-br from-[#003366] to-[#00509E] hover:shadow-xl hover:scale-105 transition-all duration-200 font-semibold" 
+                      onClick={() => router.push('/dashboard/news')}
+                    >
+                      <div className="flex flex-col items-center gap-2">
+                        <Plus className="h-5 w-5" />
+                        <span className="text-sm">إضافة خبر جديد</span>
+                      </div>
                     </Button>
-                    <Button className="bg-emerald-600 hover:bg-emerald-600/90" onClick={() => router.push('/dashboard/messages')}>
-                      <Reply className="h-4 w-4 mr-1" /> الرد على الرسائل
+                    <Button 
+                      className="h-auto py-4 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 hover:shadow-xl hover:scale-105 transition-all duration-200 font-semibold" 
+                      onClick={() => router.push('/dashboard/messages')}
+                    >
+                      <div className="flex flex-col items-center gap-2">
+                        <Reply className="h-5 w-5" />
+                        <span className="text-sm">الرد على الرسائل</span>
+                      </div>
                     </Button>
-                    <Button className="bg-amber-600 hover:bg-amber-600/90" onClick={() => router.push('/dashboard/arbitration')}>
-                      <FileText className="h-4 w-4 mr-1" /> مراجعة الطلبات
+                    <Button 
+                      className="h-auto py-4 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 hover:shadow-xl hover:scale-105 transition-all duration-200 font-semibold" 
+                      onClick={() => router.push('/dashboard/arbitration')}
+                    >
+                      <div className="flex flex-col items-center gap-2">
+                        <FileText className="h-5 w-5" />
+                        <span className="text-sm">مراجعة الطلبات</span>
+                      </div>
                     </Button>
-                    <Button className="bg-pink-600 hover:bg-pink-600/90" onClick={() => router.push('/dashboard/gallery')}>
-                      <ImagePlus className="h-4 w-4 mr-1" /> رفع صورة
+                    <Button 
+                      className="h-auto py-4 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 hover:shadow-xl hover:scale-105 transition-all duration-200 font-semibold" 
+                      onClick={() => router.push('/dashboard/gallery')}
+                    >
+                      <div className="flex flex-col items-center gap-2">
+                        <ImagePlus className="h-5 w-5" />
+                        <span className="text-sm">رفع صورة</span>
+                      </div>
                     </Button>
                   </div>
                 </CardContent>
               </Card>
             </div>
 
-            <div className="mt-6">
-              <Card className="rounded-2xl shadow-md">
+            <div>
+              <Card className="rounded-3xl border-0 shadow-xl bg-white/80 backdrop-blur">
                 <CardHeader>
-                  <CardTitle>الطلبات الأخيرة</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm text-muted-foreground">تصفية:</span>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <CardTitle className="text-xl font-bold text-[#003366]">الطلبات الأخيرة</CardTitle>
+                    <div className="flex items-center gap-3">
                       <Tabs defaultValue="all">
-                        <TabsList>
-                          <TabsTrigger value="all">الكل</TabsTrigger>
-                          <TabsTrigger value="new">جديد</TabsTrigger>
-                          <TabsTrigger value="processing">قيد المعالجة</TabsTrigger>
-                          <TabsTrigger value="done">مكتمل</TabsTrigger>
+                        <TabsList className="bg-slate-100">
+                          <TabsTrigger value="all" className="data-[state=active]:bg-white">الكل</TabsTrigger>
+                          <TabsTrigger value="new" className="data-[state=active]:bg-white">جديد</TabsTrigger>
+                          <TabsTrigger value="processing" className="data-[state=active]:bg-white">قيد المعالجة</TabsTrigger>
+                          <TabsTrigger value="done" className="data-[state=active]:bg-white">مكتمل</TabsTrigger>
                         </TabsList>
                       </Tabs>
+                      <Button 
+                        variant="outline" 
+                        onClick={() => router.push('/dashboard/arbitration')}
+                        className="rounded-xl hover:bg-slate-50"
+                      >
+                        عرض المزيد
+                      </Button>
                     </div>
-                    <Button variant="outline" onClick={() => router.push('/dashboard/arbitration')}>
-                      عرض المزيد
-                    </Button>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
-                      <div className="font-medium mb-2 text-[#003366]">تحكيم</div>
-                      <div className="space-y-2">
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
+                          <Gavel className="h-4 w-4 text-white" />
+                        </div>
+                        <div className="font-bold text-[#003366]">تحكيم</div>
+                      </div>
+                      <div className="space-y-3">
                         {(overview?.recent?.arbitration ?? []).map((r: any) => (
-                          <div key={r.id} className="flex items-center justify-between rounded-xl p-3 bg-white hover:shadow transition">
-                            <div>
-                              <div className="text-sm font-medium text-[#003366]">{r.clientName}</div>
-                              <div className="text-xs text-muted-foreground">{r.type} • {timeAgo(r.createdAt)}</div>
+                          <div 
+                            key={r.id} 
+                            className="group flex items-center justify-between rounded-2xl p-4 bg-gradient-to-br from-white to-slate-50 border border-slate-200 hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer"
+                          >
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm font-semibold text-[#003366] truncate group-hover:text-[#00B4D8] transition-colors">
+                                {r.clientName}
+                              </div>
+                              <div className="text-xs text-slate-500 mt-1 flex items-center gap-1.5">
+                                <span className="truncate">{r.type}</span>
+                                <span>•</span>
+                                <span>{timeAgo(r.createdAt)}</span>
+                              </div>
                             </div>
-                            <Badge className="bg-[#00B4D8] hover:bg-[#00B4D8]/90">{r.status}</Badge>
+                            <Badge className="bg-gradient-to-br from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 border-0 shadow-sm shrink-0">
+                              {r.status}
+                            </Badge>
                           </div>
                         ))}
                         {(!overview?.recent?.arbitration || overview.recent.arbitration.length === 0) && (
-                          <div className="text-sm text-muted-foreground">لا يوجد</div>
+                          <div className="text-center py-8 text-sm text-slate-500 bg-slate-50 rounded-2xl border border-dashed border-slate-300">
+                            لا توجد طلبات تحكيم
+                          </div>
                         )}
                       </div>
                     </div>
                     <div>
-                      <div className="font-medium mb-2 text-[#003366]">وساطة</div>
-                      <div className="space-y-2">
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
+                          <Handshake className="h-4 w-4 text-white" />
+                        </div>
+                        <div className="font-bold text-[#003366]">وساطة</div>
+                      </div>
+                      <div className="space-y-3">
                         {(overview?.recent?.mediation ?? []).map((r: any) => (
-                          <div key={r.id} className="flex items-center justify-between rounded-xl p-3 bg-white hover:shadow transition">
-                            <div>
-                              <div className="text-sm font-medium text-[#003366]">{r.clientName}</div>
-                              <div className="text-xs text-muted-foreground">{r.email} • {timeAgo(r.createdAt)}</div>
+                          <div 
+                            key={r.id} 
+                            className="group flex items-center justify-between rounded-2xl p-4 bg-gradient-to-br from-white to-slate-50 border border-slate-200 hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer"
+                          >
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm font-semibold text-[#003366] truncate group-hover:text-[#00B4D8] transition-colors">
+                                {r.clientName}
+                              </div>
+                              <div className="text-xs text-slate-500 mt-1 flex items-center gap-1.5">
+                                <span className="truncate">{r.email}</span>
+                                <span>•</span>
+                                <span>{timeAgo(r.createdAt)}</span>
+                              </div>
                             </div>
-                            <Badge className="bg-[#00B4D8] hover:bg-[#00B4D8]/90">{r.status}</Badge>
+                            <Badge className="bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 border-0 shadow-sm shrink-0">
+                              {r.status}
+                            </Badge>
                           </div>
                         ))}
                         {(!overview?.recent?.mediation || overview.recent.mediation.length === 0) && (
-                          <div className="text-sm text-muted-foreground">لا يوجد</div>
+                          <div className="text-center py-8 text-sm text-slate-500 bg-slate-50 rounded-2xl border border-dashed border-slate-300">
+                            لا توجد طلبات وساطة
+                          </div>
                         )}
                       </div>
                     </div>
@@ -438,63 +579,120 @@ function SidebarItem({ icon, label, onClick, active }: { icon: React.ReactNode; 
   return (
     <button
       onClick={onClick}
-      className={`w-full flex items-center justify-between gap-3 px-3 py-2 rounded-xl transition hover:bg-white/10 ${active ? "bg-white/10" : ""}`}
+      className={`w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
+        active 
+          ? "bg-gradient-to-l from-[#00B4D8] to-[#0096C7] shadow-lg shadow-blue-500/30" 
+          : "hover:bg-white/10 hover:shadow-md"
+      }`}
     >
-      <span className="text-sm">{label}</span>
-      <span className="opacity-90">{icon}</span>
+      <span className={`text-sm font-medium ${active ? "text-white" : "text-blue-100 group-hover:text-white"}`}>
+        {label}
+      </span>
+      <span className={`${active ? "text-white" : "text-blue-200 group-hover:text-white"} transition-colors`}>
+        {icon}
+      </span>
     </button>
   )
 }
 
-function StatCard({ title, value, icon, delta, spark, onClick }: { title: string; value: string; icon: React.ReactNode; delta?: number; spark?: number[]; onClick?: () => void }) {
+function StatCard({ 
+  title, 
+  value, 
+  icon, 
+  delta, 
+  spark, 
+  onClick,
+  gradient = "from-[#003366] to-[#00B4D8]"
+}: { 
+  title: string
+  value: string
+  icon: React.ReactNode
+  delta?: number
+  spark?: number[]
+  onClick?: () => void
+  gradient?: string
+}) {
   const isUp = typeof delta === 'number' ? delta >= 0 : undefined
   return (
     <Card
       onClick={onClick}
-      className={`rounded-2xl overflow-hidden shadow-md group hover:shadow-lg transition-transform duration-200 hover:scale-[1.01] ${onClick ? 'cursor-pointer' : ''}`}
+      className={`rounded-3xl overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-300 group ${
+        onClick ? 'cursor-pointer hover:scale-[1.02]' : ''
+      } bg-white/80 backdrop-blur`}
     >
-      <div className="bg-gradient-to-l from-[#003366] to-[#00B4D8] p-0.5">
-        <div className="bg-white rounded-2xl">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4">
-            <div className="flex items-center gap-2">
-              <CardTitle className="text-sm font-medium text-[#003366]">{title}</CardTitle>
-              {typeof delta === 'number' && (
-                <span className={`text-xs px-2 py-0.5 rounded-full ${isUp ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}`}>{isUp ? '+' : ''}{delta}%</span>
-              )}
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 p-6 pb-4">
+        <div className="flex-1">
+          <CardTitle className="text-sm font-semibold text-slate-600 mb-3">{title}</CardTitle>
+          <div className="flex items-baseline gap-3">
+            <div className="text-4xl font-bold bg-gradient-to-l from-[#003366] to-[#00B4D8] bg-clip-text text-transparent">
+              {value}
             </div>
-            <div className="text-white bg-gradient-to-l from-[#003366] to-[#00B4D8] p-2 rounded-xl shadow-sm">
-              {icon}
-            </div>
-          </CardHeader>
-          <CardContent className="p-4 space-y-2">
-            <div className="text-3xl font-bold text-[#003366]">{value}</div>
-            {spark && spark.length > 0 && (
-              <div className="h-8">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={spark.map((v, i) => ({ i, v }))}>
-                    <YAxis hide />
-                    <XAxis hide dataKey="i" />
-                    <Area type="monotone" dataKey="v" stroke="#00B4D8" fill="#00B4D8" fillOpacity={0.2} strokeWidth={2} />
-                  </AreaChart>
-                </ResponsiveContainer>
+            {typeof delta === 'number' && (
+              <div className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold ${
+                isUp 
+                  ? 'bg-emerald-100 text-emerald-700' 
+                  : 'bg-rose-100 text-rose-700'
+              }`}>
+                {isUp ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
+                {Math.abs(delta)}%
               </div>
             )}
-            <p className="text-xs text-muted-foreground">محدث الآن</p>
-          </CardContent>
+          </div>
         </div>
-      </div>
+        <div className={`h-14 w-14 rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+          <div className="text-white">
+            {icon}
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent className="p-6 pt-0 space-y-3">
+        {spark && spark.length > 0 && (
+          <div className="h-12 -mx-2">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={spark.map((v, i) => ({ i, v }))}>
+                <defs>
+                  <linearGradient id={`gradient-${title}`} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#00B4D8" stopOpacity={0.3} />
+                    <stop offset="100%" stopColor="#00B4D8" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <YAxis hide />
+                <XAxis hide dataKey="i" />
+                <Area 
+                  type="monotone" 
+                  dataKey="v" 
+                  stroke="#00B4D8" 
+                  fill={`url(#gradient-${title})`}
+                  strokeWidth={2} 
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        )}
+        <p className="text-xs text-slate-500 font-medium flex items-center gap-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          محدث الآن
+        </p>
+      </CardContent>
     </Card>
   )
 }
 
 function NotificationItem({ title, time }: { title: string; time: string }) {
   return (
-    <div className="flex items-center justify-between rounded-xl p-3 bg-white hover:shadow-md transition">
-      <div className="space-y-1">
-        <div className="text-sm font-medium text-[#003366]">{title}</div>
-        <div className="text-xs text-muted-foreground">{time}</div>
+    <div className="group flex items-start gap-3 rounded-2xl p-4 bg-gradient-to-br from-white to-slate-50 border border-slate-200 hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer">
+      <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#00B4D8] to-[#0096C7] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+        <Bell className="h-5 w-5 text-white" />
       </div>
-      <Badge className="bg-[#00B4D8] hover:bg-[#00B4D8]/90">جديد</Badge>
+      <div className="flex-1 min-w-0 space-y-1">
+        <div className="text-sm font-semibold text-[#003366] line-clamp-2 group-hover:text-[#00B4D8] transition-colors">
+          {title}
+        </div>
+        <div className="text-xs text-slate-500 font-medium">{time}</div>
+      </div>
+      <Badge className="bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 border-0 shadow-sm shrink-0 text-xs">
+        جديد
+      </Badge>
     </div>
   )
 }
