@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { promises as fs } from "fs";
-import path from "path";
+import { put } from "@vercel/blob";
 
 export const runtime = "nodejs";
 
@@ -13,20 +12,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "no_file" }, { status: 400 });
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
-    const uploadsDir = path.join(process.cwd(), "public", "uploads");
+    const originalName = (file as any).name || "upload";
+    const extMatch = originalName.toString().match(/\.[a-zA-Z0-9]{1,6}$/);
+    const ext = extMatch ? extMatch[0] : "";
+    const filename = `${Date.now()}-${Math.random().toString(16).slice(2)}${ext}`;
 
-    await fs.mkdir(uploadsDir, { recursive: true });
+    const token = process.env.BLOB_READ_WRITE_TOKEN;
+    if (!token) {
+      return NextResponse.json({ message: "missing_blob_token" }, { status: 500 });
+    }
 
-    const ext = (file as any).name ? path.extname((file as any).name) : "";
-    const safeExt = ext && ext.length <= 6 ? ext : "";
-    const filename = `${Date.now()}-${Math.random().toString(16).slice(2)}${safeExt}`;
-    const filepath = path.join(uploadsDir, filename);
+    const blob = await put(`uploads/${filename}`, file, {
+      access: "public",
+      token,
+    });
 
-    await fs.writeFile(filepath, buffer);
-
-    const url = `/uploads/${filename}`;
-    return NextResponse.json({ url }, { status: 201 });
+    return NextResponse.json({ url: blob.url }, { status: 201 });
   } catch (e) {
     return NextResponse.json({ message: "error" }, { status: 500 });
   }
