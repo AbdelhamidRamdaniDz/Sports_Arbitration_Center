@@ -57,6 +57,7 @@ export default function ContactPage() {
     <div className="min-h-screen" dir="rtl">
       <Header />
       <PageHeader
+        backgroundImage="/hero-background.webp"
         title="تواصل معنا"
         description="نرحب بجميع استفساراتكم ومقترحاتكم حول خدمات التحكيم الرياضي في الجزائر، وسنحرص على الرد في أقرب الآجال."
       />
@@ -97,7 +98,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold mb-1">العنوان</h3>
                     <p className="text-muted-foreground">
-                      شارع ديدوش مراد، الجزائر العاصمة 16000
+                      جامعة الجلفة
                       <br />
                       الجمهورية الجزائرية الديمقراطية الشعبية
                     </p>

@@ -89,6 +89,7 @@ export default function DashboardPage() {
             <SidebarItem icon={<Handshake className="h-4 w-4" />} label="طلبات الوساطة" onClick={() => router.push("/dashboard/mediation")} />
             <SidebarItem icon={<MessageCircle className="h-4 w-4" />} label="الرسائل والاستفسارات" onClick={() => router.push("/dashboard/messages")} />
             <SidebarItem icon={<CalendarDays className="h-4 w-4" />} label="الحجوزات" onClick={() => router.push("/dashboard/bookings")} />
+            <SidebarItem icon={<Gavel className="h-4 w-4" />} label="أحكام التحكيم" onClick={() => router.push("/dashboard/rulings")} />
             
             <Separator className="my-4 bg-white/10" />
             

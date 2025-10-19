@@ -19,6 +19,7 @@ export default function CaseTrackingPage() {
       <Header />
 
       <PageHeader
+        backgroundImage="/hero-background.webp"
         title="تتبع القضايا"
         description="تابع حالة قضيتك وآخر التطورات في الوقت الفعلي مع نظام التتبع المتطور"
       />

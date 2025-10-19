@@ -28,12 +28,6 @@ export default function CareersPage() {
   return (
     <div className="min-h-screen bg-light-grey flex flex-col relative overflow-hidden">
       <Header />
-
-      <PageHeader
-        title="الوظائف"
-        description="انضم إلى فريقنا وساهم في صناعة مستقبل التحكيم الرقمي."
-      />
-
       <main className="flex-grow">
         {/* decorative gradient blob */}
         <div className="pointer-events-none absolute -top-24 -left-24 w-72 h-72 rounded-full bg-corporate-gradient opacity-20 blur-3xl" />
@@ -82,6 +76,7 @@ export default function CareersPage() {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <Button
+                disabled
                 className="bg-corporate-green text-white hover:bg-green-700 hover:shadow-soft hover-lift"
                 onClick={() => (window.location.href = "/jobs")}
               >
@@ -91,7 +86,7 @@ export default function CareersPage() {
 
               <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
-                  <Button className="bg-white text-corporate-green border border-corporate-green hover:bg-corporate-green/10 hover-lift">
+                  <Button disabled className="bg-white text-corporate-green border border-corporate-green hover:bg-corporate-green/10 hover-lift">
                     <UploadCloud className="ml-2 h-4 w-4" /> رفع السيرة الذاتية
                   </Button>
                 </DialogTrigger>
@@ -129,6 +124,7 @@ export default function CareersPage() {
 
                   <DialogFooter className="flex w-full justify-end gap-3">
                     <Button
+                      disabled
                       variant="outline"
                       onClick={() => setOpen(false)}
                       className="bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200"

@@ -95,6 +95,7 @@ export default function PartnersPage() {
       <Header />
 
       <PageHeader
+        backgroundImage="/hero-background.webp"
         title="شركاؤنا"
         description="نفتخر بالتعاون مع مجموعة من الشركات والمنصات والمنتخبات الرياضية لدعم التحكيم الرياضي والتجاري."
       />

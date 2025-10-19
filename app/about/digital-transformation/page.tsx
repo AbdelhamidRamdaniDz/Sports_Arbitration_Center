@@ -76,6 +76,16 @@ export default function DigitalTransformationPage() {
 
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden bg-corporate-green">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/ai-arbitration-hero.webp"
+            alt="خلفية الذكاء الاصطناعي والتحكيم"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-20"
+          />
+        </div>
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
@@ -205,7 +215,7 @@ export default function DigitalTransformationPage() {
                 <div className="relative">
                   <div className="absolute -inset-4 bg-corporate-green/20 rounded-3xl blur-2xl"></div>
                   <Image
-                    src="/ai-generated-digital-transformation.jpg"
+                    src="/ai-generated-digital-transformation.webp"
                     alt="التحول الرقمي"
                     width={1200}
                     height={800}
@@ -282,7 +292,7 @@ export default function DigitalTransformationPage() {
                 <div className="relative">
                   <div className="absolute -inset-4 bg-corporate-green/20 rounded-3xl blur-2xl"></div>
                   <Image
-                    src="/ai-generated-legal-ai.jpg"
+                    src="/ai-generated-digital-transformation.webp"
                     alt="الذكاء الاصطناعي"
                     width={1200}
                     height={800}

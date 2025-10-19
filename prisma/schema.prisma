@@ -141,6 +141,30 @@ model Regulation {
   createdAt   DateTime @default(now())
 }
 
+model Ruling {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  sport       String
+  year        Int
+  caseNumber  String   @unique
+  summary     String?
+  pdfUrl      String?
+  decidedAt   DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  documents   RulingDocument[]
+}
+
+model RulingDocument {
+  id        String  @id @default(cuid())
+  rulingId  String
+  name      String
+  url       String
+  createdAt DateTime @default(now())
+  ruling    Ruling  @relation(fields: [rulingId], references: [id])
+}
+
 /// Stores submissions from /forms/arbitration and /forms/commercial
 model ArbitrationRequest {
   id                     String   @id @default(cuid())

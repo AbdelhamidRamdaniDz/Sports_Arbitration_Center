@@ -5,6 +5,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Users, Leaf, Heart, Handshake, Award, TreePine, Recycle, Globe, Target, TrendingUp } from "lucide-react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import Image from "next/image";
 
 export default function CSR() {
   const sdgGoals = [
@@ -29,6 +30,17 @@ export default function CSR() {
 
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-corporate-green to-green-700 text-white overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/sustainability-hero.webp"
+            alt="خلفية الاستدامة والتحكيم"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-20"
+          />
+        </div>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
