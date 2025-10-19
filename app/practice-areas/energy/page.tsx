@@ -14,12 +14,12 @@ import energyServices from "@/data/energy-services.json";
 import energyStats from "@/data/energy-stats.json";
 
 export const metadata: Metadata = {
-  title: "مجال الطاقة | سوناطراك والخدمات القانونية المتخصصة",
-  description: "خدمات قانونية متخصصة في قطاع الطاقة، بما في ذلك النفط والغاز والطاقة المتجددة، مع خبرة في التعامل مع سوناطراك وشركات الطاقة الكبرى.",
-  keywords: "سوناطراك, طاقة, نفط, غاز, طاقة متجددة, استشارات قانونية, الجزائر",
+  title: "الطاقة | تحكيم ووساطة في النفط والغاز والطاقة المتجددة",
+  description: "خدمات قانونية متخصصة لقطاع الطاقة تشمل النفط والغاز (upstream/downstream) والطاقة المتجددة، صياغة وتفاوض عقود FIDIC وPPAs، الحوكمة والامتثال (ESG، Compliance Framework)، وتسوية النزاعات عبر الحدود (بما فيها ICSID).",
+  keywords: "طاقة, نفط, غاز, طاقة متجددة, Upstream, Downstream, PPAs, FIDIC, ICSID, ESG, Due Diligence, Compliance, تحكيم, وساطة, الجزائر, سوناطراك",
   openGraph: {
-    title: "مجال الطاقة | سوناطراك والخدمات القانونية المتخصصة",
-    description: "خدمات قانونية متخصصة في قطاع الطاقة، بما في ذلك النفط والغاز والطاقة المتجددة.",
+    title: "الطاقة | تحكيم ووساطة في النفط والغاز والطاقة المتجددة",
+    description: "حلول قانونية مؤسسية لقطاع الطاقة: عقود FIDIC وPPAs، امتثال ESG، تسوية نزاعات عبر الحدود (ICSID).",
     images: [
       {
         url: "/sonatrach.jfif",

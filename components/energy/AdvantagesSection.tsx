@@ -27,18 +27,18 @@ export default function AdvantagesSection() {
 
   const advantages = [
     {
-      title: "خبرة متخصصة",
-      description: "فريق من المحامين والمستشارين ذوي خبرة واسعة في قطاع الطاقة محلياً ودولياً.",
+      title: "حوكمة وامتثال",
+      description: "تصميم أطر امتثال وسياسات ESG وإجراءات Compliance Framework بما يدعم إدارة المخاطر والشفافية.",
       icon: "expertise"
     },
     {
-      title: "معرفة تقنية",
-      description: "فهم عميق للجوانب التقنية والتشغيلية لمشاريع الطاقة بمختلف أنواعها.",
+      title: "هندسة تعاقدية",
+      description: "نماذج FIDIC لعقود الإنشاءات والبنية التحتية واتفاقيات شراء الطاقة PPAs وصيغ المشاركة والتشغيل.",
       icon: "technical"
     },
     {
-      title: "شبكة علاقات واسعة",
-      description: "شراكات استراتيجية مع مؤسسات محلية ودولية في قطاع الطاقة والقانون.",
+      title: "تسوية نزاعات",
+      description: "وساطة وتحكيم في النزاعات التجارية عبر الحدود، مع الإحالة إلى الآليات المناسبة (بما فيها ICSID عند الاقتضاء).",
       icon: "network"
     }
   ];
@@ -72,9 +72,9 @@ export default function AdvantagesSection() {
         <div 
           className={`text-center mb-12 animate-fade-in animate-slide-up ${isVisible ? 'opacity-100' : 'opacity-0'}`}
         >
-          <h2 className="text-2xl md:text-3xl font-semibold mb-3 tracking-tight text-slate-900">لماذا نحن؟</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold mb-3 tracking-tight text-slate-900">نهجنا المهني</h2>
           <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            نجمع بين الخبرة القانونية والمعرفة التقنية لتقديم حلول متكاملة في قطاع الطاقة
+            تكامل قانوني-تقني يركز على عقود FIDIC وPPAs، الامتثال والحوكمة (ESG)، وإدارة المخاطر وتسوية النزاعات عبر الحدود
           </p>
         </div>
         

@@ -60,7 +60,7 @@ export default function HeroSection({ stats }: HeroSectionProps) {
             {/* Badge */}
             <div className={`inline-flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur border border-white/20 rounded-full px-4 sm:px-6 py-2 sm:py-3 text-white/90 text-xs sm:text-sm font-medium shadow-sm ring-1 ring-white/10 animate-slide-up ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
               <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-              <span className="text-center sm:text-right">خبراء قانونيون متخصصون</span>
+              <span className="text-center sm:text-right">تحكيم ووساطة لقطاع الطاقة</span>
             </div>
             
             {/* Main Heading */}
@@ -78,7 +78,7 @@ export default function HeroSection({ stats }: HeroSectionProps) {
             
             {/* Description */}
             <p className={`text-white/85 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-2xl animate-slide-up animate-delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-              نقدم خدمات قانونية متكاملة للشركات والمؤسسات العاملة في قطاع الطاقة في الجزائر، بما في ذلك النفط والغاز والطاقة المتجددة
+              حلول مؤسسية في التحكيم والوساطة والاستشارات لقطاع الطاقة في الجزائر، تشمل النفط والغاز (Upstream/Downstream) والطاقة المتجددة، عقود FIDIC وPPAs، الأطر التنظيمية والامتثال (ESG وCompliance Framework) وتسوية النزاعات عبر الحدود.
             </p>
             
             {/* Action Buttons */}

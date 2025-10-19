@@ -8,14 +8,14 @@ import { ScrollReveal } from "@/components/scroll-reveal"
 import { CTASection } from "@/components/cta-section"
 
 export const metadata: Metadata = {
-  title: "الشركات الناشئة | الابتكار وريادة الأعمال في الجزائر",
+  title: "الشركات الناشئة | تحكيم ووساطة وحلول قانونية في الجزائر",
   description:
-    "دعم الشركات الناشئة في الجزائر عبر الإرشاد القانوني والبرامج المبتكرة، وتعزيز بيئة ريادة الأعمال لخلق وظائف واستثمارات مستدامة.",
-  keywords: "شركات ناشئة, ريادة الأعمال, ابتكار, استثمار, الجزائر",
+    "مركز وساطة وتحكيم يقدم حلولاً قانونية داعمة للشركات الناشئة وروّاد الأعمال: Legal structuring، عقود وشراكات، Dispute resolution، Compliance، Cross-border deals، وحماية الملكية الفكرية.",
+  keywords: "الشركات الناشئة, Startup ecosystem, Legal structuring, Dispute resolution, Compliance, Cross-border, IP protection, الجزائر, وساطة, تحكيم",
   openGraph: {
-    title: "الشركات الناشئة في الجزائر | نمو وابتكار",
+    title: "الشركات الناشئة | حلول تحكيم ووساطة للشركات الناشئة",
     description:
-      "تمكين الشركات الناشئة من الانطلاق بثقة من خلال الاستشارات والخدمات المتخصصة.",
+      "خدمات مؤسسية للشركات الناشئة في الجزائر: هيكلة قانونية، عقود وشراكات، امتثال، وتسوية النزاعات.",
   },
 }
 
@@ -60,19 +60,18 @@ export default function Startups() {
           <div className="mx-auto max-w-4xl text-center text-white">
             <ScrollReveal direction="up" delay={150}>
               <h1 className="mb-4 text-3xl font-extrabold leading-tight md:text-5xl">
-                الشركات الناشئة في الجزائر
+                حلول الوساطة والتحكيم للشركات الناشئة في الجزائر
               </h1>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={220}>
               <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed md:text-xl text-white/90">
-                بيئة ريادة الأعمال في الجزائر تشهد نمواً متسارعاً يقوده شباب مبتكرون وشركات
-                ناشئة تُسهم في تنويع الاقتصاد الوطني وخلق فرص عمل ذات أثر مستدام.
+                جهة مؤسسية للوساطة والتحكيم تقدّم دعماً قانونياً للشركات الناشئة وروّاد الأعمال: Legal structuring، صياغة العقود والشراكات، Dispute resolution، Compliance، Cross-border deals، وIP protection — دون أن نكون حاضنة أو مسرّعة أو جهة تمويل.
               </p>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={300}>
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <Button asChild size="lg" className="bg-white text-corporate-green hover:bg-white/90">
-                  <Link href="/forms">سجّل شركتك</Link>
+                  <Link href="/forms">احجز استشارة قانونية</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="border-white text-corporate-green hover:bg-white hover:text-corporate-green">
                   <Link href="/about/overview">تعرّف على المزيد</Link>
@@ -88,9 +87,9 @@ export default function Startups() {
         <div className="container mx-auto px-4">
           <ScrollReveal direction="up" delay={150}>
             <div className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">أرقام ومؤشرات رئيسية</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">مؤشرات بيئة الشركات الناشئة</h2>
               <p className="text-white/90 max-w-2xl mx-auto">
-                نظرة سريعة على مشهد الشركات الناشئة في الجزائر وتأثيره الاقتصادي.
+                بيانات عامة عن Startup ecosystem في الجزائر تُستخدم كمرجع سياقي لدعم القرارات القانونية والتعاقدية.
               </p>
             </div>
           </ScrollReveal>
@@ -117,10 +116,10 @@ export default function Startups() {
 
       {/* CTA Section */}
       <CTASection
-        title="ابدأ رحلتك الريادية بثقة"
-        description="نوفّر لك دعماً قانونياً وعملياً لتأسيس شركتك الناشئة، من الفكرة إلى التوسّع."
-        primaryButton={{ text: "ابدأ الآن", href: "/forms" }}
-        secondaryButton={{ text: "الخدمات المتاحة", href: "/services" }}
+        title="حلول قانونية ووساطة للشركات الناشئة"
+        description="هيكلة قانونية وعقود وشراكات، تسوية نزاعات (Dispute resolution)، وامتثال (Compliance) بما يدعم نموّ شركتك دون ادعاء برامج احتضان أو تمويل."
+        primaryButton={{ text: "احجز استشارة قانونية", href: "/forms" }}
+        secondaryButton={{ text: "نطاق الخدمات", href: "/services" }}
         variant="gradient-light"
         className="relative"
       />

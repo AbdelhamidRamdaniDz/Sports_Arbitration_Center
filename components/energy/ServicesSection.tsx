@@ -35,8 +35,8 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
         <div
           className={`text-center mb-14 md:mb-16 animate-slide-up ${isVisible ? 'opacity-100' : 'opacity-0'}`}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-corporate-green mb-3 tracking-tight">خدماتنا في قطاع الطاقة</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">نقدم مجموعة متكاملة من الخدمات المتخصصة في مجال الطاقة لتلبية احتياجات عملائنا</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-corporate-green mb-3 tracking-tight">خدمات قانونية لقطاع الطاقة</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">صياغة وتفاوض ومراجعة عقود الطاقة (FIDIC, PPAs)، أطر الامتثال والحوكمة (ESG, Compliance)، ودعم تسوية النزاعات عبر الحدود</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">

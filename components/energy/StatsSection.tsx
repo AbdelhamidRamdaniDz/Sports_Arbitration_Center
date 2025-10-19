@@ -36,8 +36,8 @@ export default function StatsSection({ stats }: StatsSectionProps) {
         <div
           className={`text-center mb-12 animate-slide-up ${isVisible ? 'opacity-100' : 'opacity-0'}`}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-corporate-green mb-3 tracking-tight">الأرقام تتحدث عن نفسها</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">إحصائيات وأرقام تعكس حجم قطاع الطاقة في الجزائر وأهميته الاستراتيجية</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-corporate-green mb-3 tracking-tight">مؤشرات قطاع الطاقة</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">بيانات مرجعية عامة لقياس سياق السوق في الجزائر، تُحدّث دورياً وتعتمد على مصادر موثوقة</p>
         </div>
 
         <div 

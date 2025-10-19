@@ -1,28 +1,28 @@
 [
   {
     "id": "production",
-    "title": "إنتاج النفط",
+    "title": "إنتاج النفط الخام",
     "value": 1200000,
     "unit": "برميل/يوم",
     "icon": "oil-barrel"
   },
   {
     "id": "gas",
-    "title": "احتياطي الغاز",
+    "title": "احتياطي الغاز الطبيعي",
     "value": 4500,
     "unit": "مليار متر مكعب",
     "icon": "gas-station"
   },
   {
     "id": "export",
-    "title": "صادرات الطاقة",
+    "title": "حصة صادرات الطاقة",
     "value": 95,
     "unit": "%",
     "icon": "chart-line"
   },
   {
     "id": "gdp",
-    "title": "مساهمة في الناتج المحلي",
+    "title": "مساهمة قطاع الطاقة في الناتج المحلي",
     "value": 40,
     "unit": "%",
     "icon": "chart-pie"
