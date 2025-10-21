@@ -1,7 +1,3 @@
-// 'use client' يجب أن يكون في أعلى الملف إذا كنت تستخدم Framer Motion أو أي تفاعلات كـ client component
-// لا يمكن تصدير metadata من ملف يحمل 'use client'.
-// إذا أردت meta لهذه الصفحة، ضعها في layout.tsx أو في ملف منفصل مثل metadata.ts أو page.server.tsx
-
 'use client'
 
 import { Header } from "@/components/header"
@@ -78,7 +74,7 @@ export default function LegalMediationPage() {
             <h1 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg leading-relaxed mb-2">{heroTitle}</h1>
             <h2 className="text-xl md:text-2xl text-white/90 font-medium mb-4">{heroSubtitle}</h2>
             <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-              <a href="/forms/service-request" className="rounded-lg px-8 py-3 bg-white text-corporate-green font-bold text-lg shadow-soft hover:scale-105 hover:shadow-xl transition-all duration-200 focus:ring-4 ring-brand focus:outline-none">اطلب الخدمة الآن</a>
+              <a href="/forms/mediation" className="rounded-lg px-8 py-3 bg-white text-corporate-green font-bold text-lg shadow-soft hover:scale-105 hover:shadow-xl transition-all duration-200 focus:ring-4 ring-brand focus:outline-none">اطلب الخدمة الآن</a>
               <a href="/contact" className="rounded-lg px-8 py-3 bg-corporate-green/80 text-white font-bold text-lg border-2 border-white hover:bg-white hover:text-corporate-green transition-all duration-200 hover:scale-105">تواصل معنا</a>
             </div>
           </motion.div>
@@ -207,7 +203,7 @@ export default function LegalMediationPage() {
         description="تواصل معنا أو اطلب الخدمة مباشرة لتحصل على استشارة مجانية من خبرائنا."
         primaryButton={{
           text: "اطلب الخدمة",
-          href: "/forms/service-request",
+          href: "/forms/mediation",
         }}
         secondaryButton={{
           text: "استشارة مجانية",

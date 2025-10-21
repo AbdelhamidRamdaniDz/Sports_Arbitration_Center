@@ -113,117 +113,107 @@ export default function FormsPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50/30">
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-100/30 via-transparent to-transparent" />
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl" />
-        <svg className="absolute inset-0 h-full w-full opacity-[0.02]" aria-hidden="true">
-          <defs>
-            <pattern id="forms-grid" width="32" height="32" patternUnits="userSpaceOnUse">
-              <path d="M0 32V.5H32" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-emerald-600" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#forms-grid)" />
-        </svg>
+    <div className="min-h-screen bg-white">
+      {/* Subtle Professional Background */}
+      <div className="fixed inset-0 -z-10 overflow-hidden bg-slate-50">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:64px_64px]" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-50/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-slate-100/50 rounded-full blur-3xl" />
       </div>
+
       <Header />
       <PageHeader
         backgroundImage="/hero-background.webp"
         title="النماذج الإلكترونية"
         description="نماذج إلكترونية متطورة وسهلة الاستخدام لتقديم طلبات التحكيم والوساطة"
       />
-      <section className="py-16 md:py-24">
+
+      {/* Forms Section */}
+      <section className="py-20 md:py-28">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 mb-6 border border-emerald-200/50 shadow-sm">
-              <Sparkles className="h-4 w-4 text-emerald-600" />
-              <span className="text-sm font-medium text-emerald-700">خدمات رقمية متطورة</span>
+            <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-1.5 mb-6 border border-slate-200">
+              <div className="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-pulse" />
+              <span className="text-xs font-medium text-slate-700 tracking-wide uppercase">خدمات رقمية احترافية</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               النماذج المتاحة
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-light">
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               اختر النموذج المناسب لنوع الخدمة التي تحتاجها
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
             {forms.map((form, index) => (
               <Card
                 key={index}
-                className="group relative border-2 border-slate-200/60 bg-white hover:shadow-2xl hover:border-emerald-200 transition-all duration-500 overflow-hidden hover:-translate-y-1"
+                className="group relative border border-slate-200 bg-white hover:shadow-lg transition-all duration-300"
               >
                 {form.popular && (
                   <div className="absolute top-4 left-4 z-10">
-                    <Badge className="bg-gradient-to-l from-emerald-600 to-teal-600 text-white border-none shadow-lg px-3 py-1">
-                      <Sparkles className="h-3 w-3 ml-1" />
+                    <Badge className="bg-emerald-600 text-white border-none px-3 py-1 text-xs font-medium">
                       الأكثر طلباً
                     </Badge>
                   </div>
                 )}
 
-                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-emerald-400/5 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500" />
-
-                <CardHeader className="text-center pb-6 relative z-10">
-                  <div className="flex justify-center mb-6">
-                    <div className="relative">
-                      <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
-                      <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 text-white shadow-lg group-hover:scale-110 transition-transform duration-500">
-                        {form.icon}
-                      </div>
+                <CardHeader className="text-center pb-6">
+                  <div className="flex justify-center mb-5">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-slate-900 text-white shadow-sm group-hover:bg-emerald-700 transition-colors duration-300">
+                      {form.icon}
                     </div>
                   </div>
-                  <CardTitle className="text-2xl md:text-3xl font-bold bg-gradient-to-l from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-3">
+                  <CardTitle className="text-2xl font-bold text-slate-900 mb-2">
                     {form.title}
                   </CardTitle>
-                  <CardDescription className="text-base leading-relaxed text-slate-600">
+                  <CardDescription className="text-sm leading-relaxed text-slate-600">
                     {form.description}
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="space-y-6 relative z-10">
-                  <div className="bg-gradient-to-br from-slate-50 to-emerald-50/30 rounded-xl p-5 border border-slate-100">
-                    <h4 className="font-semibold text-slate-900 mb-4 flex items-center gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+                <CardContent className="space-y-5">
+                  <div className="bg-slate-50 rounded-lg p-4 border border-slate-100">
+                    <h4 className="font-semibold text-slate-900 mb-3 text-sm flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-emerald-600" />
                       مميزات النموذج
                     </h4>
-                    <ul className="space-y-3">
+                    <ul className="space-y-2">
                       {form.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center gap-3 text-sm">
-                          <div className="w-1.5 h-1.5 bg-emerald-600 rounded-full flex-shrink-0" />
+                        <li key={featureIndex} className="flex items-start gap-2 text-sm">
+                          <span className="text-emerald-600 mt-0.5">•</span>
                           <span className="text-slate-600">{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="bg-white border border-slate-200 p-4 rounded-xl group-hover:border-emerald-200 transition-colors duration-300">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Clock className="h-4 w-4 text-emerald-600" />
-                        <span className="text-sm font-semibold text-slate-900">الوقت المطلوب</span>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-white border border-slate-200 p-3 rounded-lg">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <Clock className="h-3.5 w-3.5 text-slate-600" />
+                        <span className="text-xs font-medium text-slate-900">الوقت المطلوب</span>
                       </div>
-                      <p className="text-sm text-slate-600 font-medium">{form.estimatedTime}</p>
+                      <p className="text-xs text-slate-600">{form.estimatedTime}</p>
                     </div>
 
-                    <div className="bg-white border border-slate-200 p-4 rounded-xl group-hover:border-emerald-200 transition-colors duration-300">
-                      <div className="flex items-center gap-2 mb-2">
-                        <FileText className="h-4 w-4 text-emerald-600" />
-                        <span className="text-sm font-semibold text-slate-900">رسوم التقديم</span>
+                    <div className="bg-white border border-slate-200 p-3 rounded-lg">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <FileText className="h-3.5 w-3.5 text-slate-600" />
+                        <span className="text-xs font-medium text-slate-900">رسوم التقديم</span>
                       </div>
-                      <Badge className="bg-emerald-50 text-emerald-700 border-emerald-200 font-semibold">
+                      <Badge className="bg-emerald-50 text-emerald-700 border-emerald-200 text-xs font-medium">
                         {form.fee}
                       </Badge>
                     </div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-slate-50 to-emerald-50/30 rounded-xl p-5 border border-slate-100">
-                    <h4 className="font-semibold text-slate-900 mb-4">الوثائق المطلوبة</h4>
+                  <div className="bg-slate-50 rounded-lg p-4 border border-slate-100">
+                    <h4 className="font-semibold text-slate-900 mb-3 text-sm">الوثائق المطلوبة</h4>
                     <ul className="space-y-2">
                       {form.requiredDocs.map((doc, docIndex) => (
-                        <li key={docIndex} className="flex items-center gap-3 text-sm">
-                          <div className="w-1.5 h-1.5 bg-emerald-600 rounded-full flex-shrink-0" />
+                        <li key={docIndex} className="flex items-start gap-2 text-sm">
+                          <span className="text-emerald-600 mt-0.5">•</span>
                           <span className="text-slate-600">{doc}</span>
                         </li>
                       ))}
@@ -233,41 +223,31 @@ export default function FormsPage() {
                   <div className="pt-2">
                     <Button
                       asChild
-                      className="w-full bg-gradient-to-l from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300 h-12 text-base font-semibold rounded-xl group/btn"
+                      className="w-full bg-slate-900 hover:bg-emerald-700 text-white transition-colors duration-300 h-11 text-sm font-medium"
                     >
                       <Link href={form.href}>
                         <span>ابدأ التقديم الآن</span>
-                        <ArrowLeft className="mr-2 h-5 w-5 group-hover/btn:-translate-x-1 transition-transform duration-300" />
+                        <ArrowLeft className="mr-2 h-4 w-4" />
                       </Link>
                     </Button>
                   </div>
                 </CardContent>
 
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-l from-emerald-500 to-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right" />
+                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right" />
               </Card>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-gradient-to-b from-white to-slate-50/50 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <pattern id="steps-pattern" width="20" height="20" patternUnits="userSpaceOnUse">
-                <circle cx="2" cy="2" r="1" fill="currentColor" className="text-emerald-200" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#steps-pattern)" />
-          </svg>
-        </div>
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Steps Section */}
+      <section className="py-20 md:py-28 bg-slate-50 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               كيفية التقديم
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-light">
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               خطوات بسيطة وواضحة لتقديم طلبك بسهولة
             </p>
           </div>
@@ -277,22 +257,19 @@ export default function FormsPage() {
               {steps.map((step, index) => (
                 <div key={index} className="relative">
                   {index < steps.length - 1 && (
-                    <div className="hidden lg:block absolute top-16 right-0 w-full h-0.5 bg-gradient-to-l from-emerald-300 to-teal-300 transform translate-x-1/2 -z-10" />
+                    <div className="hidden lg:block absolute top-12 right-0 w-full h-px bg-slate-300 transform translate-x-1/2" />
                   )}
-                  <Card className="text-center bg-white border-2 border-slate-200/60 shadow-lg hover:shadow-2xl hover:border-emerald-200 transition-all duration-500 h-full hover:-translate-y-2 group">
-                    <CardContent className="p-8">
-                      <div className="flex justify-center mb-6">
-                        <div className="relative">
-                          <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
-                          <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-600 to-teal-600 text-white text-2xl font-bold shadow-lg group-hover:scale-110 transition-transform duration-500">
-                            {step.number}
-                          </div>
+                  <Card className="text-center bg-white border border-slate-200 hover:shadow-md transition-all duration-300 h-full">
+                    <CardContent className="p-6">
+                      <div className="flex justify-center mb-4">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-900 text-white text-lg font-bold">
+                          {step.number}
                         </div>
                       </div>
-                      <h3 className="font-bold text-xl text-slate-900 mb-3 group-hover:text-emerald-600 transition-colors duration-300">
+                      <h3 className="font-bold text-lg text-slate-900 mb-2">
                         {step.title}
                       </h3>
-                      <p className="text-sm text-slate-600 leading-relaxed">{step.description}</p>
+                      <p className="text-sm text-slate-600">{step.description}</p>
                     </CardContent>
                   </Card>
                 </div>
@@ -302,24 +279,22 @@ export default function FormsPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      {/* Important Information */}
+      <section className="py-20 md:py-28">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto">
-            <Card className="border-2 border-blue-200/60 bg-gradient-to-br from-blue-50 to-cyan-50/50 shadow-xl overflow-hidden relative group">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-l from-blue-500 to-cyan-500" />
-              <CardContent className="p-8 md:p-12">
+            <Card className="border border-slate-200 bg-white shadow-sm">
+              <div className="absolute top-0 left-0 w-full h-1 bg-slate-900" />
+              <CardContent className="p-8 md:p-10">
                 <div className="flex flex-col md:flex-row items-start gap-6">
                   <div className="flex-shrink-0">
-                    <div className="relative">
-                      <div className="absolute inset-0 bg-blue-500 rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
-                      <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-600 text-white shadow-lg">
-                        <Info className="h-8 w-8" />
-                      </div>
+                    <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-slate-900 text-white">
+                      <Info className="h-7 w-7" />
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl md:text-3xl font-bold text-blue-900 mb-6">معلومات مهمة</h3>
-                    <div className="space-y-4">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-6">معلومات مهمة</h3>
+                    <div className="space-y-3">
                       {[
                         {
                           title: "الدقة في البيانات",
@@ -338,10 +313,10 @@ export default function FormsPage() {
                           desc: "فريق الدعم متاح للمساعدة في حالة وجود أي استفسارات",
                         },
                       ].map((item, idx) => (
-                        <div key={idx} className="flex items-start gap-3 bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-blue-200/40 hover:border-blue-300 transition-colors duration-300">
-                          <CheckCircle2 className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                          <p className="text-sm text-blue-900">
-                            <strong className="font-semibold">{item.title}:</strong> {item.desc}
+                        <div key={idx} className="flex items-start gap-3 bg-slate-50 rounded-lg p-4 border border-slate-100">
+                          <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                          <p className="text-sm text-slate-700">
+                            <strong className="font-semibold text-slate-900">{item.title}:</strong> {item.desc}
                           </p>
                         </div>
                       ))}
@@ -354,37 +329,78 @@ export default function FormsPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-gradient-to-br from-slate-900 to-emerald-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <pattern id="support-pattern" width="10" height="10" patternUnits="userSpaceOnUse">
-                <circle cx="1" cy="1" r="1" fill="white" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#support-pattern)" />
-          </svg>
+      {/* Support CTA */}
+      <section className="py-20 md:py-28 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px]" />
         </div>
-
+        
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight">تحتاج مساعدة؟</h2>
-            <p className="text-lg md:text-xl text-white/90 mb-10 font-light">
-              فريق الدعم جاهز لمساعدتك في تعبئة النماذج والإجابة على استفساراتك
-            </p>
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="text-center md:text-right">
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-1.5 mb-6 border border-white/20">
+                  <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
+                  <span className="text-xs font-medium text-white/90 tracking-wide">دعم فني متخصص</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">هل تحتاج إلى مساعدة؟</h2>
+                <p className="text-base text-slate-300 leading-relaxed">
+                  فريقنا من الخبراء القانونيين جاهز لمساعدتك في تعبئة النماذج والإجابة على جميع استفساراتك المتعلقة بإجراءات التحكيم
+                </p>
+              </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-emerald-600 hover:bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-300 h-12 px-8 text-base font-semibold rounded-xl group">
-                <Users className="ml-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                تواصل مع الدعم
-              </Button>
-              <Button
-                variant="outline"
-                className="border-2 border-white/30 text-white hover:bg-white/10 bg-white/5 backdrop-blur-sm shadow-xl transition-all duration-300 h-12 px-8 text-base font-semibold rounded-xl group"
-              >
-                دليل المستخدم
-                <Download className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform duration-300" />
-              </Button>
+              <div className="space-y-4">
+                <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 group">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm">
+                        <Users className="h-6 w-6 text-white" />
+                      </div>
+                      <div className="flex-1 text-right">
+                        <h3 className="font-semibold text-white mb-1">تواصل مع فريق الدعم</h3>
+                        <p className="text-sm text-slate-300">متاح من الأحد إلى الخميس</p>
+                      </div>
+                      <Button asChild className="bg-white text-slate-900 hover:bg-slate-100 h-9 px-6 text-sm font-medium group-hover:scale-105 transition-transform">
+                        <Link href="/contact">اتصل الآن</Link>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 group">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm">
+                        <Download className="h-6 w-6 text-white" />
+                      </div>
+                      <div className="flex-1 text-right">
+                        <h3 className="font-semibold text-white mb-1">دليل المستخدم</h3>
+                        <p className="text-sm text-slate-300">إرشادات شاملة لتعبئة النماذج</p>
+                      </div>
+                      <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 bg-white/5 h-9 px-6 text-sm font-medium group-hover:scale-105 transition-transform">
+                        تحميل
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            <div className="mt-12 pt-8 border-t border-white/10">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-white mb-1">24/7</div>
+                  <div className="text-sm text-slate-400">خدمة العملاء</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-white mb-1">15 دقيقة</div>
+                  <div className="text-sm text-slate-400">متوسط وقت الرد</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-white mb-1">98%</div>
+                  <div className="text-sm text-slate-400">نسبة رضا العملاء</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

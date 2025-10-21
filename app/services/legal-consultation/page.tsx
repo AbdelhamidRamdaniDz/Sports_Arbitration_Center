@@ -52,6 +52,7 @@ export default function LegalConsultationPage() {
       <PageHeader
         title="الاستشارات القانونية"
         description="استشارات قانونية متخصصة وموثوقة في جميع جوانب القانون الرياضي"
+        backgroundImage="/hero-background.webp"
       />
 
       {/* Service Overview */}
@@ -167,7 +168,7 @@ export default function LegalConsultationPage() {
         description="احصل على استشارة قانونية متخصصة من خبراء القانون الرياضي لحماية حقوقك ومصالحك"
         primaryButton={{
           text: "اطلب هذه الخدمة الآن",
-          href: "/forms/service-request",
+          href: "/forms",
         }}
         secondaryButton={{
           text: "استشارة مجانية",

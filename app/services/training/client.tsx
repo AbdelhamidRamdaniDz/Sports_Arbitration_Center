@@ -214,21 +214,6 @@ export default function TrainingClient() {
         </div>
       </section>
 
-      {/* Mid-page CTA */}
-      <section className="py-10">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <motion.a whileHover={{ scale: 1.04, boxShadow: "0 0 0 4px rgba(16,185,129,0.25)" }} whileTap={{ scale: 0.98 }} href="/forms" className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-corporate-green to-teal-500 px-5 py-3 text-white">
-              سجّل الآن
-              <ChevronRight className="mr-2 h-5 w-5 -scale-x-100 transition-transform duration-200 group-hover:-translate-x-0.5" />
-            </motion.a>
-            <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} href="/contact" className="inline-flex items-center justify-center rounded-lg border px-5 py-3">
-              تواصل معنا
-            </motion.a>
-          </div>
-        </div>
-      </section>
-
       {/* Final CTA */}
       <CTASection
         title="انطلق في مسارك المهني بثقة"

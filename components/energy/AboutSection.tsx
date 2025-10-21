@@ -34,7 +34,7 @@ export default function AboutSection() {
           <div className="absolute -top-4 -right-4 w-24 h-24 bg-corporate-green/10 rounded-full"></div>
           <div className="relative overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200/60 bg-white">
             <Image
-              src="/images/energy-plant.jpg"
+              src="/sonatrach.jfif"
               alt="صورة تعبيرية"
               width={600}
               height={400}

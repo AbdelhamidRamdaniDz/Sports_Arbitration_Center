@@ -10,8 +10,8 @@ import { CTASection } from "@/components/cta-section"
 export const metadata: Metadata = {
   title: "الشركات الناشئة | تحكيم ووساطة وحلول قانونية في الجزائر",
   description:
-    "مركز وساطة وتحكيم يقدم حلولاً قانونية داعمة للشركات الناشئة وروّاد الأعمال: Legal structuring، عقود وشراكات، Dispute resolution، Compliance، Cross-border deals، وحماية الملكية الفكرية.",
-  keywords: "الشركات الناشئة, Startup ecosystem, Legal structuring, Dispute resolution, Compliance, Cross-border, IP protection, الجزائر, وساطة, تحكيم",
+    "مركز وساطة وتحكيم يقدم حلولاً قانونية داعمة للشركات الناشئة وروّاد الأعمال: الهيكلة القانونية، عقود وشراكات، تسوية النزاعات، الامتثال، الصفقات عبر الحدود، وحماية الملكية الفكرية.",
+  keywords: "الشركات الناشئة, بيئة الشركات الناشئة, الهيكلة القانونية, تسوية النزاعات, الامتثال, الصفقات عبر الحدود, حماية الملكية الفكرية, الجزائر, وساطة, تحكيم",
   openGraph: {
     title: "الشركات الناشئة | حلول تحكيم ووساطة للشركات الناشئة",
     description:
@@ -65,7 +65,7 @@ export default function Startups() {
             </ScrollReveal>
             <ScrollReveal direction="up" delay={220}>
               <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed md:text-xl text-white/90">
-                جهة مؤسسية للوساطة والتحكيم تقدّم دعماً قانونياً للشركات الناشئة وروّاد الأعمال: Legal structuring، صياغة العقود والشراكات، Dispute resolution، Compliance، Cross-border deals، وIP protection — دون أن نكون حاضنة أو مسرّعة أو جهة تمويل.
+                جهة مؤسسية للوساطة والتحكيم تقدّم دعماً قانونياً للشركات الناشئة وروّاد الأعمال: الهيكلة القانونية، صياغة العقود والشراكات، تسوية النزاعات، الامتثال، الصفقات عبر الحدود، وحماية الملكية الفكرية — دون أن نكون حاضنة أو مسرّعة أو جهة تمويل.
               </p>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={300}>
@@ -89,7 +89,7 @@ export default function Startups() {
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">مؤشرات بيئة الشركات الناشئة</h2>
               <p className="text-white/90 max-w-2xl mx-auto">
-                بيانات عامة عن Startup ecosystem في الجزائر تُستخدم كمرجع سياقي لدعم القرارات القانونية والتعاقدية.
+                بيانات عامة عن بيئة الشركات الناشئة في الجزائر تُستخدم كمرجع سياقي لدعم القرارات القانونية والتعاقدية.
               </p>
             </div>
           </ScrollReveal>
@@ -117,7 +117,7 @@ export default function Startups() {
       {/* CTA Section */}
       <CTASection
         title="حلول قانونية ووساطة للشركات الناشئة"
-        description="هيكلة قانونية وعقود وشراكات، تسوية نزاعات (Dispute resolution)، وامتثال (Compliance) بما يدعم نموّ شركتك دون ادعاء برامج احتضان أو تمويل."
+        description="هيكلة قانونية وعقود وشراكات، تسوية النزاعات، والامتثال بما يدعم نموّ شركتك دون ادعاء برامج احتضان أو تمويل."
         primaryButton={{ text: "احجز استشارة قانونية", href: "/forms" }}
         secondaryButton={{ text: "نطاق الخدمات", href: "/services" }}
         variant="gradient-light"

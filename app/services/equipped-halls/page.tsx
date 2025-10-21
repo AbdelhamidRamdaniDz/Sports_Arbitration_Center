@@ -52,6 +52,7 @@ export default function EquippedHallsPage() {
       <PageHeader
         title="القاعات المجهزة"
         description="قاعات احترافية مجهزة بأحدث التقنيات لضمان أفضل بيئة لجلسات التحكيم والوساطة"
+        backgroundImage="/hero-background.webp"
       />
 
       {/* Service Overview */}
@@ -167,7 +168,7 @@ export default function EquippedHallsPage() {
         description="احجز قاعة مجهزة بأحدث التقنيات لضمان نجاح جلساتك القانونية والمهنية"
         primaryButton={{
           text: "اطلب هذه الخدمة الآن",
-          href: "/forms/service-request",
+          href: "/forms",
         }}
         secondaryButton={{
           text: "استشارة مجانية",
