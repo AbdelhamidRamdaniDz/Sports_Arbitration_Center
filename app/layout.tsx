@@ -12,13 +12,13 @@ const tajawal = Tajawal({
 })
 
 export const metadata: Metadata = {
-  title: "مركز التحكيم الرياضي | Sports Arbitration Center",
-  description: "مركز متخصص في التحكيم والوساطة الرياضية - Specialized center for sports arbitration and mediation",
+  title: "Trade - Sports Arbitration Center",
+  description: "مركز متخصص في التحكيم والوساطة - Specialized center for arbitration and mediation",
   keywords: ["تحكيم رياضي", "وساطة", "قانون رياضي", "sports arbitration", "mediation", "sports law"],
   authors: [{ name: "Sports Arbitration Center" }],
   openGraph: {
-    title: "مركز التحكيم الرياضي",
-    description: "مركز متخصص في التحكيم والوساطة الرياضية",
+    title: "مركز التحكيم والوساطة",
+    description: "مركز متخصص في التحكيم والوساطة",
     type: "website",
     locale: "ar_SA",
   },

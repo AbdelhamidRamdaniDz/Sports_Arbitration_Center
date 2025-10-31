@@ -1,6 +1,6 @@
 export const SITE_CONFIG = {
   name: "Tahkeem Tech",
-  nameEn: "centr of Arbitration & Trade & Sports",
+  nameEn: "Trade - Sports Arbitration Center",
   description: "مركز متخصص في التحكيم والوساطة",
   descriptionEn: "Specialized center for arbitration and mediation",
   url: "https://sports-arbitration.com",

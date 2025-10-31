@@ -56,11 +56,11 @@ export default function HeroSection() {
         <div className="max-w-5xl mx-auto text-center">
           <Badge className="mb-6 bg-white/10 backdrop-blur-sm text-white border-white/20 px-6 py-2 text-sm">
             <Sparkles className="h-4 w-4 ml-2 inline" />
-            جارٍ العمل على الاعتماد الدولي
+            ترقّبوا إطلاق خدماتنا قريبًا
           </Badge>
 
           <h1 className="text-4xl font-bold mb-6 md:text-6xl lg:text-7xl leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.4)]">
-            حلول التحكيم الرياضي
+            حلول التحكيم الرياضي والتجاري
             <br />
             <span className="bg-gradient-to-r from-green-200 to-emerald-300 bg-clip-text text-transparent">
               المتخصصة والموثوقة
@@ -68,7 +68,7 @@ export default function HeroSection() {
           </h1>
 
           <p className="text-xl md:text-2xl mb-10 text-green-50 leading-relaxed max-w-3xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
-            نعمل على تطوير خدمات التحكيم والوساطة الرياضية بمعايير مهنية عالية، وسيتم إطلاق الخدمات والإعلان عن التفاصيل قريباً
+            نطوّر خدمات التحكيم والوساطة بمعايير مهنية رفيعة تضمن العدالة والشفافية والسرعة في تسوية النزاعات الرياضية والتجارية.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
