@@ -1,5 +1,5 @@
 export const SITE_CONFIG = {
-  name: "Tahkeem Tech",
+  name: "Tahkeem",
   nameEn: "Trade & Sports Arbitration Center",
   description: "مركز متخصص في التحكيم والوساطة",
   descriptionEn: "Specialized center for arbitration and mediation",
@@ -92,6 +92,7 @@ export const NAVIGATION_ITEMS = [
     children: [
       { title: "التحكيم الرياضي", href: "/arbitration/sports-arbitration" },
       { title: "التحكيم التجاري", href: "/arbitration/commercial" },
+      { title: "الاستشارات القانونية", href: "/services/legal-consultation" },
     ],
   },
   {
@@ -99,9 +100,28 @@ export const NAVIGATION_ITEMS = [
     href: "/services",
     children: [
       { title: "الوساطة القانونية", href: "/services/legal-mediation" },
-      { title: "الاستشارات القانونية", href: "/services/legal-consultation" },
       { title: "القاعات الخاصة", href: "/services/equipped-halls" },
+      { title: "الصلح", href: "/services/conciliation" },
+      { title: "أمانة المظالم", href: "/services/ombudsman" },
     ],
+  },
+    {
+    title: "الموارد الرقمية",
+    href: "/forms",
+    children: [
+      { title: "النمادح الإلكترونية", href: "/forms" },
+      { title: "المحكمين", href: "/members" },
+      { title: "مكتبة رقمية", href: "/services/library" },
+      { title: "التدريب والتأهيل", href: "/services/training" },
+      { title: "القوانين والأنظمة",
+         href: "/regulations",
+         children: [
+      { title: "التشريعات الرياضية الوطنية", href: "/regulations/national-sports" },
+      { title: "التشريعات التجارية الوطنية", href: "/regulations/national-commercial" },
+      { title: "التشريعات الدولية", href: "/regulations/international" },
+    ], },
+    ],
+    
   },
   {
     title: "مجالات الممارسة",
@@ -117,24 +137,7 @@ export const NAVIGATION_ITEMS = [
       { title: "الرياضة والترفيه", href: "/practice-areas/sports-entertainment" },
     ],
   },
-  {
-    title: "الموارد الرقمية",
-    href: "/forms",
-    children: [
-      { title: "النمادح الإلكترونية", href: "/forms" },
-      { title: "المحكمين", href: "/members" },
-      { title: "القوانين والأنظمة", href: "/services/legal-consultation" },
-      { title: "التدريب والتأهيل", href: "/services/training" },
-      { title: "مكتبة رقمية",
-         href: "/regulations",
-         children: [
-      { title: "التشريعات الرياضية الوطنية", href: "/regulations/national-sports" },
-      { title: "التشريعات التجارية الوطنية", href: "/regulations/national-commercial" },
-      { title: "التشريعات الدولية", href: "/regulations/international" },
-    ], },
-    ],
-    
-  },
+
 ]
 
 export const SERVICES = [

@@ -86,7 +86,7 @@ export function Header() {
               <Scale className="h-5 w-5" />
             </div>
             <div className="flex flex-col text-right">
-              <span className="text-base font-semibold text-corporate-green">{SITE_CONFIG.name}</span>
+              <span className="text-base font-semibold text-corporate-green">{SITE_CONFIG.name} <span className="text-lg font-bold text-red-600">Tech</span></span>
               <span className="text-xs text-muted-foreground">{SITE_CONFIG.nameEn}</span>
             </div>
           </Link>

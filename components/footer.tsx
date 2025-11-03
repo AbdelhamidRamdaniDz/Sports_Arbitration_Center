@@ -15,7 +15,7 @@ export function Footer() {
                 <Scale className="h-6 w-6" />
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-bold tracking-tight">{SITE_CONFIG.name}</span>
+                <span className="text-lg font-bold tracking-tight">{SITE_CONFIG.name} <span className="text-lg font-bold text-red-600">Tech</span></span>
                 <span className="text-sm/5 opacity-85">{SITE_CONFIG.nameEn}</span>
               </div>
             </div>

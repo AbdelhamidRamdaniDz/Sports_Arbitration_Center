@@ -165,6 +165,19 @@ model RulingDocument {
   ruling    Ruling  @relation(fields: [rulingId], references: [id])
 }
 
+/// Digital Library Resource
+model Resource {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  category    String   // guides | templates | cases
+  url         String?
+  tags        String[] @default([])
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
 /// Stores submissions from /forms/arbitration and /forms/commercial
 model ArbitrationRequest {
   id                     String   @id @default(cuid())

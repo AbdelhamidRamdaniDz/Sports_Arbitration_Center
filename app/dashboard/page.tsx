@@ -18,7 +18,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
-import { BarChart3, Mail, Newspaper, Images, Video, Scale, Settings, LogOut, Home, MessageCircle, Handshake, Gavel, Shield, Bell, Plus, Reply, FileText, ImagePlus, RefreshCcw, CalendarDays, TrendingUp, TrendingDown } from "lucide-react"
+import { BarChart3, Mail, Newspaper, Images, Video, Scale, Settings, LogOut, Home, MessageCircle, Handshake, Gavel, Shield, Bell, Plus, Reply, FileText, ImagePlus, RefreshCcw, CalendarDays, TrendingUp, TrendingDown, BookOpen } from "lucide-react"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -90,6 +90,7 @@ export default function DashboardPage() {
             <SidebarItem icon={<MessageCircle className="h-4 w-4" />} label="الرسائل والاستفسارات" onClick={() => router.push("/dashboard/messages")} />
             <SidebarItem icon={<CalendarDays className="h-4 w-4" />} label="الحجوزات" onClick={() => router.push("/dashboard/bookings")} />
             <SidebarItem icon={<Gavel className="h-4 w-4" />} label="أحكام التحكيم" onClick={() => router.push("/dashboard/rulings")} />
+            <SidebarItem icon={<BookOpen className="h-4 w-4" />} label="المكتبة الرقمية" onClick={() => router.push("/dashboard/library")} />
             
             <Separator className="my-4 bg-white/10" />
             

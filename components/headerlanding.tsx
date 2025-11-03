@@ -87,10 +87,10 @@ export function Headerlanding() {
             {/* الشعار - على اليمين */}
             <Link href="/" className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-corporate-green text-white">
-                <Scale className="h-6 w-6" />
+                <Scale className="h-6 w-6 text-yellow-300" />
               </div>
               <div className="flex flex-col text-right">
-                <span className="text-lg font-bold text-corporate-green">{SITE_CONFIG.name}</span>
+                <span className="text-lg font-bold text-corporate-green">{SITE_CONFIG.name} <span className="text-lg font-bold text-red-600">Tech</span></span>
                 <span className="text-xs text-corporate-green">{SITE_CONFIG.nameEn}</span>
               </div>
             </Link>
