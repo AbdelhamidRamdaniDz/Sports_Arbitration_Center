@@ -9,12 +9,12 @@ import Image from "next/image";
 
 export default function CSR() {
   const sdgGoals = [
-    { number: 8, title: "العمل اللائق والنمو الاقتصادي", icon: TrendingUp, color: "from-red-500 to-red-600" },
-    { number: 9, title: "الصناعة والابتكار والبنى التحتية", icon: Target, color: "from-orange-500 to-orange-600" },
-    { number: 12, title: "الاستهلاك والإنتاج المسؤولين", icon: Recycle, color: "from-yellow-500 to-amber-600" },
-    { number: 13, title: "العمل المناخي", icon: Globe, color: "from-green-600 to-green-700" },
-    { number: 16, title: "السلام والعدل والمؤسسات القوية", icon: Award, color: "from-blue-500 to-blue-600" },
-    { number: 17, title: "عقد الشراكات لتحقيق الأهداف", icon: Handshake, color: "from-indigo-500 to-indigo-600" }
+    { number: 8,desc:"نُسهم في دعم العمل اللائق والنمو الاقتصادي من خلال توفير حلول رقمية مرنة للعدالة البديلة، تُقلل التكاليف وتُحفّز بيئة الأعمال والاستثمار المستدام.", title: "العمل اللائق والنمو الاقتصادي", icon: TrendingUp, color: "from-red-500 to-red-600" },
+    { number: 9,desc:"نُعزّز الابتكار والتحول الرقمي عبر تطوير بنية تقنية حديثة تُمكّن من الوصول السريع والعادل لخدمات التحكيم والوساطة الإلكترونية.", title: "الصناعة والابتكار والبنى التحتية", icon: Target, color: "from-orange-500 to-orange-600" },
+    { number: 12,desc:"إعادة تدوير الأجهزة الإلكترونية والتخلص الآمن من النفايات الإلكترونية، مع تشجيع تقليل استخدام الورق والاعتماد على الأدوات الرقمية.", title: "الاستهلاك والإنتاج المسؤولين", icon: Recycle, color: "from-yellow-500 to-amber-600" },
+    { number: 13,desc:"تقليل السفر والتنقل وخفض الانبعاثات الكربونية من خلال منصة التحكيم الإلكتروني، مما يساهم في حماية البيئة والحد من التأثيرات المناخية.", title: "العمل المناخي", icon: Globe, color: "from-green-600 to-green-700" },
+    { number: 16,desc:"نعمل على نشر ثقافة الحلول السلمية والعدالة البديلة، وترسيخ الشفافية والمساواة من خلال إجراءات رقمية آمنة وموثوقة.", title: "السلام والعدل والمؤسسات القوية", icon: Award, color: "from-blue-500 to-blue-600" },
+    { number: 17,desc:"نُطوّر شراكات وطنية ودولية لبناء منظومة رقمية مستدامة للعدالة البديلة، تُسهم في تحقيق أهداف التنمية المستدامة وتعزيز الثقة في الحلول القانونية الرقمية.", title: "عقد الشراكات لتحقيق الأهداف", icon: Handshake, color: "from-indigo-500 to-indigo-600" }
   ];
 
   const initiatives = [
@@ -178,11 +178,12 @@ export default function CSR() {
                       <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${goal.color} flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform`}>
                         {goal.number}
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-base font-bold text-gray-900 mb-2 leading-tight">{goal.title}</h3>
+                      <div className="flex ">
                         <goal.icon className="h-5 w-5 text-gray-400 group-hover:text-gray-600 transition-colors" />
+                        <h3 className="text-base px-0.5 font-bold text-gray-900 mb-2 leading-tight">{goal.title}</h3>
                       </div>
                     </div>
+                        <h3 className="text-base px-0.5 font-bold text-gray-900 mb-2 leading-tight">{goal.desc}</h3>
                   </CardContent>
                 </Card>
               </motion.div>

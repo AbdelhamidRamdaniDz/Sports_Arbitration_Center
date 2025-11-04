@@ -100,9 +100,15 @@ export const NAVIGATION_ITEMS = [
     href: "/services",
     children: [
       { title: "الوساطة القانونية", href: "/services/legal-mediation" },
-      { title: "القاعات الخاصة", href: "/services/equipped-halls" },
       { title: "الصلح", href: "/services/conciliation" },
       { title: "أمانة المظالم", href: "/services/ombudsman" },
+    ],
+  },
+    {
+    title: "ODR خدمات",
+    href: "/servicesODR",
+    children: [
+      { title: "القاعات الخاصة", href: "/services/equipped-halls" },
     ],
   },
     {

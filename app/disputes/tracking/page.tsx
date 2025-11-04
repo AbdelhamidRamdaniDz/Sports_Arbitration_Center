@@ -20,8 +20,8 @@ export default function CaseTrackingPage() {
 
       <PageHeader
         backgroundImage="/hero-background.webp"
-        title="تتبع القضايا"
-        description="تابع حالة قضيتك وآخر التطورات في الوقت الفعلي مع نظام التتبع المتطور"
+        title="نظام تتبع القضايا"
+        description="تابع آخر تطورات قضيتك لحظة بلحظة مع نظام التتبع المتقدم."
       />
 
       <section className="py-16 md:py-20">

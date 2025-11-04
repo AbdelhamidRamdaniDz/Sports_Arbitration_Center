@@ -205,7 +205,7 @@ export default function MediaCenterPage() {
       <main className="min-h-screen">
         <PageHeader
           title="المركز الإعلامي"
-          description="آخر الأخبار والفعاليات والموارد الإعلامية لمركز التحكيم الرياضي"
+          description="آخر الأخبار والفعاليات والموارد الإعلامية لمركز Tahkeem Tech"
         />
         <div className="container mx-auto px-4 py-8">
           <Breadcrumbs

@@ -124,8 +124,8 @@ export default function FormsPage() {
       <Header />
       <PageHeader
         backgroundImage="/hero-background.webp"
-        title="النماذج الإلكترونية"
-        description="نماذج إلكترونية متطورة وسهلة الاستخدام لتقديم طلبات التحكيم والوساطة"
+        title="الخدمات الإلكترونية الذكية"
+        description="قدّم طلباتك بسهولة عبر نظامنا الرقمي المتكامل للتحكيم والوساطة، من خلال نماذج إلكترونية مبسّطة وآمنة تُتيح لك إتمام الإجراءات في دقائق"
       />
 
       {/* Forms Section */}

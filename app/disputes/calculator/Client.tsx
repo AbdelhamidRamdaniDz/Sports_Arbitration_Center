@@ -19,6 +19,9 @@ const TYPE_COEFF: Record<string, number> = {
   "administrative": 0.9, // النزاعات الإدارية
   "broadcast_rights": 1.5, // حقوق البث
   "disciplinary": 0.7, // التأديب الرياضي
+  "commercial_disputes": 1.4, // النزاعات التجارية
+  "employment_contracts": 1.1, // عقود العمل
+  "energy_sector_disputes": 1.6, // النزعات في مجال الطاقة
 }
 
 // معاملات التعقيد
@@ -64,8 +67,8 @@ export default function CalculatorClient() {
       <Header />
 
       <PageHeader
-        title="حاسبة النزاعات الرياضية"
-        description="أدخل تفاصيل النزاع لحساب التكلفة والمدة التقديرية"
+        title="حاسبة تكلفة  النزاعات "
+        description="احسب تكلفة نزاعك ومدة حله بسرعة وسهولة لأي نوع من النزاعات: رياضية، تجارية، أو غيرها أدخل تفاصيل قضيتك لتحصل على تقديرات فورية دقيقة، مع تجربة سلسة وواجهة مبتكرة."
       />
 
       {/* نموذج الحاسبة */}
@@ -98,6 +101,9 @@ export default function CalculatorClient() {
                         <SelectItem value="administrative">النزاعات الإدارية</SelectItem>
                         <SelectItem value="broadcast_rights">حقوق البث</SelectItem>
                         <SelectItem value="disciplinary">التأديب الرياضي</SelectItem>
+                        <SelectItem value="commercial_disputes">النزاعات التجارية</SelectItem>
+                        <SelectItem value="employment_contracts">عقود العمل</SelectItem>
+                        <SelectItem value="energy_sector_disputes">النزعات في مجال الطاقة</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

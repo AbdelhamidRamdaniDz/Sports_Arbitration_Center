@@ -90,11 +90,9 @@ export default function SportsArbitrationClient() {
                   <Gavel className="h-4 w-4" />
                   <span className="text-xs font-medium">خدمة احترافية معتمدة</span>
                 </div>
-                <h1 className="mb-3 text-3xl font-extrabold leading-tight md:text-5xl">
-                  التحكيم الرياضي: سرعة، نزاهة، وموثوقية عالمية
-                </h1>
+                <h1 className="mb-3 text-3xl font-extrabold leading-tight md:text-5xl">خدمات حل النزاعات الرياضية <p className="text-2xl">Sports Dispute Resolution Services</p></h1>
                 <p className="mb-6 text-base text-muted-foreground md:text-lg">
-                  نحسم نزاعاتك الرياضية بمنهجية دولية وإجراءات شفافة تؤمّن العدالة وسرعة التنفيذ.
+                  خدمات التحكيم والوساطة وتسوية النزاعات البديلة في الرياضة من TAHKEEM TECH
                 </p>
                 <div className="flex flex-wrap items-center gap-3">
                   <motion.a
@@ -140,8 +138,8 @@ export default function SportsArbitrationClient() {
                 </div>
               </div>
               <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
-                نقدم إطارًا احترافيًا لحسم النزاعات الرياضية وفق القوانين واللوائح الدولية، مع الحفاظ على النزاهة والحياد
-                وتسريع الوصول إلى قرار ملزم قابل للتنفيذ.
+                يقدّم مركز التحكيم الجزائري إطارًا احترافيًا وموثوقًا لحسم النزاعات الرياضية وفق القوانين واللوائح الدولية، مع الالتزام الكامل بالنزاهة والحياد وسرعة إصدار القرارات الملزمة. ومن خلال خدماتنا المتطوّرة، نساهم في تطوير الرياضة في الجزائر، لا سيما كرة القدم، الرياضة الأكثر شعبية، عبر دعم الاتحادات والأندية في حل النزاعات بكفاءة وشفافية. 
+نتطلع إلى بناء شراكات استراتيجية مع الاتحاد الجزائري لكرة القدم (FAF) لتعزيز بيئة رياضية عادلة ومستقرة للجميع.
               </p>
               <div className="flex flex-wrap gap-3">
                 <a href="/services/legal-mediation" className="text-corporate-green underline-offset-4 hover:underline">

@@ -90,10 +90,10 @@ export default function CommercialArbitrationClient() {
                   <span className="text-xs font-medium">تحكيم تجاري احترافي</span>
                 </div>
                 <h1 className="mb-3 text-3xl font-extrabold leading-tight md:text-5xl">
-                  التحكيم التجاري: حسم النزاعات بثقة وكفاءة
+                  خدمات حل النزاعات التجارية  <p className="text-2xl">Sports Dispute Resolution Services</p>
                 </h1>
                 <p className="mb-6 text-base text-muted-foreground md:text-lg">
-                  حلول سريعة ومحايدة للنزاعات التجارية مع التزام صارم بالسرية والشفافية.
+خدمات التحكيم والوساطة وتسوية النزاعات البديلة في الرياضة من TAHKEEM TECH
                 </p>
                 <div className="flex flex-wrap items-center gap-3">
                   <motion.a
@@ -139,11 +139,10 @@ export default function CommercialArbitrationClient() {
                 </div>
               </div>
               <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
-                إطار احترافي لحسم النزاعات الناشئة عن العقود والتجارة والاستثمار، بمرونة وإجراءات واضحة تؤدي إلى قرار ملزم قابل للتنفيذ.
-              </p>
+يقدّم مركز تحكيم تك (CTSA) حلولًا مبتكرة لحسم النزاعات التجارية والاستثمارية من خلال الوسائل البديلة لحل النزاعات (ADR)، وبسرعة وكفاءة وشفافية كاملة. يتيح نظامنا الرقمي ربط الأطراف مباشرة بنخبة من المحكمين والخبراء القانونيين، بعيدًا عن التعقيدات والإجراءات التقليدية، وفي بيئة قانونية آمنة وموثوقة. نلتزم بالمعايير الوطنية والدولية، مع ضمان نزاهة الإجراءات وسرعة الوصول إلى قرارات ملزمة قابلة للتنفيذ، مما يعزز الثقة ويخلق بيئة أعمال عادلة ومستقرة لجميع الأطراف              </p>
               <div className="flex flex-wrap gap-3">
                 <a href="/arbitration/sports-arbitration" className="text-corporate-green underline-offset-4 hover:underline">
-                  التحكيم الرياضي
+                  التحكيم التجاري
                 </a>
                 <span className="text-muted-foreground">/</span>
                 <a href="/services/legal-mediation" className="text-corporate-green underline-offset-4 hover:underline">
