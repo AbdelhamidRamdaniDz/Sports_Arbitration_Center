@@ -9,8 +9,7 @@ import { NewsFilters } from "@/components/media-center/NewsFilters"
 import { NewsGrid } from "@/components/media-center/NewsGrid"
 import { PressReleasesSection } from "@/components/media-center/PressReleasesSection"
 import { MediaResourcesSection } from "@/components/media-center/MediaResourcesSection"
-import pressReleasesData from "@/data/press-releases.json"
-import resourcesData from "@/data/resources.json"
+
 
 interface NewsItem {
   id: string
@@ -242,7 +241,6 @@ export default function MediaCenterPage() {
             onTileClick={handleResourceTileClick}
           />
         </div>
-        {/* بقية الأقسام (البيانات الصحفية، الموارد الإعلامية) ستضاف لاحقًا */}
         <Footer />
       </main>
     </div>

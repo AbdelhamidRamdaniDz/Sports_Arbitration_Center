@@ -226,200 +226,108 @@ export default function Healthcare() {
 
       <main 
         dir="rtl" 
-        className="min-h-screen overflow-x-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50/30"
+        className="min-h-screen overflow-x-hidden text-gray-800"
         lang="ar"
       >
-        {/* ✅ Skip Link للـAccessibility */}
+        {/* ✅ خلفية داكنة مماثلة لقطاع الطاقة */}
+        <div className="fixed inset-0 -z-10" aria-hidden="true">
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900" />
+          <div className="absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-emerald-400/20 blur-[120px] animate-pulse" />
+          <div className="absolute bottom-0 left-0 h-[600px] w-[600px] rounded-full bg-teal-400/15 blur-[140px] animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-emerald-300/10 blur-[100px]" />
+          <svg className="absolute inset-0 h-full w-full opacity-[0.07]" aria-hidden="true">
+            <defs>
+              <pattern id="dots-health" width="32" height="32" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r="1.5" fill="white" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dots-health)" />
+          </svg>
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
+        </div>
+
+        {/* ✅ Skip Link */}
         <a 
           href="#main-content" 
-          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-white focus:text-emerald-600 focus:shadow-xl focus:rounded-lg focus:m-4"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-white focus:text-corporate-green focus:shadow-lg"
         >
           انتقل إلى المحتوى الرئيسي
         </a>
 
-        {/* ✅ خلفية محسنة */}
-        <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
-          {/* التدرج الأساسي */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-100/40 via-transparent to-transparent" />
-          
-          {/* تأثيرات الإضاءة */}
-          <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-emerald-400/20 to-teal-400/20 blur-3xl animate-pulse" />
-          <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-cyan-400/15 to-emerald-400/15 blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-          
-          {/* Grid Pattern */}
-          <svg className="absolute inset-0 h-full w-full opacity-[0.03]">
-            <defs>
-              <pattern id="healthcare-grid" width="32" height="32" patternUnits="userSpaceOnUse">
-                <path d="M0 32V.5H32" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-emerald-600" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#healthcare-grid)" />
-          </svg>
-        </div>
-
         <Header />
 
-        {/* ✅ Hero Section محسن */}
-        <section 
-          id="main-content"
-          className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-20"
-          aria-labelledby="hero-title"
-        >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-5xl">
-              <div className="text-center mb-16">
-                <ScrollReveal direction="up" delay={80}>
-                  <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-5 py-2.5 mb-6 border border-emerald-200/50 shadow-sm">
-                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-sm font-semibold text-emerald-700">
-                      التحكيم والوساطة في القطاع الصحي
-                    </span>
-                  </div>
-                </ScrollReveal>
-                
-                <ScrollReveal direction="up" delay={140}>
-                  <h1 
-                    id="hero-title"
-                    className="mb-6 text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl"
-                  >
-                    حلول بديلة للنزاعات
-                    <span className="block mt-2 bg-gradient-to-l from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
-                      في القطاع الصحي
-                    </span>
-                  </h1>
-                </ScrollReveal>
-                
-                <ScrollReveal direction="up" delay={200}>
-                  <p className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed text-slate-700 sm:text-xl md:text-2xl font-normal">
-                    نقدم خدمات <strong className="text-emerald-700">تحكيم ووساطة متخصصة</strong> لحل النزاعات الطبية والإدارية <strong className="text-emerald-700">بسرعة وسرية</strong> وبأقل التكاليف،
-                    مع الحفاظ على العلاقات المهنية بين جميع الأطراف.
-                  </p>
-                </ScrollReveal>
-                
-                <ScrollReveal direction="up" delay={260}>
-                  <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
-                    <Button 
-                      asChild 
-                      size="lg" 
-                      className="group relative overflow-hidden bg-gradient-to-l from-emerald-600 to-teal-600 text-white shadow-xl shadow-emerald-500/25 hover:shadow-2xl hover:shadow-emerald-500/30 hover:scale-[1.03] transition-all duration-300 px-8 py-6 text-base font-semibold rounded-xl"
-                    >
-                      <Link href="/forms">
-                        <span className="relative z-10 flex items-center gap-2">
-                          احجز استشارة مجانية
-                          <span className="inline-block transition-transform group-hover:translate-x-1">←</span>
-                        </span>
-                        <div className="absolute inset-0 bg-gradient-to-l from-emerald-500 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      </Link>
-                    </Button>
-                    <Button 
-                      asChild 
-                      size="lg" 
-                      variant="outline" 
-                      className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-emerald-500 hover:text-emerald-700 transition-all duration-300 px-8 py-6 text-base font-semibold rounded-xl shadow-sm hover:shadow-md"
-                    >
-                      <Link href="/about/overview">اكتشف خدماتنا</Link>
-                    </Button>
-                  </div>
-                </ScrollReveal>
-              </div>
+        {/* ✅ Hero */}
+        <section id="main-content" className="relative overflow-hidden py-20 md:py-28" aria-labelledby="hero-title">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-5xl text-center text-white">
+              <ScrollReveal direction="up" delay={100}>
+                <div className="mb-6">
+                  <span className="inline-block rounded-full bg-emerald-500/20 px-4 py-2 text-sm font-semibold text-emerald-100 backdrop-blur-sm border border-emerald-400/30">
+                    قطاع الرعاية الصحية | Healthcare Sector
+                  </span>
+                </div>
+              </ScrollReveal>
 
-              {/* ✅ Hero Visual محسن */}
-              <ScrollReveal direction="up" delay={320}>
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white mt-12">
-                  <div className="aspect-video bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 flex items-center justify-center relative overflow-hidden">
-                    {/* Pattern Background */}
-                    <div className="absolute inset-0">
-                      <svg className="w-full h-full opacity-5" viewBox="0 0 100 100" preserveAspectRatio="none">
-                        <defs>
-                          <pattern id="hero-pattern" width="20" height="20" patternUnits="userSpaceOnUse">
-                            <circle cx="2" cy="2" r="1" fill="currentColor" className="text-emerald-600" />
-                          </pattern>
-                        </defs>
-                        <rect width="100%" height="100%" fill="url(#hero-pattern)" />
-                      </svg>
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="relative z-10 flex flex-col items-center justify-center gap-6 p-8">
-                      <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-2xl shadow-emerald-500/40 animate-pulse">
-                        <svg 
-                          className="w-16 h-16 md:w-20 md:h-20 text-white" 
-                          fill="currentColor" 
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                        >
-                          <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-4zm0 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm-1-10h2v5h-2zm0 6h2v2h-2z"/>
-                        </svg>
-                      </div>
-                      <div className="text-center">
-                        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
-                          التحكيم والوساطة الاحترافية
-                        </h2>
-                        <p className="text-slate-700 text-sm md:text-base font-medium">
-                          حلول عادلة وسريعة للنزاعات الطبية
-                        </p>
-                      </div>
-                    </div>
-                    
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent pointer-events-none" />
-                  </div>
+              <ScrollReveal direction="up" delay={180}>
+                <h1 id="hero-title" className="mb-3 text-4xl font-extrabold leading-tight md:text-6xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-50 to-white drop-shadow-lg">
+                  التحكيم والوساطة في القطاع الصحي
+                </h1>
+              </ScrollReveal>
+
+              <ScrollReveal direction="up" delay={240}>
+                <p className="mb-6 text-2xl font-bold md:text-4xl text-emerald-100">
+                  Healthcare Arbitration and Mediation
+                </p>
+              </ScrollReveal>
+
+              <ScrollReveal direction="up" delay={300}>
+                <p className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed md:text-xl text-white/95 font-medium">
+                  نقدم حلول تحكيم ووساطة متخصصة للنزاعات الطبية والإدارية بسرعة وسرية وكفاءة، مع الحفاظ على العلاقات المهنية وتحقيق نتائج عادلة وفعالة.
+                </p>
+              </ScrollReveal>
+
+              <ScrollReveal direction="up" delay={360}>
+                <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                  <Button asChild size="lg" className="group bg-white text-corporate-green hover:bg-emerald-50 shadow-2xl shadow-white/20 transition-all duration-300 hover:scale-105 hover:shadow-white/30 text-lg px-8">
+                    <Link href="/forms">
+                      احجز استشارة مجانية
+                      <span className="mr-2 inline-block transition-transform group-hover:translate-x-1">←</span>
+                    </Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="border-2 border-white/40 bg-white/10 text-white backdrop-blur-md hover:bg-white/20 hover:border-white/60 shadow-lg transition-all duration-300 hover:scale-105 text-lg px-8">
+                    <Link href="/about/overview">اكتشف خدماتنا</Link>
+                  </Button>
                 </div>
               </ScrollReveal>
             </div>
           </div>
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
         </section>
 
-        {/* ✅ Stats Section محسن */}
-        <section 
-          className="relative py-16 md:py-24"
-          aria-labelledby="stats-title"
-        >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <ScrollReveal direction="up" delay={80}>
-              <div className="text-center mb-16">
-                <h2 
-                  id="stats-title"
-                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight"
-                >
+        {/* ✅ Stats */}
+        <section className="relative py-16 md:py-20" aria-labelledby="stats-title">
+          <div className="container mx-auto px-4">
+            <ScrollReveal direction="up" delay={120}>
+              <div className="text-center mb-12">
+                <h2 id="stats-title" className="text-3xl md:text-4xl font-extrabold text-transparent mb-4 bg-clip-text bg-gradient-to-l from-white via-emerald-100 to-white">
                   إنجازاتنا في الأرقام
                 </h2>
-                <p className="text-slate-700 text-lg md:text-xl max-w-2xl mx-auto font-normal">
-                  نتائج ملموسة وموثوقة في حل النزاعات الصحية
-                </p>
+                <p className="text-white/90 text-lg max-w-2xl mx-auto">نتائج ملموسة في حل النزاعات الصحية</p>
               </div>
             </ScrollReveal>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto">
               {HC_STATS.map((stat, index) => (
-                <ScrollReveal key={stat.label} direction="up" delay={130 + index * 60}>
-                  <div 
-                    className="group relative rounded-2xl bg-white border border-slate-200 p-8 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden"
-                    role="article"
-                    aria-label={stat.ariaLabel}
-                  >
-                    {/* Background Effects */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-transparent to-teal-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-400/10 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500" />
-                    
-                    <div className="relative z-10">
-                      <div className="mb-3 text-4xl md:text-5xl font-bold bg-gradient-to-l from-emerald-600 to-teal-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-500 inline-block">
-                        <AnimatedCounter 
-                          end={parseStatValue(stat.value)} 
-                          suffix={getStatSuffix(stat.value)} 
-                          duration={2000} 
-                        />
+                <ScrollReveal key={stat.label} direction="up" delay={200 + index * 60}>
+                  <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 p-8 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 hover:bg-white/20 overflow-hidden" role="article" aria-label={stat.ariaLabel}>
+                    <div className="relative">
+                      <div className="mb-3 text-5xl font-extrabold text-white drop-shadow-lg">
+                        <AnimatedCounter end={parseStatValue(stat.value)} suffix={getStatSuffix(stat.value)} duration={2200} />
                       </div>
-                      <div className="mb-2 text-lg md:text-xl font-semibold text-slate-900">
-                        {stat.label}
-                      </div>
-                      <div className="text-sm text-slate-600 font-normal">
-                        {stat.description}
-                      </div>
+                      <div className="mb-2 text-xl font-bold text-white/95">{stat.label}</div>
+                      <div className="text-white/80">{stat.description}</div>
                     </div>
-                    
-                    {/* Bottom Accent Line */}
-                    <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-l from-emerald-500 to-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right" />
+                    <div className="absolute bottom-0 left-1/2 h-1 w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 transition-all duration-500 group-hover:w-3/4" />
                   </div>
                 </ScrollReveal>
               ))}
@@ -427,61 +335,39 @@ export default function Healthcare() {
           </div>
         </section>
 
-        {/* ✅ Services Section محسن */}
-        <section 
-          className="relative py-16 md:py-24 bg-gradient-to-b from-white to-slate-50/50"
-          aria-labelledby="services-title"
-        >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <ScrollReveal direction="up" delay={80}>
+        {/* ✅ خدمات الرعاية الصحية */}
+        <section className="relative py-20 md:py-28 bg-white/5 backdrop-blur-sm" aria-labelledby="services-title">
+          <div className="container mx-auto px-4">
+            <ScrollReveal direction="up" delay={100}>
               <div className="text-center mb-16">
-                <h2 
-                  id="services-title"
-                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight"
-                >
-                  خدمات التحكيم والوساطة
+                <h2 id="services-title" className="text-3xl md:text-5xl font-extrabold text-transparent mb-4 bg-clip-text bg-gradient-to-l from-white via-emerald-100 to-white">
+                  خدمات التحكيم والوساطة الصحية
                 </h2>
-                <p className="text-slate-700 text-lg md:text-xl max-w-3xl mx-auto font-normal">
-                  نغطي جميع أنواع النزاعات في القطاع الصحي بحلول مرنة وفعالة ومهنية
+                <p className="text-white/90 text-lg max-w-3xl mx-auto">
+                  نغطي أنواع النزاعات في القطاع الصحي بحلول مرنة وفعالة ومهنية
                 </p>
+                <div className="h-1 w-24 bg-gradient-to-r from-emerald-400 to-teal-400 mx-auto rounded-full mt-6" />
               </div>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
               {SERVICES.map((service, index) => (
-                <ScrollReveal key={service.title} direction="up" delay={130 + index * 50}>
-                  <article 
-                    className="group relative rounded-2xl bg-white border border-slate-200 p-8 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 overflow-hidden h-full flex flex-col"
-                    aria-label={`${service.title}: ${service.description}`}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    <div className="relative z-10 flex-1 flex flex-col">
-                      <div className="text-5xl mb-5 group-hover:scale-110 transition-transform duration-500" aria-hidden="true">
-                        {service.icon}
-                      </div>
-                      <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-4 group-hover:text-emerald-600 transition-colors duration-300">
-                        {service.title}
-                      </h3>
-                      <p className="text-slate-700 leading-relaxed font-normal mb-4 flex-1">
-                        {service.description}
-                      </p>
-                      
-                      {/* ✅ Highlights إضافية */}
+                <ScrollReveal key={service.title} direction="up" delay={150 + index * 50}>
+                  <article className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full flex flex-col">
+                    <div className="p-8 flex-1 flex flex-col">
+                      <div className="text-5xl mb-5" aria-hidden="true">{service.icon}</div>
+                      <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
+                      <p className="text-white/90 leading-relaxed font-normal mb-4 flex-1">{service.description}</p>
                       {service.highlights && (
                         <div className="flex flex-wrap gap-2 mt-auto">
                           {service.highlights.map((highlight, idx) => (
-                            <span 
-                              key={idx}
-                              className="text-xs px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200 font-medium"
-                            >
+                            <span key={idx} className="text-xs px-3 py-1 bg-emerald-50/10 text-emerald-100 rounded-full border border-emerald-200/20 font-medium">
                               {highlight}
                             </span>
                           ))}
                         </div>
                       )}
                     </div>
-
                     <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-l from-emerald-500 to-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right" />
                   </article>
                 </ScrollReveal>
@@ -490,55 +376,32 @@ export default function Healthcare() {
           </div>
         </section>
 
-        {/* ✅ Health Units Section محسن */}
-        <section 
-          className="relative py-16 md:py-24"
-          aria-labelledby="units-title"
-        >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <ScrollReveal direction="up" delay={80}>
+        {/* ✅ الوحدات الصحية */}
+        <section className="relative py-20 md:py-28" aria-labelledby="units-title">
+          <div className="container mx-auto px-4">
+            <ScrollReveal direction="up" delay={100}>
               <div className="text-center mb-16">
-                <h2 
-                  id="units-title"
-                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight"
-                >
+                <h2 id="units-title" className="text-3xl md:text-5xl font-extrabold text-transparent mb-4 bg-clip-text bg-gradient-to-l from-white via-emerald-100 to-white">
                   الوحدات الصحية المتخصصة
                 </h2>
-                <p className="text-slate-700 text-lg md:text-xl max-w-3xl mx-auto font-normal">
+                <p className="text-white/90 text-lg max-w-3xl mx-auto">
                   منظومة متكاملة لمعالجة الشكاوى والنزاعات الصحية عبر الوساطة وأمانة الشكاوى وأمين المظالم
                 </p>
+                <div className="h-1 w-24 bg-gradient-to-r from-emerald-400 to-teal-400 mx-auto rounded-full mt-6" />
               </div>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
               {HEALTH_UNITS.map((unit, index) => (
-                <ScrollReveal key={unit.title} direction="up" delay={130 + index * 60}>
-                  <article
-                    className="group relative rounded-2xl bg-white border border-slate-200 p-8 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden h-full"
-                    aria-label={`${unit.titleAr}: ${unit.description}`}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/40 via-transparent to-teal-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-400/10 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500" />
-
-                    <div className="relative z-10 flex flex-col items-center text-center">
-                      <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-500" aria-hidden="true">
-                        {unit.icon}
-                      </div>
-                      <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-1 group-hover:text-emerald-600 transition-colors duration-300">
-                        {unit.title}
-                      </h3>
-                      <p className="text-emerald-700 font-semibold mb-4 text-lg">{unit.titleAr}</p>
-                      <p className="text-slate-700 leading-relaxed font-normal">
-                        {unit.description}
-                      </p>
+                <ScrollReveal key={unit.title} direction="up" delay={150 + index * 60}>
+                  <article className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
+                    <div className="relative z-10 flex flex-col items-center text-center p-8">
+                      <div className="text-5xl mb-4" aria-hidden="true">{unit.icon}</div>
+                      <h3 className="text-2xl font-bold text-white mb-1">{unit.title}</h3>
+                      <p className="text-emerald-100 font-semibold mb-4 text-lg">{unit.titleAr}</p>
+                      <p className="text-white/90 leading-relaxed font-normal">{unit.description}</p>
                     </div>
-
-                    {/* Link overlay */}
-                    <Link
-                      href={unit.title === "Health Mediation" ? "/services/legal-mediation" : unit.title === "Health Grievances Secretariat" ? "/services/ombudsman" : "/services/ombudsman"}
-                      className="absolute inset-0" aria-label={unit.title}
-                    />
-
+                    <Link href={unit.title === "Health Mediation" ? "/services/legal-mediation" : unit.title === "Health Grievances Secretariat" ? "/services/ombudsman" : "/services/ombudsman"} className="absolute inset-0" aria-label={unit.title} />
                     <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-l from-emerald-500 to-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right" />
                   </article>
                 </ScrollReveal>
@@ -547,16 +410,12 @@ export default function Healthcare() {
           </div>
         </section>
 
-        {/* ✅ Why ADR Section محسن */}
-        <section 
-          className="relative py-16 md:py-24"
-          aria-labelledby="why-adr-title"
-        >
+        {/* ✅ لماذا التحكيم والوساطة؟ (تعمل مع الخلفية الداكنة أصلاً) */}
+        <section className="relative py-16 md:py-24" aria-labelledby="why-adr-title">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
               <ScrollReveal direction="up" delay={80}>
                 <div className="rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-l from-emerald-600 to-teal-600 relative">
-                  {/* Background Pattern */}
                   <div className="absolute inset-0 opacity-10" aria-hidden="true">
                     <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
                       <defs>
@@ -570,10 +429,7 @@ export default function Healthcare() {
                   
                   <div className="relative z-10 grid md:grid-cols-2 gap-8 p-10 md:p-16">
                     <div className="flex flex-col justify-center">
-                      <h2 
-                        id="why-adr-title"
-                        className="text-3xl md:text-4xl font-bold text-white mb-6"
-                      >
+                      <h2 id="why-adr-title" className="text-3xl md:text-4xl font-bold text-white mb-6">
                         لماذا التحكيم والوساطة؟
                       </h2>
                       <ul className="space-y-5 text-white" role="list">
@@ -592,17 +448,10 @@ export default function Healthcare() {
                     <div className="flex items-center justify-center">
                       <div className="relative w-full aspect-square max-w-sm">
                         <div className="absolute inset-0 bg-white/10 rounded-3xl backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-2xl">
-                          <svg 
-                            className="w-48 h-48 text-white/40" 
-                            fill="currentColor" 
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                          >
+                          <svg className="w-48 h-48 text-white/40" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M12 1L3 5v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm-1-10h2v5h-2zm0 6h2v2h-2z"/>
                           </svg>
                         </div>
-                        
-                        {/* Decorative Circles */}
                         <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/20 rounded-full blur-xl animate-pulse" />
                         <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-white/20 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }} />
                       </div>
@@ -614,7 +463,7 @@ export default function Healthcare() {
           </div>
         </section>
 
-        {/* ✅ CTA Section */}
+        {/* ✅ CTA */}
         <CTASection
           title="هل لديك نزاع في القطاع الصحي؟"
           description="دعنا نساعدك على إيجاد حل سريع وعادل عبر التحكيم أو الوساطة المتخصصة. استشارة أولية مجانية."
