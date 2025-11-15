@@ -76,8 +76,14 @@ export default function Energy() {
         <Header />
 
         {/* Hero */}
-        <section id="main-content" className="relative overflow-hidden py-20 md:py-28" aria-labelledby="hero-title">
-          <div className="container mx-auto px-4">
+        <section
+          id="main-content"
+          className="relative overflow-hidden py-20 md:py-28 bg-center bg-cover"
+          style={{ backgroundImage: "url('/SONATRACH-SIEGE-2025-WEB.jpg')" }}
+          aria-labelledby="hero-title"
+        >
+          <div className="absolute inset-0 bg-black/50" aria-hidden />
+          <div className="container mx-auto px-4 relative z-10">
             <div className="mx-auto max-w-5xl text-center text-white">
               <ScrollReveal direction="up" delay={100}>
                 <div className="mb-6">
@@ -128,7 +134,7 @@ export default function Energy() {
           <div className="container mx-auto px-4">
             <ScrollReveal direction="up" delay={120}>
               <div className="text-center mb-12">
-                <h2 id="stats-title" className="text-3xl md:text-4xl font-extrabold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white">
+                <h2 id="stats-title" className="text-3xl md:text-4xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white">
                   مؤشرات رئيسية للقطاع
                 </h2>
                 <p className="text-white/90 text-lg max-w-2xl mx-auto">نظرة رقمية سريعة على قطاع الطاقة</p>
@@ -160,7 +166,7 @@ export default function Energy() {
           <div className="container mx-auto px-4">
             <ScrollReveal direction="up" delay={100}>
               <div className="text-center mb-16">
-                <h2 id="about-title" className="text-3xl md:text-5xl font-extrabold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white">
+                <h2 id="about-title" className="text-3xl md:text-5xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white">
                   من نحن
                 </h2>
                 <div className="h-1 w-24 bg-gradient-to-r from-emerald-400 to-teal-400 mx-auto rounded-full" />
@@ -212,7 +218,7 @@ export default function Energy() {
           <div className="container mx-auto px-4">
             <ScrollReveal direction="up" delay={100}>
               <div className="text-center mb-16">
-                <h2 id="services-title" className="text-3xl md:text-5xl font-extrabold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white">
+                <h2 id="services-title" className="text-3xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white">
                   خدمات قانونية لقطاع الطاقة
                 </h2>
                 <p className="text-white/90 text-lg max-w-3xl mx-auto">
@@ -369,7 +375,7 @@ export default function Energy() {
           <div className="container mx-auto px-4">
             <ScrollReveal direction="up" delay={100}>
               <div className="text-center mb-16">
-                <h2 id="approach-title" className="text-3xl md:text-5xl font-extrabold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white">
+                <h2 id="approach-title" className="text-3xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white">
                   نهجنا المهني
                 </h2>
                 <p className="text-white/90 text-lg max-w-3xl mx-auto">
