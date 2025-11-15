@@ -124,7 +124,7 @@ export default function ValuesPage() {
               <div className="absolute -inset-4 bg-gradient-to-r from-corporate-gold/20 to-corporate-green/20 rounded-3xl blur-2xl"></div>
               <div className="relative overflow-hidden rounded-3xl shadow-2xl border-4 border-white bg-white transform hover:scale-[1.02] transition-transform duration-500">
                 <Image
-                  src="/cta-arbitration-overview.jpg"
+                  src="/value.png"
                   alt="اجتماع قانوني احترافي"
                   width={1200}
                   height={500}

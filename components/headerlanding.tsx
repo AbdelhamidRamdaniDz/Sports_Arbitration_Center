@@ -152,67 +152,128 @@ export function Headerlanding() {
 
                       {/* القائمة المنسدلة - المستوى 2 */}
                       {hasChildren && hoveredMain === item.href && (
-                        <div
-                          role="menu"
-                          onMouseEnter={handleDropdownEnter}
-                          onMouseLeave={handleMainLeave}
-                          className="absolute right-0 top-full mt-1 md:mt-2 w-44 md:w-56 bg-white border border-gray-200 rounded-lg shadow-lg p-1.5 md:p-2 text-right z-50"
-                        >
-                          <ul className="space-y-[2px] md:space-y-1">
-                            {item.children!.map((child) => {
-                              const childHasChildren = !!child.children?.length
-                              return (
-                                <li
-                                  key={child.href}
-                                  className="relative"
-                                  onMouseEnter={() => handleChildEnter(child.href, childHasChildren)}
-                                  onMouseLeave={handleChildLeave}
-                                >
-                                  <div className="flex items-center">
-                                    <Link
-                                      href={child.href}
-                                      className={cn(
-                                        "flex-1 block py-1 pr-2 pl-1.5 md:py-1.5 md:pr-3 md:pl-2 rounded-md text-[11px] md:text-xs text-right",
-                                        "hover:bg-corporate-green/10 hover:text-corporate-green transition-colors"
+                        // Mega Menu exclusively for the "من نحن" top-level item
+                        item.title === "من نحن" ? (
+                          <div
+                            role="menu"
+                            onMouseEnter={handleDropdownEnter}
+                            onMouseLeave={handleMainLeave}
+                            className="absolute right-0 top-full mt-1 md:mt-2 w-screen max-w-[80rem] bg-white border border-gray-200 rounded-lg shadow-lg p-4 text-right z-50"
+                          >
+                            <div className="container mx-auto px-4">
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                {item.children!.map((child) => (
+                                  <div key={child.href} className="space-y-3">
+                                    <h4 className="text-sm font-semibold text-gray-800 mb-1">{child.title}</h4>
+                                    <ul className="space-y-1">
+                                      {child.children?.map((grand) => (
+                                        <li key={grand.href}>
+                                          <Link
+                                            href={grand.href}
+                                            className="block py-1 pr-2 pl-1.5 rounded-md text-sm text-gray-700 hover:bg-corporate-green/10 hover:text-corporate-green transition-colors"
+                                            onMouseEnter={() => handleChildEnter(grand.href, false)}
+                                          >
+                                            {grand.title}
+                                          </Link>
+                                        </li>
+                                      ))}
+                                      {/* If a child has no grandchildren, show the child as a link */}
+                                      {(!child.children || child.children.length === 0) && (
+                                        <li>
+                                          <Link
+                                            href={child.href}
+                                            className="block py-1 pr-2 pl-1.5 rounded-md text-sm text-gray-700 hover:bg-corporate-green/10 hover:text-corporate-green transition-colors"
+                                          >
+                                            {child.title}
+                                          </Link>
+                                        </li>
                                       )}
-                                    >
-                                      {child.title}
-                                    </Link>
-                                    
-                                    {childHasChildren && (
-                                      <span className="px-1.5 md:px-2">
-                                        <ChevronLeft className="h-3 w-3 md:h-4 md:w-4 text-gray-400" />
-                                      </span>
-                                    )}
+                                    </ul>
                                   </div>
-
-                                  {/* القائمة المنسدلة - المستوى 3 */}
-                                  {childHasChildren && hoveredChild === child.href && (
-                                    <div
-                                      role="menu"
-                                      onMouseEnter={handleDropdownEnter}
-                                      onMouseLeave={handleChildLeave}
-                                      className="absolute top-0 right-full ml-1.5 md:ml-2 w-36 md:w-44 bg-white border border-gray-200 rounded-lg shadow-lg p-1.5 md:p-2 text-right z-50"
-                                    >
-                                      <ul className="space-y-[2px] md:space-y-1">
-                                        {child.children!.map((grand) => (
-                                          <li key={grand.href}>
-                                            <Link
-                                              href={grand.href}
-                                              className="block py-1 pr-2 pl-1.5 md:py-1.5 md:pr-3 md:pl-2 rounded-md text-[10px] md:text-xs hover:bg-corporate-green/10 hover:text-corporate-green transition-colors"
-                                            >
-                                              {grand.title}
-                                            </Link>
-                                          </li>
-                                        ))}
-                                      </ul>
+                                ))}
+                                {/* Optional promo/quick links column */}
+                                <div className="hidden lg:block">
+                                  <div className="rounded-lg bg-emerald-50 p-4 h-full">
+                                    <h5 className="text-sm font-semibold text-emerald-700 mb-2">روابط سريعة</h5>
+                                    <ul className="space-y-1 text-sm">
+                                      <li>
+                                        <Link href="/about/overview" className="text-emerald-700 hover:underline">عن المركز</Link>
+                                      </li>
+                                      <li>
+                                        <Link href="/about/digital-transformation" className="text-emerald-700 hover:underline">التحول الرقمي</Link>
+                                      </li>
+                                      <li>
+                                        <Link href="/contact" className="text-emerald-700 hover:underline">اتصل بنا</Link>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          <div
+                            role="menu"
+                            onMouseEnter={handleDropdownEnter}
+                            onMouseLeave={handleMainLeave}
+                            className="absolute right-0 top-full mt-1 md:mt-2 w-44 md:w-56 bg-white border border-gray-200 rounded-lg shadow-lg p-1.5 md:p-2 text-right z-50"
+                          >
+                            <ul className="space-y-[2px] md:space-y-1">
+                              {item.children!.map((child) => {
+                                const childHasChildren = !!child.children?.length
+                                return (
+                                  <li
+                                    key={child.href}
+                                    className="relative"
+                                    onMouseEnter={() => handleChildEnter(child.href, childHasChildren)}
+                                    onMouseLeave={handleChildLeave}
+                                  >
+                                    <div className="flex items-center">
+                                      <Link
+                                        href={child.href}
+                                        className={cn(
+                                          "flex-1 block py-1 pr-2 pl-1.5 md:py-1.5 md:pr-3 md:pl-2 rounded-md text-[11px] md:text-xs text-right",
+                                          "hover:bg-corporate-green/10 hover:text-corporate-green transition-colors"
+                                        )}
+                                      >
+                                        {child.title}
+                                      </Link>
+                                      
+                                      {childHasChildren && (
+                                        <span className="px-1.5 md:px-2">
+                                          <ChevronLeft className="h-3 w-3 md:h-4 md:w-4 text-gray-400" />
+                                        </span>
+                                      )}
                                     </div>
-                                  )}
-                                </li>
-                              )
-                            })}
-                          </ul>
-                        </div>
+
+                                    {/* القائمة المنسدلة - المستوى 3 */}
+                                    {childHasChildren && hoveredChild === child.href && (
+                                      <div
+                                        role="menu"
+                                        onMouseEnter={handleDropdownEnter}
+                                        onMouseLeave={handleChildLeave}
+                                        className="absolute top-0 right-full ml-1.5 md:ml-2 w-36 md:w-44 bg-white border border-gray-200 rounded-lg shadow-lg p-1.5 md:p-2 text-right z-50"
+                                      >
+                                        <ul className="space-y-[2px] md:space-y-1">
+                                          {child.children!.map((grand) => (
+                                            <li key={grand.href}>
+                                              <Link
+                                                href={grand.href}
+                                                className="block py-1 pr-2 pl-1.5 md:py-1.5 md:pr-3 md:pl-2 rounded-md text-[10px] md:text-xs hover:bg-corporate-green/10 hover:text-corporate-green transition-colors"
+                                              >
+                                                {grand.title}
+                                              </Link>
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                    )}
+                                  </li>
+                                )
+                              })}
+                            </ul>
+                          </div>
+                        )
                       )}
                     </li>
                   )

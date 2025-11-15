@@ -78,7 +78,7 @@ export default function DigitalTransformationPage() {
       <section className="relative py-20 md:py-32 overflow-hidden bg-corporate-green">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/ai-arbitration-hero.webp"
+            src="/digital-transformation-hero.jpg"
             alt="خلفية الذكاء الاصطناعي والتحكيم"
             fill
             priority
@@ -214,7 +214,7 @@ export default function DigitalTransformationPage() {
                 <div className="relative">
                   <div className="absolute -inset-4 bg-corporate-green/20 rounded-3xl blur-2xl"></div>
                   <Image
-                    src="/ai-generated-digital-transformation.webp"
+                    src="/digital-transformation.jpg"
                     alt="التحول الرقمي"
                     width={1200}
                     height={800}
