@@ -7,6 +7,7 @@ import { Menu, Scale, ChevronDown, ChevronLeft, Phone, Mail, Search, User } from
 import { NAVIGATION_ITEMS, SITE_CONFIG } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { useSession, signOut } from "next-auth/react"
+import Image from "next/image"
 
 type NavItem = {
   title: string
@@ -85,14 +86,14 @@ export function Headerlanding() {
         <div className="container mx-auto px-2 md:px-4 lg:px-6">
           <div className="flex h-12 md:h-14 items-center justify-between">
             {/* الشعار - على اليمين */}
-            <Link href="/" className="flex items-center gap-2 md:gap-2.5">
-              <div className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-lg bg-corporate-green text-white">
-                <Scale className="h-5 w-5 md:h-6 md:w-6 text-yellow-300" />
-              </div>
-              <div className="flex flex-col text-right">
-                <span className="text-base md:text-lg font-bold text-corporate-green">{SITE_CONFIG.name} <span className="font-bold text-red-600 text-base md:text-lg">Tech</span></span>
-                <span className="text-[11px] md:text-xs text-corporate-green">{SITE_CONFIG.nameEn}</span>
-              </div>
+            <Link href="/" className="flex items-center gap-3 md:gap-3.5">
+              <Image
+                src="/logo.png"
+                alt={`${SITE_CONFIG.name} logo`}
+                width={140}
+                height={32}
+                className="rounded-md object-contain"
+              /> 
             </Link>
 
             {/* معلومات الاتصال - على اليسار */}

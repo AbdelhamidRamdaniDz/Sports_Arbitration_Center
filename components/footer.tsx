@@ -1,6 +1,7 @@
 import Link from "next/link"
-import { Scale, Phone, Mail, MapPin, Facebook, Twitter, Linkedin } from "lucide-react"
+import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin } from "lucide-react"
 import { SITE_CONFIG } from "@/lib/constants"
+import Image from "next/image"
 
 export function Footer() {
   const year = new Date().getFullYear()
@@ -10,15 +11,13 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo and Description */}
           <div className="space-y-5">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-corporate-green shadow-sm">
-                <Scale className="h-6 w-6" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg font-bold tracking-tight">{SITE_CONFIG.name} <span className="text-lg font-bold text-red-600">Tech</span></span>
-                <span className="text-sm/5 opacity-85">{SITE_CONFIG.nameEn}</span>
-              </div>
-            </div>
+            <Image
+              src="/logo.png"
+              alt={`${SITE_CONFIG.name} logo`}
+              width={180}
+              height={180}
+              className="rounded-md object-contain"
+             /> 
             <p className="text-sm/6 opacity-90 leading-relaxed">
               مركز متخصص في التحكيم والوساطة الرياضية، نقدّم حلولًا قانونية عملية ومتوازنة للمؤسسات والأفراد وفق أفضل
               المعايير المهنية.

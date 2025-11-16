@@ -7,6 +7,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, Scale, ChevronDown, ChevronLeft } from "lucide-react"
 import { NAVIGATION_ITEMS, SITE_CONFIG } from "@/lib/constants"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 type NavItem = {
   title: string
@@ -81,14 +82,14 @@ export function Header() {
       <div className="container mx-auto px-3 md:px-4 lg:px-6">
         <div className="flex h-12 items-center justify-between">
           {/* Logo - على اليمين */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-corporate-green text-white">
-              <Scale className="h-5 w-5" />
-            </div>
-            <div className="flex flex-col text-right">
-              <span className="text-base font-semibold text-corporate-green">{SITE_CONFIG.name} <span className="text-lg font-bold text-red-600">Tech</span></span>
-              <span className="text-xs text-muted-foreground">{SITE_CONFIG.nameEn}</span>
-            </div>
+          <Link href="/" className="flex items-center gap-2 scale-105">
+            <Image
+              src="/logo.png"
+              alt={`${SITE_CONFIG.name} logo`}
+              width={180}
+              height={32}
+              className="rounded-md object-contain h-6 w-auto scale-200"
+            /> 
           </Link>
 
           {/* Desktop Nav - في الوسط */}

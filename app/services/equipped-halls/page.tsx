@@ -48,12 +48,13 @@ export default function EquippedHallsPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-
-      <PageHeader
+        <PageHeader
         title="القاعات المجهزة"
         description="قاعات احترافية مجهزة بأحدث التقنيات لضمان أفضل بيئة لجلسات التحكيم والوساطة"
-        backgroundImage="/hero-background.webp"
+        backgroundImage="/odr.jpeg"
+        className="min-h-2/3"
       />
+
 
       {/* Service Overview */}
       <section className="py-16 md:py-20">

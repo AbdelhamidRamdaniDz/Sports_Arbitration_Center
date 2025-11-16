@@ -51,7 +51,7 @@ export function PageHeader({
               fill
               priority
               sizes="100vw"
-              className="object-cover scale-105 transition-transform duration-700 ease-out will-change-transform"
+              className="object-cover scale-100 transition-transform duration-700 ease-out will-change-transform"
             />
           </div>
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-emerald-900/70 to-teal-900/80 z-0" />

@@ -253,7 +253,7 @@ export default function RealEstate() {
                 <TrendingUp className="h-4 w-4 text-emerald-400" />
                 <span>الإنجازات والأرقام</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-emerald-100">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-emerald-100">
                 حجم الممارسة العقارية
               </h2>
               <p className="text-white/70 max-w-2xl mx-auto text-lg">مؤشرات النزاعات العقارية المدارة عبر المنصة</p>
@@ -305,7 +305,7 @@ export default function RealEstate() {
                   <Scale className="h-4 w-4 text-blue-400" />
                   <span>خدمة أساسية</span>
                 </div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
                   التحكيم والوساطة في النزاعات العقارية
                 </h2>
                 <p className="text-white/70 max-w-4xl mx-auto text-lg md:text-xl leading-relaxed">
