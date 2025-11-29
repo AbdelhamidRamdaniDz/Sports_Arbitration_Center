@@ -5,7 +5,10 @@ import { Footer } from "@/components/footer"
 import { CTASection } from "@/components/cta-section"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import DevCardEasterEgg from "@/components/DevCardEasterEgg"
-
+import { ChatbotWindow } from "@/components/ChatbotWindow"
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { MessageSquare } from "lucide-react"
 const ToolsSection = dynamic(() => import("@/components/home/ToolsSection"), { ssr: false, loading: () => <section className="py-16 md:py-20" /> })
 const NewsSection = dynamic(() => import("@/components/home/NewsSection"), { ssr: false, loading: () => <section className="py-16 md:py-20" /> })
 const ArbitratorsSection = dynamic(() => import("@/components/home/ArbitratorsSection"), { ssr: false, loading: () => <section className="py-16 md:py-20" /> })
@@ -17,9 +20,7 @@ const ProgressBar = dynamic(() => import("@/components/home/ProgressBar"), { ssr
 const HeroSection = dynamic(() => import("@/components/home/HeroSection"), { ssr: false, loading: () => <section className="min-h-screen" /> })
 
 export default function HomePage() {
-
-
-
+  const [isChatOpen, setIsChatOpen] = useState(false);
   return (
     <div className="min-h-screen bg-background">
       <ProgressBar />
@@ -61,6 +62,20 @@ export default function HomePage() {
       <DevCardEasterEgg />
 
       <Footer />
+
+      <Button
+        size="icon"
+        className="fixed bottom-6 left-6 z-50 rounded-full h-14 w-14 shadow-xl"
+        onClick={() => setIsChatOpen(!isChatOpen)}
+        aria-label={isChatOpen ? "إغلاق الدردشة" : "فتح الدردشة"}
+        >
+          <MessageSquare className="w-6 h-6" />
+        </Button>
+        
+        <ChatbotWindow 
+            isOpen={isChatOpen} 
+            onClose={() => setIsChatOpen(false)} 
+        />
     </div>
   )
 }
