@@ -9,12 +9,13 @@ import { ScrollReveal } from "@/components/scroll-reveal"
 export const metadata: Metadata = {
   title: "قطاع الطاقة | تحكيم ووساطة في النفط والغاز والطاقة المتجددة",
   description:
-    "خدمات التحكيم، الوساطة، وتسوية المنازعات البديلة (ADR Hybrid & ODR) في قطاع الطاقة والمرافق الأساسية، مقدمة من TSAC.",
+    "حلول قانونية متخصصة لقطاع الطاقة تشمل النفط والغاز (Upstream/Downstream) والطاقة المتجددة، صياغة وتفاوض عقود FIDIC وPPAs، والامتثال (ESG)، وتسوية النزاعات عبر الحدود.",
   openGraph: {
-    title: "الطاقة والمرافق | تحكيم ووساطة",
-    description: "خدمات التحكيم، الوساطة، وتسوية المنازعات البديلة (ADR Hybrid & ODR) في قطاع الطاقة والمرافق الأساسية.",
+    title: "قطاع الطاقة | تحكيم ووساطة",
+    description: "حلول مؤسسية لقطاع الطاقة: عقود FIDIC وPPAs، امتثال ESG، وتسوية النزاعات.",
   },
 }
+
 
 const CTASection = dynamic(() =>
   import("@/components/cta-section").then(mod => ({ default: mod.CTASection })),
@@ -73,18 +74,18 @@ export default function Energy() {
         >
           <div className="absolute inset-0 bg-black/50" aria-hidden />
           <div className="container mx-auto px-4 relative z-10">
-            <div className="mx-auto max-w-5xl text-center text-white">
+            <div className="ml-auto max-w-5xl text-right text-white">
               <ScrollReveal direction="up" delay={100}>
                 <div className="mb-6">
                   <span className="inline-block rounded-full bg-emerald-500/20 px-4 py-2 text-sm font-semibold text-emerald-100 backdrop-blur-sm border border-emerald-400/30">
-                    الطاقة والمرافق | Energy & Utilities
+                   الطاقة والمرافق | Energy & Utilities
                   </span>
                 </div>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={180}>
                 <h1 id="hero-title" className="mb-3 text-4xl font-extrabold leading-tight md:text-6xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-50 to-white drop-shadow-lg">
-                   الطاقة والمرافق
+                   قطاع الطاقة
                 </h1>
               </ScrollReveal>
 
@@ -95,16 +96,16 @@ export default function Energy() {
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={300}>
-                <p className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed md:text-xl text-white/95 font-medium">
+                <p className="mb-10 max-w-3xl text-lg leading-relaxed md:text-xl text-white/95 font-medium">
                   خدمات التحكيم، الوساطة، وتسوية المنازعات البديلة (ADR Hybrid & ODR) في قطاع الطاقة والمرافق الأساسية، مقدمة من TSAC.
                 </p>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={360}>
-                <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <div className="flex flex-col items-start justify-start gap-4 sm:flex-row">
                   <Button asChild size="lg" className="group bg-white text-corporate-green hover:bg-emerald-50 shadow-2xl shadow-white/20 transition-all duration-300 hover:scale-105 hover:shadow-white/30 text-lg px-8">
                     <Link href="/forms">
-                      ابدأ استشارة أو طلب إجراء
+                    قدم قضيتك الأن 
                       <span className="mr-2 inline-block transition-transform group-hover:translate-x-1">←</span>
                     </Link>
                   </Button>
@@ -118,8 +119,6 @@ export default function Energy() {
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
         </section>
 
-
-        {/* CTA */}
         {/* من نحن */}
         <section className="relative py-20 md:py-28" aria-labelledby="about-title">
           <div className="container mx-auto px-4">
@@ -133,33 +132,30 @@ export default function Energy() {
             </ScrollReveal>
 
             <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-              <ScrollReveal direction="right" delay={200}>
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
-                  <img 
-                    src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80" 
-                    alt="فريق التحكيم والوساطة في قطاع الطاقة"
-                    className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-emerald-900/40 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <p className="text-white font-bold text-xl">حلول قانونية مؤسسية متكاملة</p>
+              {/* Text Content */}
+              <ScrollReveal direction="left" delay={200}>
+                <div className="relative group h-full">
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 rounded-2xl blur-xl transition-all duration-500 group-hover:blur-2xl" />
+                  <div className="relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl p-8 md:p-10 transition-all duration-500 hover:scale-105 h-full flex flex-col justify-center">
+                    <p className="text-white/95 text-lg md:text-xl leading-relaxed text-right font-medium mb-6">
+                      يشكل قطاع الطاقة في الجزائر ركيزة أساسية للتنمية الاقتصادية، بفضل موارده الطبيعية الهائلة في مجالات النفط والغاز والطاقات المتجددة. وتماشيًا مع رؤية الجزائر لعام 2030، تسعى الدولة إلى تطوير هذا القطاع عبر تنويع مصادر الطاقة، وتشجيع الابتكار التكنولوجي، وتنمية الكفاءات الوطنية.
+                    </p>
+                    <p className="text-white/95 text-lg md:text-xl leading-relaxed text-right font-medium">
+                      وفي هذا الإطار، يقدم <span className="font-bold text-emerald-200">مركز TAHKEEM – TECH</span> آلية فعالة لتسوية النزاعات التي قد تنشأ في القطاع الطاقوي، سواء بين المؤسسات الوطنية أو بين المستثمرين المحليين والأجانب.
+                    </p>
                   </div>
                 </div>
               </ScrollReveal>
 
-              <ScrollReveal direction="left" delay={300}>
-                <div className="space-y-6">
-                  <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-xl">
-                    <p className="text-white/95 text-lg leading-relaxed">
-                      يشكل قطاع الطاقة في الجزائر ركيزة أساسية للتنمية الاقتصادية، بفضل موارده الطبيعية الهائلة في مجالات النفط والغاز والطاقات المتجددة. وتماشيًا مع رؤية الجزائر لعام 2030، تسعى الدولة إلى تطوير هذا القطاع عبر تنويع مصادر الطاقة، وتشجيع الابتكار التكنولوجي، وتنمية الكفاءات الوطنية.
-                    </p>
-                  </div>
-
-                  <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-xl">
-                    <p className="text-white/95 text-lg leading-relaxed">
-                      وفي هذا الإطار، يقدم <span className="font-bold text-emerald-200">مركز TAHKEEM – TECH</span> آلية فعالة لتسوية النزاعات التي قد تنشأ في القطاع الطاقوي، سواء بين المؤسسات الوطنية أو بين المستثمرين المحليين والأجانب.
-                    </p>
-                  </div>
+              {/* Image Content */}
+              <ScrollReveal direction="right" delay={300}>
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl group h-[500px]">
+                  <img 
+                    src="/SONATRACH-SIEGE-2025-WEB.jpg" 
+                    alt="مقر سوناطراك - قطاع الطاقة في الجزائر"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/60 via-transparent to-transparent" />
                 </div>
               </ScrollReveal>
             </div>
@@ -172,140 +168,60 @@ export default function Energy() {
             <ScrollReveal direction="up" delay={100}>
               <div className="text-center mb-16">
                 <h2 id="services-title" className="text-3xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white">
-                  مجالات الممارسة في الطاقة والمرافق
+                  خدمات قانونية لقطاع الطاقة
                 </h2>
                 <p className="text-white/90 text-lg max-w-3xl mx-auto">
-                  يقدّم المركز خدمات التحكيم والوساطة والتسوية البديلة للنزاعات (ADR Hybrid & ODR) في مختلف المجالات المرتبطة بقطاع الطاقة
+                  صياغة وتفاوض ومراجعة عقود الطاقة (FIDIC, PPAs)، أطر الامتثال والحوكمة (ESG, Compliance)، ودعم تسوية النزاعات عبر الحدود
                 </p>
                 <div className="h-1 w-24 bg-gradient-to-r from-emerald-400 to-teal-400 mx-auto rounded-full mt-6" />
               </div>
             </ScrollReveal>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {/* 1. توزيع ونقل */}
-              <ScrollReveal direction="up" delay={150}>
-                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
-                  <div className="p-8">
-                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
-                      <span className="text-3xl">⚡</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4">النقل والتوزيع</h3>
-                    <p className="text-white/90 leading-relaxed">
-                      توزيع، ونقل، وتنظيم النفط، والغاز الطبيعي، والكهرباء.
-                    </p>
-                  </div>
+            <div className="grid lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
+              {/* Image Content - Left Side */}
+              <ScrollReveal direction="right" delay={200}>
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl group h-full ">
+                  <img 
+                    src="/engser.jpg" 
+                    alt="خدمات قطاع الطاقة"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/60 via-transparent to-transparent" />
                 </div>
               </ScrollReveal>
 
-              {/* 2. إنشاء وتشغيل */}
-              <ScrollReveal direction="up" delay={200}>
-                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
-                  <div className="p-8">
-                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
-                      <span className="text-3xl">🏗️</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4">الإنشاء والتشغيل</h3>
-                    <p className="text-white/90 leading-relaxed">
-                      إنشاء وتشغيل خطوط الأنابيب والمنشآت الطاقوية، بما في ذلك مشاريع الطاقة المتجددة (الشمسية، والرياح، والمائية).
+              {/* Services List - Right Side */}
+              <div className="space-y-8">
+                <ScrollReveal direction="left" delay={150}>
+                  <div>
+                    <p className="text-white/95 text-lg leading-relaxed font-medium mb-6">
+                      يقدّم المركز خدمات التحكيم والوساطة والتسوية البديلة للنزاعات (ADR Hybrid & ODR) في مختلف المجالات المرتبطة بقطاع الطاقة مثل:
                     </p>
+                    <ul className="space-y-4 pr-4">
+                      {[
+                        "توزيع، ونقل، وتنظيم النفط، والغاز الطبيعي، والكهرباء.",
+                        "إنشاء وتشغيل خطوط الأنابيب والمنشآت الطاقوية، بما في ذلك مشاريع الطاقة المتجددة (الشمسية، والرياح، والمائية).",
+                        "إنهاء عقود الإيجار واتفاقيات الامتياز.",
+                        "حقوق الامتياز والترخيص.",
+                        "عقود المنتجات والخدمات.",
+                        "ملكية موارد النفط والغاز.",
+                        "عمليات الاستكشاف والإنتاج واتفاقيات شراء الطاقة.",
+                        "وغيرها من القضايا التجارية والتعاقدية المرتبطة بقطاع الطاقة."
+                      ].map((item, index) => (
+                        <li key={index} className="flex items-start gap-3 text-white/90 text-lg">
+                          <span className="text-emerald-400 mt-1.5">•</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
-              </ScrollReveal>
-
-              {/* 3. إنهاء العقود */}
-              <ScrollReveal direction="up" delay={250}>
-                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
-                  <div className="p-8">
-                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
-                      <span className="text-3xl">📄</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4">العقود والامتيازات</h3>
-                    <p className="text-white/90 leading-relaxed">
-                      إنهاء عقود الإيجار واتفاقيات الامتياز.
-                    </p>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              {/* 4. حقوق الامتياز */}
-              <ScrollReveal direction="up" delay={300}>
-                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
-                  <div className="p-8">
-                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
-                      <span className="text-3xl">�</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4">التراخيص</h3>
-                    <p className="text-white/90 leading-relaxed">
-                      حقوق الامتياز والترخيص.
-                    </p>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              {/* 5. عقود المنتجات */}
-              <ScrollReveal direction="up" delay={350}>
-                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
-                  <div className="p-8">
-                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
-                      <span className="text-3xl">🤝</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4">الخدمات والمنتجات</h3>
-                    <p className="text-white/90 leading-relaxed">
-                      عقود المنتجات والخدمات.
-                    </p>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              {/* 6. ملكية الموارد */}
-              <ScrollReveal direction="up" delay={400}>
-                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
-                  <div className="p-8">
-                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
-                      <span className="text-3xl">🛢️</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4">الموارد الطبيعية</h3>
-                    <p className="text-white/90 leading-relaxed">
-                      ملكية موارد النفط والغاز.
-                    </p>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              {/* 7. استكشاف وإنتاج */}
-              <ScrollReveal direction="up" delay={450}>
-                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
-                  <div className="p-8">
-                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
-                      <span className="text-3xl">⚙️</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4">الاستكشاف والإنتاج</h3>
-                    <p className="text-white/90 leading-relaxed">
-                      عمليات الاستكشاف والإنتاج واتفاقيات شراء الطاقة.
-                    </p>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              {/* 8. قضايا أخرى */}
-              <ScrollReveal direction="up" delay={500}>
-                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
-                  <div className="p-8">
-                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
-                      <span className="text-3xl">⚖️</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4">قضايا تجارية</h3>
-                    <p className="text-white/90 leading-relaxed">
-                      وغيرها من القضايا التجارية والتعاقدية المرتبطة بقطاع الطاقة.
-                    </p>
-                  </div>
-                </div>
-              </ScrollReveal>
+                </ScrollReveal>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* رؤيتنا الاستراتيجية */}
+                {/* رؤيتنا الاستراتيجية */}
         <section className="relative py-20 md:py-28" aria-labelledby="vision-title">
           <div className="container mx-auto px-4">
             <ScrollReveal direction="up" delay={100}>
