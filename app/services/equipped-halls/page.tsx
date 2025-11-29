@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { PageHeader } from "@/components/page-header"
 import { CTASection } from "@/components/cta-section"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Building, CheckCircle, Users, Clock, Shield, Award } from "lucide-react"
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "القاعات المجهزة | مركز التحكيم الرياضي",
@@ -47,14 +47,11 @@ export default function EquippedHallsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-        <PageHeader
-        title="القاعات المجهزة"
-        description="قاعات احترافية مجهزة بأحدث التقنيات لضمان أفضل بيئة لجلسات التحكيم والوساطة"
-        backgroundImage="/odr.jpeg"
-        className="min-h-2/3"
-      />
 
+      <Header />
+      
+        <img src="/odr.jpeg" alt="خلفية ODR" className="h-[70vh] w-full"/>
+      
 
       {/* Service Overview */}
       <section className="py-16 md:py-20">

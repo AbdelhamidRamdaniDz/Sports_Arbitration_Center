@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Users, Leaf, Heart, Handshake, Award, TreePine, Recycle, Globe, Target, TrendingUp } from "lucide-react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
