@@ -257,8 +257,14 @@ export default function Healthcare() {
         <Header />
 
         {/* ✅ Hero */}
-        <section id="main-content" className="relative overflow-hidden py-20 md:py-28" aria-labelledby="hero-title">
-          <div className="container mx-auto px-4">
+        <section 
+          id="main-content" 
+          className="relative overflow-hidden py-20 md:py-28 bg-center bg-cover" 
+          style={{ backgroundImage: "url('/healthcare.jpg')" }}
+          aria-labelledby="hero-title"
+        >
+          <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
+          <div className="container mx-auto px-4 relative z-10">
             <div className="mx-auto max-w-5xl text-center text-white">
               <ScrollReveal direction="up" delay={100}>
                 <div className="mb-6">

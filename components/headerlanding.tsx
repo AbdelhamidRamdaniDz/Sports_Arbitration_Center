@@ -83,15 +83,14 @@ export function Headerlanding() {
     >
       {/* Top Bar */}
       <div className="border-b bg-white text-white">
-        <div className="container mx-auto px-2 md:px-4 lg:px-6">
-          <div className="flex h-12 md:h-14 items-center justify-between">
-            {/* الشعار - على اليمين */}
+        <div className="w-full h-24 mx-auto px-4 md:px-6 lg:px-8">
+          <div className="flex h-24 py-2 items-center justify-between">
             <Link href="/" className="flex items-center gap-3 md:gap-3.5">
               <Image
                 src="/logo.png"
                 alt={`${SITE_CONFIG.name} logo`}
-                width={140}
-                height={32}
+                width={180}
+                height={180}
                 className="rounded-md object-contain"
               /> 
             </Link>

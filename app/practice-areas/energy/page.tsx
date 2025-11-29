@@ -4,27 +4,16 @@ import dynamic from "next/dynamic"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { AnimatedCounter } from "@/components/animated-counter"
 import { ScrollReveal } from "@/components/scroll-reveal"
-import energyStats from "@/data/energy-stats.json"
 
 export const metadata: Metadata = {
   title: "قطاع الطاقة | تحكيم ووساطة في النفط والغاز والطاقة المتجددة",
   description:
-    "حلول قانونية متخصصة لقطاع الطاقة تشمل النفط والغاز (Upstream/Downstream) والطاقة المتجددة، صياغة وتفاوض عقود FIDIC وPPAs، والامتثال (ESG)، وتسوية النزاعات عبر الحدود.",
+    "خدمات التحكيم، الوساطة، وتسوية المنازعات البديلة (ADR Hybrid & ODR) في قطاع الطاقة والمرافق الأساسية، مقدمة من TSAC.",
   openGraph: {
-    title: "قطاع الطاقة | تحكيم ووساطة",
-    description: "حلول مؤسسية لقطاع الطاقة: عقود FIDIC وPPAs، امتثال ESG، وتسوية النزاعات.",
+    title: "الطاقة والمرافق | تحكيم ووساطة",
+    description: "خدمات التحكيم، الوساطة، وتسوية المنازعات البديلة (ADR Hybrid & ODR) في قطاع الطاقة والمرافق الأساسية.",
   },
-}
-
-// Types matching energy-stats.json
-type EnergyStatView = {
-  id: string
-  title: string
-  value: number
-  unit: string
-  icon: string
 }
 
 const CTASection = dynamic(() =>
@@ -78,8 +67,8 @@ export default function Energy() {
         {/* Hero */}
         <section
           id="main-content"
-          className="relative overflow-hidden py-20 md:py-28 bg-center bg-cover"
-          style={{ backgroundImage: "url('/SONATRACH-SIEGE-2025-WEB.jpg')" }}
+          className="relative overflow-hidden py-10 md:py-14 bg-center bg-cover"
+          style={{ backgroundImage: "url('/eng.jpg')" }}
           aria-labelledby="hero-title"
         >
           <div className="absolute inset-0 bg-black/50" aria-hidden />
@@ -88,26 +77,26 @@ export default function Energy() {
               <ScrollReveal direction="up" delay={100}>
                 <div className="mb-6">
                   <span className="inline-block rounded-full bg-emerald-500/20 px-4 py-2 text-sm font-semibold text-emerald-100 backdrop-blur-sm border border-emerald-400/30">
-                    قطاع استراتيجي | Energy Sector
+                    الطاقة والمرافق | Energy & Utilities
                   </span>
                 </div>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={180}>
                 <h1 id="hero-title" className="mb-3 text-4xl font-extrabold leading-tight md:text-6xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-50 to-white drop-shadow-lg">
-                  التحكيم والوساطة في قطاع الطاقة
+                   الطاقة والمرافق
                 </h1>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={240}>
                 <p className="mb-6 text-2xl font-bold md:text-4xl text-emerald-100">
-                  Energy Arbitration and Mediation Services
+                  Energy & Utilities ADR Services
                 </p>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={300}>
                 <p className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed md:text-xl text-white/95 font-medium">
-                  حلول قانونية متخصصة للنفط والغاز والطاقة المتجددة، تشمل صياغة وتفاوض عقود FIDIC وPPAs، أطر الامتثال والحوكمة (ESG)، وإدارة وتسوية النزاعات عبر الهيئات المحلية والدولية.
+                  خدمات التحكيم، الوساطة، وتسوية المنازعات البديلة (ADR Hybrid & ODR) في قطاع الطاقة والمرافق الأساسية، مقدمة من TSAC.
                 </p>
               </ScrollReveal>
 
@@ -129,36 +118,6 @@ export default function Energy() {
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
         </section>
 
-        {/* Stats (from energy-stats.json) */}
-        <section className="relative py-16 md:py-20" aria-labelledby="stats-title">
-          <div className="container mx-auto px-4">
-            <ScrollReveal direction="up" delay={120}>
-              <div className="text-center mb-12">
-                <h2 id="stats-title" className="text-3xl md:text-4xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white">
-                  مؤشرات رئيسية للقطاع
-                </h2>
-                <p className="text-white/90 text-lg max-w-2xl mx-auto">نظرة رقمية سريعة على قطاع الطاقة</p>
-              </div>
-            </ScrollReveal>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {(energyStats as unknown as EnergyStatView[]).map((stat, index) => (
-                <ScrollReveal key={stat.id} direction="up" delay={200 + index * 60}>
-                  <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 p-8 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 hover:bg-white/20" role="article" aria-label={`${stat.title}: ${stat.value} ${stat.unit}`}>
-                    <div className="relative">
-                      <div className="mb-3 text-5xl font-extrabold text-white drop-shadow-lg">
-                        <AnimatedCounter end={stat.value} duration={2200} />
-                        <span className="ml-2 text-2xl align-middle">{stat.unit}</span>
-                      </div>
-                      <div className="mb-2 text-xl font-bold text-white/95">{stat.title}</div>
-                    </div>
-                    <div className="absolute bottom-0 left-1/2 h-1 w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 transition-all duration-500 group-hover:w-3/4" />
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* CTA */}
         {/* من نحن */}
@@ -192,19 +151,13 @@ export default function Energy() {
                 <div className="space-y-6">
                   <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-xl">
                     <p className="text-white/95 text-lg leading-relaxed">
-                      جهة تحكيم ووساطة تقدم <span className="font-bold text-emerald-200">حلولاً قانونية مؤسسية لقطاع الطاقة</span>، مع تركيز على تسوية النزاعات التجارية عبر الحدود وصياغة الأطر التعاقدية والتنظيمية وفق أفضل الممارسات.
+                      يشكل قطاع الطاقة في الجزائر ركيزة أساسية للتنمية الاقتصادية، بفضل موارده الطبيعية الهائلة في مجالات النفط والغاز والطاقات المتجددة. وتماشيًا مع رؤية الجزائر لعام 2030، تسعى الدولة إلى تطوير هذا القطاع عبر تنويع مصادر الطاقة، وتشجيع الابتكار التكنولوجي، وتنمية الكفاءات الوطنية.
                     </p>
                   </div>
 
                   <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-xl">
                     <p className="text-white/95 text-lg leading-relaxed">
-                      يشمل نطاق عملنا <span className="font-bold text-emerald-200">upstream/downstream</span> في النفط والغاز، الطاقة المتجددة، عقود الإنشاءات والبنى التحتية وفق نماذج <span className="font-bold text-emerald-200">FIDIC</span>، واتفاقيات شراء الطاقة <span className="font-bold text-emerald-200">PPAs</span>، إضافةً إلى تدقيق المخاطر القانونية (Due Diligence) وبناء أطر الامتثال والحوكمة (ESG وCompliance Framework).
-                    </p>
-                  </div>
-
-                  <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-xl">
-                    <p className="text-white/95 text-lg leading-relaxed">
-                      نُعِد وثائق المناقصات والهياكل التعاقدية، ونوفر دعمًا مهنيًا في إدارة المشاريع والتفاوض وتسوية النزاعات (بما فيها إجراءات <span className="font-bold text-emerald-200">التحكيم الاستثماري ICSID</span> عند الاقتضاء)، مع التزام باللغة المؤسسية والدقة القانونية.
+                      وفي هذا الإطار، يقدم <span className="font-bold text-emerald-200">مركز TAHKEEM – TECH</span> آلية فعالة لتسوية النزاعات التي قد تنشأ في القطاع الطاقوي، سواء بين المؤسسات الوطنية أو بين المستثمرين المحليين والأجانب.
                     </p>
                   </div>
                 </div>
@@ -219,149 +172,131 @@ export default function Energy() {
             <ScrollReveal direction="up" delay={100}>
               <div className="text-center mb-16">
                 <h2 id="services-title" className="text-3xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white">
-                  خدمات قانونية لقطاع الطاقة
+                  مجالات الممارسة في الطاقة والمرافق
                 </h2>
                 <p className="text-white/90 text-lg max-w-3xl mx-auto">
-                  صياغة وتفاوض ومراجعة عقود الطاقة (FIDIC, PPAs)، أطر الامتثال والحوكمة (ESG, Compliance)، ودعم تسوية النزاعات عبر الحدود
+                  يقدّم المركز خدمات التحكيم والوساطة والتسوية البديلة للنزاعات (ADR Hybrid & ODR) في مختلف المجالات المرتبطة بقطاع الطاقة
                 </p>
                 <div className="h-1 w-24 bg-gradient-to-r from-emerald-400 to-teal-400 mx-auto rounded-full mt-6" />
               </div>
             </ScrollReveal>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {/* الطاقة المتجددة */}
+              {/* 1. توزيع ونقل */}
               <ScrollReveal direction="up" delay={150}>
-                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80" 
-                      alt="الطاقة المتجددة - الطاقة الشمسية"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/90 via-emerald-900/50 to-transparent" />
-                    <div className="absolute top-4 right-4 w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30">
-                      <span className="text-3xl">☀️</span>
-                    </div>
-                  </div>
+                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
                   <div className="p-8">
-                    <h3 className="text-2xl font-bold text-white mb-4">الطاقة المتجددة</h3>
+                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
+                      <span className="text-3xl">⚡</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-4">النقل والتوزيع</h3>
                     <p className="text-white/90 leading-relaxed">
-                      دعم مشاريع الشمس والرياح والهيدروجين الأخضر عبر إعداد ومراجعة اتفاقيات شراء الطاقة PPAs، هياكل IPP، متطلبات الترخيص والربط بالشبكة، إدارة المخاطر وتوزيعها تعاقدياً، والامتثال التنظيمي والبيئي (ESG/HSE).
+                      توزيع، ونقل، وتنظيم النفط، والغاز الطبيعي، والكهرباء.
                     </p>
                   </div>
                 </div>
               </ScrollReveal>
 
-              {/* النفط والغاز */}
+              {/* 2. إنشاء وتشغيل */}
               <ScrollReveal direction="up" delay={200}>
-                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=600&q=80" 
-                      alt="النفط والغاز - منصة استخراج"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/90 via-emerald-900/50 to-transparent" />
-                    <div className="absolute top-4 right-4 w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30">
-                      <span className="text-3xl">🛢️</span>
-                    </div>
-                  </div>
+                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
                   <div className="p-8">
-                    <h3 className="text-2xl font-bold text-white mb-4">النفط والغاز</h3>
-                    <p className="text-white/90 leading-relaxed">
-                      استشارات Upstream/Downstream تشمل عقود الاستكشاف والإنتاج PSCs، اتفاقيات التشغيل المشترك JOAs، النقل والمعالجة وLNG، تسعير الغاز والتصدير، أطر الامتثال عبر الحدود، وتسوية النزاعات التجارية ذات الصلة عبر التحكيم والوساطة.
-                    </p>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              {/* البنية التحتية */}
-              <ScrollReveal direction="up" delay={250}>
-                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80" 
-                      alt="البنية التحتية - مشاريع الإنشاءات"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/90 via-emerald-900/50 to-transparent" />
-                    <div className="absolute top-4 right-4 w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30">
+                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
                       <span className="text-3xl">🏗️</span>
                     </div>
-                  </div>
-                  <div className="p-8">
-                    <h3 className="text-2xl font-bold text-white mb-4">البنية التحتية</h3>
+                    <h3 className="text-xl font-bold text-white mb-4">الإنشاء والتشغيل</h3>
                     <p className="text-white/90 leading-relaxed">
-                      صياغة ومراجعة عقود الإنشاءات والبنى التحتية لقطاع الطاقة وفق نماذج FIDIC (EPC/EPCM)، عقود التشغيل والصيانة O&M، الضمانات والكفالات، آليات المطالبات والتغييرات، وإدارة المخاطر التعاقدية في المشاريع المعقدة.
+                      إنشاء وتشغيل خطوط الأنابيب والمنشآت الطاقوية، بما في ذلك مشاريع الطاقة المتجددة (الشمسية، والرياح، والمائية).
                     </p>
                   </div>
                 </div>
               </ScrollReveal>
 
-              {/* التمويل والاستثمار */}
+              {/* 3. إنهاء العقود */}
+              <ScrollReveal direction="up" delay={250}>
+                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
+                  <div className="p-8">
+                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
+                      <span className="text-3xl">📄</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-4">العقود والامتيازات</h3>
+                    <p className="text-white/90 leading-relaxed">
+                      إنهاء عقود الإيجار واتفاقيات الامتياز.
+                    </p>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* 4. حقوق الامتياز */}
               <ScrollReveal direction="up" delay={300}>
-                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&q=80" 
-                      alt="التمويل والاستثمار"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/90 via-emerald-900/50 to-transparent" />
-                    <div className="absolute top-4 right-4 w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30">
-                      <span className="text-3xl">📊</span>
-                    </div>
-                  </div>
+                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
                   <div className="p-8">
-                    <h3 className="text-2xl font-bold text-white mb-4">التمويل والاستثمار</h3>
+                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
+                      <span className="text-3xl">�</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-4">التراخيص</h3>
                     <p className="text-white/90 leading-relaxed">
-                      هيكلة تمويل المشروعات Project Finance، التفاوض مع الممولين، حزمة الضمانات والتأمينات، اتفاقيات الاستلام والتوريد Offtake/Supply، شراكات وPPP، وتحليل الجدوى البنكية Bankability مع مراعاة متطلبات الامتثال والحوكمة.
+                      حقوق الامتياز والترخيص.
                     </p>
                   </div>
                 </div>
               </ScrollReveal>
 
-              {/* الامتثال والتنظيم */}
+              {/* 5. عقود المنتجات */}
               <ScrollReveal direction="up" delay={350}>
-                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80" 
-                      alt="الامتثال والتنظيم"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/90 via-emerald-900/50 to-transparent" />
-                    <div className="absolute top-4 right-4 w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30">
-                      <span className="text-3xl">🛡️</span>
-                    </div>
-                  </div>
+                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
                   <div className="p-8">
-                    <h3 className="text-2xl font-bold text-white mb-4">الامتثال والتنظيم</h3>
+                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
+                      <span className="text-3xl">🤝</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-4">الخدمات والمنتجات</h3>
                     <p className="text-white/90 leading-relaxed">
-                      تصميم أطر الامتثال والحوكمة (Compliance Framework وESG)، سياسات HSE والبيئة، التراخيص والرقابة التنظيمية، مكافحة الرشوة والفساد، تدقيق Due Diligence، ومطابقة المتطلبات عبر الولايات القضائية Cross-border Compliance.
+                      عقود المنتجات والخدمات.
                     </p>
                   </div>
                 </div>
               </ScrollReveal>
 
-              {/* الاستدامة */}
+              {/* 6. ملكية الموارد */}
               <ScrollReveal direction="up" delay={400}>
-                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=600&q=80" 
-                      alt="الاستدامة البيئية"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/90 via-emerald-900/50 to-transparent" />
-                    <div className="absolute top-4 right-4 w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30">
-                      <span className="text-3xl">🌱</span>
-                    </div>
-                  </div>
+                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
                   <div className="p-8">
-                    <h3 className="text-2xl font-bold text-white mb-4">الاستدامة</h3>
+                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
+                      <span className="text-3xl">🛢️</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-4">الموارد الطبيعية</h3>
                     <p className="text-white/90 leading-relaxed">
-                      استراتيجيات ESG، تقارير الإفصاح والاستدامة، إدارة مخاطر المناخ وانتقال الطاقة، إشراك أصحاب المصلحة، ومواءمة السياسات مع المعايير الدولية بما يدعم متطلبات المستثمرين والجهات التنظيمية.
+                      ملكية موارد النفط والغاز.
+                    </p>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* 7. استكشاف وإنتاج */}
+              <ScrollReveal direction="up" delay={450}>
+                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
+                  <div className="p-8">
+                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
+                      <span className="text-3xl">⚙️</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-4">الاستكشاف والإنتاج</h3>
+                    <p className="text-white/90 leading-relaxed">
+                      عمليات الاستكشاف والإنتاج واتفاقيات شراء الطاقة.
+                    </p>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* 8. قضايا أخرى */}
+              <ScrollReveal direction="up" delay={500}>
+                <div className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 overflow-hidden h-full">
+                  <div className="p-8">
+                    <div className="w-14 h-14 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center border border-emerald-300/30 mb-6">
+                      <span className="text-3xl">⚖️</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-4">قضايا تجارية</h3>
+                    <p className="text-white/90 leading-relaxed">
+                      وغيرها من القضايا التجارية والتعاقدية المرتبطة بقطاع الطاقة.
                     </p>
                   </div>
                 </div>
@@ -370,62 +305,25 @@ export default function Energy() {
           </div>
         </section>
 
-        {/* نهجنا المهني */}
-        <section className="relative py-20 md:py-28" aria-labelledby="approach-title">
+        {/* رؤيتنا الاستراتيجية */}
+        <section className="relative py-20 md:py-28" aria-labelledby="vision-title">
           <div className="container mx-auto px-4">
             <ScrollReveal direction="up" delay={100}>
               <div className="text-center mb-16">
-                <h2 id="approach-title" className="text-3xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white">
-                  نهجنا المهني
+                <h2 id="vision-title" className="text-3xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white">
+                  رؤيتنا الاستراتيجية
                 </h2>
-                <p className="text-white/90 text-lg max-w-3xl mx-auto">
-                  تكامل قانوني-تقني يركز على عقود FIDIC وPPAs، الامتثال والحوكمة (ESG)، وإدارة المخاطر وتسوية النزاعات عبر الحدود
-                </p>
                 <div className="h-1 w-24 bg-gradient-to-r from-emerald-400 to-teal-400 mx-auto rounded-full mt-6" />
               </div>
             </ScrollReveal>
 
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="max-w-4xl mx-auto">
               <ScrollReveal direction="up" delay={200}>
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 rounded-2xl blur-xl transition-all duration-500 group-hover:blur-2xl" />
                   <div className="relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl p-10 transition-all duration-500 hover:scale-105">
-                    <div className="w-16 h-16 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center mb-6 border border-emerald-300/30 mx-auto">
-                      <span className="text-4xl">⚖️</span>
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-4 text-center">حوكمة وامتثال</h3>
-                    <p className="text-white/90 leading-relaxed text-center">
-                      تصميم أطر امتثال وسياسات ESG وإجراءات Compliance Framework بما يدعم إدارة المخاطر والشفافية.
-                    </p>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal direction="up" delay={260}>
-                <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 rounded-2xl blur-xl transition-all duration-500 group-hover:blur-2xl" />
-                  <div className="relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl p-10 transition-all duration-500 hover:scale-105">
-                    <div className="w-16 h-16 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center mb-6 border border-emerald-300/30 mx-auto">
-                      <span className="text-4xl">📋</span>
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-4 text-center">هندسة تعاقدية</h3>
-                    <p className="text-white/90 leading-relaxed text-center">
-                      نماذج FIDIC لعقود الإنشاءات والبنية التحتية واتفاقيات شراء الطاقة PPAs وصيغ المشاركة والتشغيل.
-                    </p>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal direction="up" delay={320}>
-                <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 rounded-2xl blur-xl transition-all duration-500 group-hover:blur-2xl" />
-                  <div className="relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md shadow-xl p-10 transition-all duration-500 hover:scale-105">
-                    <div className="w-16 h-16 rounded-full bg-emerald-400/20 backdrop-blur-sm flex items-center justify-center mb-6 border border-emerald-300/30 mx-auto">
-                      <span className="text-4xl">🤝</span>
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-4 text-center">تسوية نزاعات</h3>
-                    <p className="text-white/90 leading-relaxed text-center">
-                      وساطة وتحكيم في النزاعات التجارية عبر الحدود، مع الإحالة إلى الآليات المناسبة (بما فيها ICSID عند الاقتضاء).
+                    <p className="text-white/95 text-lg md:text-xl leading-relaxed text-center font-medium">
+                      من خلال هذه الخدمات، يسعى المركز إلى ترسيخ ثقافة التحكيم والوساطة كخيار استراتيجي يسهم في تعزيز النجاعة الاقتصادية، وجذب الاستثمارات، ودعم التحول الطاقوي والرقمي الذي تطمح إليه الجزائر في أفق 2030. كما يسعى TSAC من خلال تقديم حلول قانونية حديثة وبيئة رقمية آمنة، إلى دعم المؤسسات الوطنية الكبرى، مثل سوناطراك وسونلغاز، في تبني آليات جزائرية مبتكرة لتسوية النزاعات، بما يعزز الثقة، ويقلّل التكاليف، ويكرّس السيادة القانونية في إطار التحول الرقمي الذي تطمح إليه الجزائر.
                     </p>
                   </div>
                 </div>
