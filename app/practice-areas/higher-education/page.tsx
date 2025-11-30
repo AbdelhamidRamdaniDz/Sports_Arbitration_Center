@@ -1,38 +1,38 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import dynamic from "next/dynamic"
+import Image from "next/image"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { AnimatedCounter } from "@/components/animated-counter"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { Scale, Shield, Users, FileText, TrendingUp, CheckCircle, BookOpen, Award, MessageSquare, Clock, Lock, Eye } from 'lucide-react'
 
-// ✅ Dynamic Import للـCTA Section (تحسين الأداء)
+// Dynamic Import للـCTA Section
 const CTASection = dynamic(() => 
   import("@/components/cta-section").then(mod => ({ default: mod.CTASection })), {
   loading: () => <div className="h-96 animate-pulse bg-white/5 rounded-3xl" />
 })
 
-// ✅ الـMetadata المحسنة للـSEO
+// الـMetadata المحسنة للـSEO
 export const metadata: Metadata = {
-  title: "التعليم العالي | أمانة المظالم والوساطة الأكاديمية - Tahkeem Tech",
+  title: "أمانة المظالم الجامعية | University Ombudsman Service - Tahkeem Tech",
   description:
-    "منصة Tahkeem Tech الرقمية لمعالجة النزاعات الأكاديمية عبر أمانة المظالم والوساطة في الجامعات الجزائرية. ضمان العدالة الإدارية وحماية حقوق الطلبة والأساتذة مع تعزيز الحوكمة والشفافية.",
+    "أمانة المظالم الجامعية - خدمة محايدة وآمنة وسرّية من Tahkeem Tech لمعالجة النزاعات الجامعية والشكاوى في الجامعات الجزائرية بعدالة وشفافية.",
   keywords: [
-    "التعليم العالي الجزائر",
     "أمانة المظالم الجامعية",
-    "الوساطة الأكاديمية",
-    "حل النزاعات الجامعية",
-    "الحوكمة الجامعية",
-    "حقوق الطلبة",
-    "شكاوى جامعية",
-    "Higher Education Algeria",
     "University Ombudsman",
-    "Academic Mediation"
+    "النزاعات الجامعية",
+    "شكاوى طلاب",
+    "الوساطة الأكاديمية",
+    "حماية حقوق الطلبة",
+    "تسوية الخلافات الجامعية",
+    "Academic Mediation",
+    "University Dispute Resolution"
   ],
   openGraph: {
-    title: "التعليم العالي في الجزائر | أمانة المظالم والوساطة الأكاديمية",
-    description: "حلول رقمية احترافية لمعالجة الشكاوى والنزاعات في الجامعات بما يعزّز الحوكمة والشفافية وجودة الخدمات الأكاديمية.",
+    title: "أمانة المظالم الجامعية | University Ombudsman Service",
+    description: "خدمة محايدة وسرّية لمعالجة الشكاوى والنزاعات الجامعية وتعزيز العدالة والشفافية في الجامعات الجزائرية.",
     type: "website",
     siteName: "Tahkeem Tech",
   },
@@ -47,72 +47,8 @@ export const metadata: Metadata = {
   },
 }
 
-// ✅ تعريف الأنواع بشكل أفضل
-type Stat = {
-  value: string
-  label: string
-  description: string
-  ariaLabel: string
-}
-
-type SpecializedUnit = {
-  title: string
-  titleAr: string
-  description: string
-  icon: string
-}
-
-// ✅ البيانات الثابتة منفصلة (Data Layer Separation)
-const HE_STATS: Stat[] = [
-  {
-    value: "105+",
-    label: "جامعة ومؤسسة",
-    description: "عبر مختلف ولايات الوطن",
-    ariaLabel: "أكثر من 105 جامعة ومؤسسة تعليمية عبر مختلف ولايات الجزائر"
-  },
-  {
-    value: "1.7M+",
-    label: "طالب وطالبة",
-    description: "مسجّلون في البرامج الأكاديمية",
-    ariaLabel: "أكثر من 1.7 مليون طالب وطالبة مسجلون في البرامج الأكاديمية"
-  },
-  {
-    value: "22k+",
-    label: "بحث علمي سنوياً",
-    description: "منشورات ومؤتمرات وأطروحات",
-    ariaLabel: "أكثر من 22 ألف بحث علمي سنوياً من منشورات ومؤتمرات وأطروحات"
-  },
-  {
-    value: "600+",
-    label: "شراكة صناعية",
-    description: "لنقل التكنولوجيا والابتكار",
-    ariaLabel: "أكثر من 600 شراكة صناعية لنقل التكنولوجيا والابتكار"
-  },
-]
-
-const SPECIALIZED_UNITS: SpecializedUnit[] = [
-  {
-    title: "Sports Arbitration Unit",
-    titleAr: "وحدة التحكيم الرياضي",
-    description: "معالجة النزاعات الرياضية الجامعية وفق الأطر القانونية",
-    icon: "⚽"
-  },
-  {
-    title: "Ombudsman Office",
-    titleAr: "مكتب أمين المظالم",
-    description: "حماية الحقوق الأكاديمية ومعالجة الشكاوى بنزاهة",
-    icon: "⚖️"
-  },
-  {
-    title: "Mediation Unit",
-    titleAr: "وحدة الوساطة",
-    description: "الوساطة الأكاديمية والحلول الودية للنزاعات",
-    icon: "🤝"
-  },
-]
-
 export default function HigherEducation() {
-  // ✅ JSON-LD Structured Data للـSEO المحسّن
+  // JSON-LD Structured Data
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "GovernmentService",
@@ -131,16 +67,85 @@ export default function HigherEducation() {
     "audience": {
       "@type": "Audience",
       "audienceType": ["Students", "Faculty", "Academic Staff", "University Administration"]
-    },
-    "availableChannel": {
-      "@type": "ServiceChannel",
-      "serviceUrl": "http://localhost:3000/practice-areas/higher-education"
     }
   }
 
+  const features = [
+    {
+      icon: Shield,
+      title: "الحياد والاستقلالية",
+      description: "نضمن معالجة عادلة ومستقلة لجميع القضايا دون تحيز"
+    },
+    {
+      icon: Lock,
+      title: "السرية التامة",
+      description: "جميع المعلومات محمية بسرية تامة وفق أعلى معايير الأمان"
+    },
+    {
+      icon: Clock,
+      title: "استجابة سريعة",
+      description: "معالجة الشكاوى بكفاءة عالية وفي أقصر وقت ممكن"
+    },
+    {
+      icon: Eye,
+      title: "الشفافية",
+      description: "إجراءات واضحة وشفافة في كل مرحلة من مراحل المعالجة"
+    }
+  ]
+
+  const disputeTypes = [
+    {
+      icon: Users,
+      title: "النزاعات الطلابية",
+      items: ["السلوك الجامعي", "الإقصاء الأكاديمي", "المشاريع البيداغوجية", "سوء التفاهم"]
+    },
+    {
+      icon: BookOpen,
+      title: "خلافات الأستاذ والطالب",
+      items: ["التقييم الأكاديمي", "الإشراف على البحوث", "المعاملة الأكاديمية", "الحضور والغياب"]
+    },
+    {
+      icon: Award,
+      title: "نزاعات الأساتذة والإدارة",
+      items: ["الترقية الأكاديمية", "التعيين والنقل", "الانضباط الإداري", "الحقوق والواجبات"]
+    },
+    {
+      icon: MessageSquare,
+      title: "قضايا السلوك الجامعي",
+      items: ["التحرش", "التمييز", "سوء المعاملة", "انتهاك الأخلاقيات"]
+    }
+  ]
+
+  const steps = [
+    {
+      number: "01",
+      title: "تقديم الشكوى",
+      description: "قدّم شكواك عبر المنصة الإلكترونية أو زيارة شخصية",
+      color: "from-emerald-500 to-teal-500"
+    },
+    {
+      number: "02",
+      title: "جمع المعلومات",
+      description: "نجمع جميع الوثائق والمعلومات اللازمة من الأطراف",
+      color: "from-teal-500 to-cyan-500"
+    },
+    {
+      number: "03",
+      title: "التحليل والوساطة",
+      description: "تحليل شامل للملف وإجراء جلسات وساطة ودية",
+      color: "from-cyan-500 to-blue-500"
+    },
+    {
+      number: "04",
+      title: "الحل والمتابعة",
+      description: "إصدار التوصيات والمتابعة حتى حل النزاع نهائياً",
+      color: "from-blue-500 to-emerald-500"
+    }
+  ]
+
   return (
     <>
-      {/* ✅ Structured Data للـSEO */}
+      {/* Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -148,10 +153,10 @@ export default function HigherEducation() {
 
       <main 
         dir="rtl" 
-        className="min-h-screen overflow-x-hidden text-gray-800"
+        className="min-h-screen overflow-x-hidden"
         lang="ar"
       >
-        {/* ✅ Skip to main content للـAccessibility */}
+        {/* Skip to main content */}
         <a 
           href="#main-content" 
           className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-white focus:text-corporate-green focus:shadow-lg"
@@ -159,17 +164,13 @@ export default function HigherEducation() {
           انتقل إلى المحتوى الرئيسي
         </a>
 
-        {/* ✅ خلفية محسّنة مع تأثيرات أنعم */}
+        {/* خلفية محسّنة */}
         <div className="fixed inset-0 -z-10" aria-hidden="true">
-          {/* التدرج الأساسي */}
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900" />
-          
-          {/* تأثيرات الإضاءة المحسّنة */}
           <div className="absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-emerald-400/20 blur-[120px] animate-pulse" />
-          <div className="absolute bottom-0 left-0 h-[600px] w-[600px] rounded-full bg-teal-400/15 blur-[140px] animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute bottom-0 left-0 h-[600px] w-[600px] rounded-full bg-teal-400/15 blur-[140px] animate-pulse [animation-delay:1s]" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-emerald-300/10 blur-[100px]" />
           
-          {/* النقاط الخلفية */}
           <svg className="absolute inset-0 h-full w-full opacity-[0.07]" aria-hidden="true">
             <defs>
               <pattern id="dots-he" width="32" height="32" patternUnits="userSpaceOnUse">
@@ -179,23 +180,35 @@ export default function HigherEducation() {
             <rect width="100%" height="100%" fill="url(#dots-he)" />
           </svg>
 
-          {/* Grid overlay للعمق */}
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
         </div>
 
         <Header />
 
-        {/* ✅ Hero Section محسّن */}
+        {/* Hero Section with Background Image */}
         <section 
           id="main-content"
           className="relative overflow-hidden py-20 md:py-28"
           aria-labelledby="hero-title"
         >
-          <div className="container mx-auto px-4">
+            {/* Hero Background Image */}
+            <div className="absolute inset-0 -z-10">
+            <Image
+              src="/University.webp"
+              alt="University Campus"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/60 via-emerald-800/50 to-teal-900/60" />
+            </div>
+
+          <div className="container mx-auto px-4 relative z-10">
             <div className="mx-auto max-w-5xl text-center text-white">
               <ScrollReveal direction="up" delay={100}>
                 <div className="mb-6">
-                  <span className="inline-block rounded-full bg-emerald-500/20 px-4 py-2 text-sm font-semibold text-emerald-100 backdrop-blur-sm border border-emerald-400/30">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-emerald-500/20 px-6 py-2 text-sm font-semibold text-emerald-100 backdrop-blur-sm border border-emerald-400/30">
+                    <BookOpen className="w-4 h-4" />
                     منصة رقمية متكاملة
                   </span>
                 </div>
@@ -206,19 +219,21 @@ export default function HigherEducation() {
                   id="hero-title"
                   className="mb-3 text-4xl font-extrabold leading-tight md:text-6xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-50 to-white drop-shadow-lg"
                 >
-                  التعليم العالي في الجزائر
+                  أمانة المظالم الجامعية
                 </h1>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={240}>
                 <p className="mb-6 text-2xl font-bold md:text-4xl text-emerald-100">
-                  University Dispute Resolution Service
+                  University Ombudsman Service
                 </p>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={300}>
                 <p className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed md:text-xl text-white/95 font-medium">
-                  يُعدّ قطاع التعليم العالي والبحث العلمي ركيزة أساسية للتنمية في الجزائر، إذ يشكّل قلب بناء مجتمع المعرفة وتأهيل الكفاءات لمواجهة تحديات المستقبل. ورغم أهميته، يواجه القطاع تحديات إدارية وتنظيمية كبيرة، أبرزها معالجة الشكاوى وحماية حقوق الطلبة والأساتذة والإداريين.
+                  خدمة محايدة وآمنة وسرّية لجميع الطلاب والأساتذة والموظفين
+                  <br className="mb-3" />
+                  Your path to fair, confidential, and effective resolution
                 </p>
               </ScrollReveal>
 
@@ -230,7 +245,7 @@ export default function HigherEducation() {
                     className="group bg-white text-corporate-green hover:bg-emerald-50 shadow-2xl shadow-white/20 transition-all duration-300 hover:scale-105 hover:shadow-white/30 text-lg px-8"
                   >
                     <Link href="/forms">
-                      تقديم شكوى/طلب وساطة
+                      تقديم شكوى الآن
                       <span className="mr-2 inline-block transition-transform group-hover:translate-x-1">←</span>
                     </Link>
                   </Button>
@@ -241,7 +256,7 @@ export default function HigherEducation() {
                     className="border-2 border-white/40 bg-white/10 text-white backdrop-blur-md hover:bg-white/20 hover:border-white/60 shadow-lg transition-all duration-300 hover:scale-105 text-lg px-8"
                   >
                     <Link href="/about/overview">
-                      عن الخدمة
+                      اعرف المزيد
                     </Link>
                   </Button>
                 </div>
@@ -249,195 +264,196 @@ export default function HigherEducation() {
             </div>
           </div>
 
-          {/* ✅ خط فاصل ديناميكي */}
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
         </section>
 
-        {/* ✅ Stats Section محسّن */}
-        <section 
-          className="relative py-16 md:py-20"
-          aria-labelledby="stats-title"
-        >
+        {/* Features Section - صورة في اليمين */}
+        <section className="py-20 relative">
           <div className="container mx-auto px-4">
-            <ScrollReveal direction="up" delay={120}>
-              <div className="text-center mb-12">
-                <h2 
-                  id="stats-title"
-                  className="text-3xl md:text-4xl font-extrabold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white"
-                >
-                  مؤشرات رئيسية
-                </h2>
-                <p className="text-white/90 text-lg max-w-2xl mx-auto">
-                  لقطة سريعة لأثر التعليم العالي والبحث العلمي في الجزائر
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {HE_STATS.map((stat, index) => (
-                <ScrollReveal key={stat.label} direction="up" delay={200 + index * 60}>
-                  <div 
-                    className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 p-8 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 hover:bg-white/20"
-                    role="article"
-                    aria-label={stat.ariaLabel}
-                  >
-                    {/* تأثير الإضاءة عند الـHover */}
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-400/0 to-teal-400/0 opacity-0 transition-opacity duration-500 group-hover:opacity-20" />
-                    
-                    <div className="relative">
-                      <div className="mb-3 text-5xl font-extrabold text-white drop-shadow-lg">
-                        <AnimatedCounter 
-                          end={parseStatValue(stat.value)} 
-                          suffix={getStatSuffix(stat.value)} 
-                          duration={2200} 
-                        />
-                      </div>
-                      <div className="mb-2 text-xl font-bold text-white/95">
-                        {stat.label}
-                      </div>
-                      <div className="text-sm text-white/75 leading-relaxed">
-                        {stat.description}
-                      </div>
+            <div className="max-w-7xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                {/* النص - في اليسار */}
+                <div className="order-2 lg:order-1">
+                  <ScrollReveal direction="up" delay={100}>
+                    <div className="mb-12">
+                      <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                        لماذا تختار خدماتنا؟
+                      </h2>
+                      <p className="text-xl text-white/80">
+                        نلتزم بأعلى معايير الجودة والاحترافية
+                      </p>
                     </div>
+                  </ScrollReveal>
 
-                    {/* خط سفلي ديناميكي */}
-                    <div className="absolute bottom-0 left-1/2 h-1 w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 transition-all duration-500 group-hover:w-3/4" />
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {features.map((feature, idx) => (
+                      <ScrollReveal key={idx} direction="up" delay={150 + idx * 50}>
+                        <div className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
+                          <div className="bg-gradient-to-br from-emerald-500 to-teal-500 w-16 h-16 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <feature.icon className="w-8 h-8 text-white" />
+                          </div>
+                          <h3 className="text-xl font-bold text-white mb-2">
+                            {feature.title}
+                          </h3>
+                          <p className="text-white/70 leading-relaxed">
+                            {feature.description}
+                          </p>
+                        </div>
+                      </ScrollReveal>
+                    ))}
                   </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
+                </div>
 
-        {/* ✅ About Section محسّن */}
-        <section 
-          className="relative py-16 md:py-20"
-          aria-labelledby="about-title"
-        >
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-5xl">
-              <ScrollReveal direction="up" delay={150}>
-                <article className="relative rounded-3xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 p-10 md:p-14 backdrop-blur-md shadow-2xl overflow-hidden">
-                  {/* تأثيرات خلفية ديناميكية */}
-                  <div className="absolute top-0 right-0 h-64 w-64 rounded-full bg-emerald-400/10 blur-3xl" />
-                  <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-teal-400/10 blur-3xl" />
-                  
-                  <div className="relative">
-                    <h2 
-                      id="about-title"
-                      className="text-3xl md:text-4xl font-extrabold text-white mb-6 text-center bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white"
-                    >
-                      أمانة المظالم والوساطة الأكاديمية
-                    </h2>
-                    
-                    <div className="space-y-6 text-white/95 text-lg leading-relaxed md:text-xl">
-                      <p className="first-letter:text-5xl first-letter:font-bold first-letter:text-emerald-300 first-letter:mr-1 first-letter:float-right">
-                        يُعدّ قطاع التعليم العالي والبحث العلمي من أهم ركائز التنمية في الجزائر، إذ يشكّل قلب بناء مجتمع المعرفة وتأهيل الكفاءات لمواجهة تحديات المستقبل. ورغم أهميته، يواجه القطاع تحديات إدارية وتنظيمية كبيرة، أبرزها معالجة الشكاوى وحماية حقوق الطلبة والأساتذة والإداريين.
-                      </p>
-                      
-                      <div className="h-px bg-gradient-to-r from-transparent via-white/30 to-transparent my-6" />
-                      
-                      <p>
-                        في هذا السياق، تُقدّم منصة <strong className="text-emerald-300">Tahkeem Tech</strong> حلاً رقمياً مبتكرًا لمعالجة النزاعات عبر أمانة المظالم والوساطة الأكاديمية، بما يضمن العدالة الإدارية، ويعزّز الحوكمة الرشيدة، ويرتقي بجودة الخدمات الجامعية، متماشياً مع القوانين الوطنية وأخلاقيات الحياة الجامعية، ورؤية الجزائر 2030 نحو رقمنة المؤسسات وترسيخ الشفافية وتطوير منظومة التعليم العالي والبحث العلمي.
-                      </p>
+                {/* الصورة - في اليمين */}
+                <div className="order-1 lg:order-2">
+                  <ScrollReveal direction="right" delay={100}>
+                    <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
+                      <Image
+                        src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070"
+                        alt="Justice and Fairness"
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/50 to-transparent" />
                     </div>
-                    
-                    <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5">
-                      <Button 
-                        asChild 
-                        size="lg" 
-                        className="group bg-emerald-500 text-white hover:bg-emerald-600 shadow-2xl shadow-emerald-500/40 transition-all duration-300 hover:scale-105 text-lg px-8"
-                      >
-                        <Link href="/forms">
-                          ابدأ الإجراء الآن
-                          <span className="mr-2 inline-block transition-transform group-hover:translate-x-1">←</span>
-                        </Link>
-                      </Button>
-                      <Button 
-                        asChild 
-                        size="lg" 
-                        variant="outline" 
-                        className="border-2 border-white/30 bg-white/10 text-white backdrop-blur-md hover:bg-white/20 hover:border-white/50 shadow-lg transition-all duration-300 text-lg px-8"
-                      >
-                        <Link href="/about/overview">
-                          التفاصيل والإطار القانوني
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-                </article>
-              </ScrollReveal>
-            </div>
-          </div>
-        </section>
-        
-        {/* ✅ Specialized Units محسّن */}
-        <section 
-          className="relative py-16 md:py-20"
-          aria-labelledby="units-title"
-        >
-          <div className="container mx-auto px-4">
-            <ScrollReveal direction="up" delay={120}>
-              <div className="text-center mb-12">
-                <h2 
-                  id="units-title"
-                  className="text-3xl md:text-4xl font-extrabold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-l from-white via-emerald-100 to-white"
-                >
-                  الوحدات المتخصصة
-                </h2>
-                <p className="text-white/90 text-lg max-w-2xl mx-auto">
-                  خدمات متكاملة لمعالجة النزاعات بكافة أشكالها
-                </p>
+                  </ScrollReveal>
+                </div>
               </div>
-            </ScrollReveal>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {SPECIALIZED_UNITS.map((unit, index) => (
-                <ScrollReveal key={unit.title} direction="up" delay={200 + index * 80}>
-                  <article 
-                    className="group relative rounded-2xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 p-8 text-center backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:border-white/40 hover:bg-white/20 overflow-hidden"
-                    aria-label={`${unit.titleAr}: ${unit.description}`}
-                  >
-                    {/* تأثير الإضاءة */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/0 to-teal-400/0 opacity-0 transition-opacity duration-500 group-hover:opacity-20" />
-                    
-                    <div className="relative">
-                      {/* الأيقونة */}
-                      <div className="mb-4 text-6xl transition-transform duration-500 group-hover:scale-110">
-                        {unit.icon}
-                      </div>
-                      
-                      {/* العنوان بالإنجليزية */}
-                      <h3 className="text-xl md:text-2xl font-bold text-white mb-2 transition-colors duration-300 group-hover:text-emerald-200">
-                        {unit.title}
-                      </h3>
-                      
-                      {/* العنوان بالعربية */}
-                      <p className="text-lg font-semibold text-white/90 mb-3">
-                        {unit.titleAr}
-                      </p>
-                      
-                      {/* الوصف */}
-                      <p className="text-sm text-white/75 leading-relaxed">
-                        {unit.description}
-                      </p>
-                    </div>
-
-                    {/* خط سفلي ديناميكي */}
-                    <div className="absolute bottom-0 left-1/2 h-1 w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 transition-all duration-500 group-hover:w-3/4" />
-                  </article>
-                </ScrollReveal>
-              ))}
             </div>
           </div>
         </section>
 
-        {/* ✅ CTA Section */}
+        {/* Dispute Types Section - صورة في اليسار */}
+        <section className="py-20 bg-black/20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                {/* الصورة - في اليسار */}
+                <div className="order-1">
+                  <ScrollReveal direction="left" delay={100}>
+                    <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
+                      <Image
+                        src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2087"
+                        alt="Academic Mediation"
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-teal-900/50 to-transparent" />
+                    </div>
+                  </ScrollReveal>
+                </div>
+
+                {/* النص - في اليمين */}
+                <div className="order-2">
+                  <ScrollReveal direction="up" delay={100}>
+                    <div className="mb-12">
+                      <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                        أنواع النزاعات التي نعالجها
+                      </h2>
+                      <p className="text-xl text-white/80">
+                        تغطية شاملة لجميع القضايا الجامعية
+                      </p>
+                    </div>
+                  </ScrollReveal>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {disputeTypes.map((type, idx) => (
+                      <ScrollReveal key={idx} direction="up" delay={150 + idx * 75}>
+                        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 hover:bg-white/10 transition-all duration-300">
+                          <div className="flex items-start gap-4 mb-4">
+                            <div className="bg-gradient-to-br from-emerald-500 to-teal-500 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
+                              <type.icon className="w-6 h-6 text-white" />
+                            </div>
+                            <h3 className="text-xl font-bold text-white">
+                              {type.title}
+                            </h3>
+                          </div>
+                          <ul className="space-y-2">
+                            {type.items.map((item, i) => (
+                              <li key={i} className="flex items-center gap-2 text-white/80 text-sm">
+                                <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </ScrollReveal>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Process Steps - صورة في اليمين */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                {/* النص - في اليسار */}
+                <div className="order-2 lg:order-1">
+                  <ScrollReveal direction="up" delay={100}>
+                    <div className="mb-12">
+                      <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                        مراحل معالجة الشكوى
+                      </h2>
+                      <p className="text-xl text-white/80">
+                        عملية واضحة وشفافة من البداية إلى النهاية
+                      </p>
+                    </div>
+                  </ScrollReveal>
+
+                  <div className="space-y-6">
+                    {steps.map((step, idx) => (
+                      <ScrollReveal key={idx} direction="up" delay={150 + idx * 75}>
+                        <div className="relative group">
+                          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="flex items-start gap-6">
+                              <div className={`text-5xl font-black bg-gradient-to-br ${step.color} bg-clip-text text-transparent flex-shrink-0`}>
+                                {step.number}
+                              </div>
+                              <div>
+                                <h3 className="text-2xl font-bold text-white mb-2">
+                                  {step.title}
+                                </h3>
+                                <p className="text-white/70 leading-relaxed">
+                                  {step.description}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </ScrollReveal>
+                    ))}
+                  </div>
+                </div>
+
+                {/* الصورة - في اليمين */}
+                <div className="order-1 lg:order-2">
+                  <ScrollReveal direction="right" delay={100}>
+                    <div className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
+                      <Image
+                        src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070"
+                        alt="Resolution Process"
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/50 to-transparent" />
+                    </div>
+                  </ScrollReveal>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
         <CTASection
-          title="ارتقِ بالبحث العلمي والشراكات"
-          description="نساعد الجامعات ومراكز البحث على صياغة اتفاقيات، حماية الملكية الفكرية، وتمويل المشاريع البحثية الاستراتيجية."
-          primaryButton={{ text: "تواصل معنا", href: "/forms" }}
-          secondaryButton={{ text: "استكشف الخدمات", href: "/services" }}
+          title="هل لديك شكوى أو نزاع جامعي؟"
+          description="تواصل معنا الآن للاستفادة من خدمة أمانة المظالم الجامعية. نحن هنا لمساعدتك بسرية وعدالة وفعالية."
+          primaryButton={{ text: "تقديم شكوى", href: "/forms" }}
+          secondaryButton={{ text: "اتصل بنا", href: "/contact" }}
           variant="gradient-light"
           className="relative"
         />
@@ -446,22 +462,4 @@ export default function HigherEducation() {
       </main>
     </>
   )
-}
-
-// ✅ Helper Functions محسّنة
-function parseStatValue(value: string): number {
-  const cleaned = value.replace(/[+%]/g, "")
-  const numericMatch = cleaned.match(/[\d.]+/)
-  if (!numericMatch) return 0
-  
-  const num = parseFloat(numericMatch[0])
-  if (value.includes("k") || value.includes("K")) return num * 1000
-  if (value.includes("M") || value.includes("m")) return num * 1000000
-  return num
-}
-
-function getStatSuffix(value: string): string {
-  if (value.includes("+")) return "+"
-  if (value.includes("%")) return "%"
-  return ""
 }
