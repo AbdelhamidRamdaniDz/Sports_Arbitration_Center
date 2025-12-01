@@ -1,5 +1,5 @@
 "use client"
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
@@ -23,6 +23,23 @@ export function Headerlanding() {
   const mainTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const childTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const { data: session } = useSession()
+  const [movedUp, setMovedUp] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => {
+      const y = typeof window !== "undefined" ? window.scrollY : 0
+      // if we've scrolled past the top bar area, move the main header up and keep it
+      // until the page is scrolled back near the top (y <= 20)
+      if (y > 20) {
+        setMovedUp(true)
+      } else {
+        setMovedUp(false)
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
   const clearMainTimeout = () => {
     if (mainTimeoutRef.current) {
@@ -77,12 +94,10 @@ export function Headerlanding() {
   }
 
   return (
-    <header
-      dir="rtl"
-      className="sticky top-0 z-50 w-full bg-background"
-    >
+    <>
+      <header dir="rtl" className="w-full bg-background">
       {/* Top Bar */}
-      <div className="border-b bg-white text-white">
+      <div className="sticky top-0 z-50 border-b bg-white">
         <div className="w-full h-24 mx-auto px-4 md:px-6 lg:px-8">
           <div className="flex h-24 py-2 items-center justify-between">
             <Link href="/" className="flex items-center gap-3 md:gap-3.5">
@@ -138,7 +153,12 @@ export function Headerlanding() {
       </div>
 
       {/* Main Header */}
-      <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div
+        className={cn(
+          "fixed w-full z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-200",
+          movedUp ? "top-0" : "top-24"
+        )}
+      >
         <div className="container mx-auto px-2 md:px-4 lg:px-6">
           <div className="flex h-12 md:h-14 items-center justify-between">
             {/* Desktop Nav - على اليمين */}
@@ -420,7 +440,8 @@ export function Headerlanding() {
           </div>
         </div>
       </div>
-    </header>
+      </header>
+    </>
   )
 }
 
@@ -431,7 +452,6 @@ function MobileNavItem({ item, closeSheet }: { item: NavItem; closeSheet: () => 
 
   const hasLevel2Children = !!item.children?.length
 
-  // إذا كان العنصر الحالي ليس له أطفال، فهو رابط بسيط
   if (!hasLevel2Children) {
     return (
       <Link 
@@ -444,13 +464,11 @@ function MobileNavItem({ item, closeSheet }: { item: NavItem; closeSheet: () => 
     )
   }
 
-  // العنصر له أطفال (المستوى 2)
   return (
     <div>
       <button
         onClick={() => {
           setIsLevel1Open(!isLevel1Open)
-          // عند إغلاق المستوى الأول، نغلق جميع المستويات الثانية المفتوحة
           if (isLevel1Open) {
             setOpenLevel2Href(null)
           }
@@ -477,8 +495,6 @@ function MobileNavItem({ item, closeSheet }: { item: NavItem; closeSheet: () => 
           {item.children!.map((level2Item) => {
             const hasLevel3Children = !!level2Item.children?.length
             const isLevel2Open = openLevel2Href === level2Item.href
-
-            // عنصر المستوى 2 بدون أطفال
             if (!hasLevel3Children) {
               return (
                 <Link
@@ -492,7 +508,6 @@ function MobileNavItem({ item, closeSheet }: { item: NavItem; closeSheet: () => 
               )
             }
 
-            // عنصر المستوى 2 مع أطفال (المستوى 3)
             return (
               <div key={level2Item.href}>
                 <button
