@@ -1,7 +1,8 @@
 "use server";
+
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({}); 
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 const systemInstruction = `أنت المحكّم التقني الآلي (CTSA Chatbot)، خبير ومستشار رسمي لمنصة "تحكيم تك" (CTSA)، أول منصة رقمية ناشئة في الجزائر، متخصصة في التحكيم والوسائل البديلة لتسوية النزاعات التجارية والرياضية (ADR).
 
@@ -26,30 +27,65 @@ const systemInstruction = `أنت المحكّم التقني الآلي (CTSA C
 
 الرد القياسي لرفض السؤال (موضوع غير ذي صلة):
 "أنا متخصص فقط في التحكيم التجاري والرياضي وتسوية النزاعات المرتبطة به. هل لديك استفسار ضمن هذا النطاق؟"`;
+
 /**
  * @param {Array<{ text: string, sender: 'user' | 'bot' }>} conversationHistory
  */
 export async function getCustomChatbotResponse(conversationHistory) {
   
-  const geminiContents = conversationHistory.map(msg => ({
+  // Validate conversation history
+  if (!Array.isArray(conversationHistory) || conversationHistory.length === 0) {
+    return {
+      success: false,
+      response: "يرجى إدخال رسالة للبدء."
+    };
+  }
+
+  // Limit conversation history to last 10 messages for token management
+  const limitedHistory = conversationHistory.slice(-10);
+  
+  const geminiContents = limitedHistory.map(msg => ({
     role: msg.sender === 'user' ? 'user' : 'model',
     parts: [{ text: msg.text }],
   }));
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash", 
+      model: "gemini-2.0-flash", // أو gemini-1.5-flash حسب المتوفر
       contents: geminiContents,
       config: {
-        systemInstruction: systemInstruction, 
-        temperature: 0.2, 
+        systemInstruction: systemInstruction,
+        temperature: 0.2,
+        maxOutputTokens: 1000,
+        topP: 0.8,
+        topK: 40
       }
     });
 
-    return { success: true, response: response.text };
+    return { 
+      success: true, 
+      response: response.text 
+    };
 
   } catch (error) {
-    console.error("Error connecting to Gemini API:", error);
-    return { success: false, response: "عذراً، حدث خطأ تقني في نظام الذكاء الاصطناعي. يرجى التحقق من مفتاح API أو المحاولة لاحقاً." };
+    console.error("Gemini API Error:", error);
+    
+    // Handle specific error cases
+    let errorMessage = "عذراً، حدث خطأ في النظام. يرجى المحاولة مرة أخرى لاحقاً.";
+    
+    if (error.message?.includes('API_KEY_INVALID') || error.message?.includes('API key not valid')) {
+      errorMessage = "خطأ في تكوين النظام. يرجى التواصل مع الدعم الفني.";
+    } else if (error.message?.includes('SAFETY') || error.message?.includes('safety')) {
+      errorMessage = "تعذر الرد على هذا السؤال لأسباب أمنية. يرجى صياغة السؤال بشكل مختلف.";
+    } else if (error.message?.includes('quota') || error.message?.includes('rate limit')) {
+      errorMessage = "تم تجاوز الحد المسموح. يرجى المحاولة لاحقاً.";
+    } else if (error.message?.includes('model') || error.message?.includes('not found')) {
+      errorMessage = "النموذج غير متوفر حالياً. جارٍ استخدام نموذج بديل.";
+    }
+    
+    return { 
+      success: false, 
+      response: errorMessage 
+    };
   }
 }
