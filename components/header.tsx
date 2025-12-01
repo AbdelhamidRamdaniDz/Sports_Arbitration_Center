@@ -93,20 +93,20 @@ export function Header() {
               <div className="text-center">
                 {/* Main Logo Text */}
                 <div className="flex items-baseline gap-0.5 justify-center mb-0.5">
-                  <span className="text-base md:text-lg font-black tracking-tight" style={{ color: '#22C55E' }}>
+                  <span className="text-base md:text-sm font-black tracking-tight" style={{ color: '#22C55E' }}>
                     TAHKEEM
                   </span>
-                  <span className="text-base md:text-lg font-black tracking-tight" style={{ color: '#EF4444' }}>
+                  <span className="text-base md:text-sm font-black tracking-tight" style={{ color: '#EF4444' }}>
                     TECH
                   </span>
                 </div>          
                 {/* Arabic Text */}
-                <div className="text-[8px] md:text-[9px] font-bold text-gray-900 leading-tight mb-0.5">
+                <div className="text-[8px] md:text-[10px] font-bold text-gray-900 leading-tight mb-0.5">
                   مركز التحكيم التجاري و الرياضي
                 </div>
                 
                 {/* English Text */}
-                <div className="text-[7px] md:text-[8px] font-bold text-gray-800 tracking-wider">
+                <div className="text-[6px] md:text-[8px] font-bold text-gray-800 tracking-wider">
                   TRADE & SPORTS ARBITRATION CENTER
                 </div>
               </div>

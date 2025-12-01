@@ -22,10 +22,10 @@ export function Footer() {
               <div className="text-center">
                 {/* Main Logo Text */}
                 <div className="flex items-baseline gap-1 justify-center">
-                  <span className="text-xl md:text-2xl font-black tracking-tight" style={{ color: '#22C55E' }}>
+                  <span className="text-lg md:text-xl font-black tracking-tight" style={{ color: '#22C55E' }}>
                     TAHKEEM
                   </span>
-                  <span className="text-xl md:text-2xl font-black tracking-tight" style={{ color: '#EF4444' }}>
+                  <span className="text-lg md:text-xl font-black tracking-tight" style={{ color: '#EF4444' }}>
                     TECH
                   </span>
                 </div>
