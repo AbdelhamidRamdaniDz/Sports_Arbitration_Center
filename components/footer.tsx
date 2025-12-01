@@ -11,13 +11,36 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo and Description */}
           <div className="space-y-5">
-            <Image
-              src="/logo.png"
-              alt={`${SITE_CONFIG.name} logo`}
-              width={180}
-              height={180}
-              className="rounded-md object-contain"
-             /> 
+            <Link href="/" className="flex items-center gap-3 md:gap-3.5">
+              <Image
+                src="/logo.png"
+                alt={`${SITE_CONFIG.name} logo`}
+                width={60}
+                height={60}
+                className="rounded-md object-contain"
+              /> 
+              <div className="text-center">
+                {/* Main Logo Text */}
+                <div className="flex items-baseline gap-1 justify-center">
+                  <span className="text-xl md:text-2xl font-black tracking-tight" style={{ color: '#22C55E' }}>
+                    TAHKEEM
+                  </span>
+                  <span className="text-xl md:text-2xl font-black tracking-tight" style={{ color: '#EF4444' }}>
+                    TECH
+                  </span>
+                </div>
+                
+                {/* Arabic Text */}
+                <div className="text-[11px] md:text-sm font-bold text-gray-900 leading-tight mb-0.5">
+                  مركز التحكيم التجاري و الرياضي
+                </div>
+                
+                {/* English Text */}
+                <div className="text-[9px] md:text-[10px] font-bold text-white tracking-wider">
+                  TRADE & SPORTS ARBITRATION CENTER
+                </div>
+              </div>
+            </Link>
             <p className="text-sm/6 opacity-90 leading-relaxed">
               مركز متخصص في التحكيم والوساطة الرياضية، نقدّم حلولًا قانونية عملية ومتوازنة للمؤسسات والأفراد وفق أفضل
               المعايير المهنية.

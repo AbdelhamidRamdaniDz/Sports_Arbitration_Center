@@ -89,10 +89,31 @@ export function Headerlanding() {
               <Image
                 src="/logo.png"
                 alt={`${SITE_CONFIG.name} logo`}
-                width={180}
-                height={180}
+                width={60}
+                height={90}
                 className="rounded-md object-contain"
               /> 
+              <div className="text-center">
+                {/* Main Logo Text */}
+                <div className="flex items-baseline gap-1 justify-center">
+                  <span className="text-xl md:text-2xl font-black tracking-tight" style={{ color: '#22C55E' }}>
+                    TAHKEEM
+                  </span>
+                  <span className="text-xl md:text-2xl font-black tracking-tight" style={{ color: '#EF4444' }}>
+                    TECH
+                  </span>
+                </div>
+                
+                {/* Arabic Text */}
+                <div className="text-[11px] md:text-sm font-bold text-gray-900 leading-tight mb-0.5">
+                  مركز التحكيم التجاري و الرياضي
+                </div>
+                
+                {/* English Text */}
+                <div className="text-[9px] md:text-[10px] font-bold text-gray-800 tracking-wider">
+                  TRADE & SPORTS ARBITRATION CENTER
+                </div>
+              </div>
             </Link>
 
             {/* معلومات الاتصال - على اليسار */}

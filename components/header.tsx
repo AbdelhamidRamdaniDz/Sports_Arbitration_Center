@@ -80,17 +80,37 @@ export function Header() {
       className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
     >
       <div className="container mx-auto px-3 md:px-4 lg:px-6">
-        <div className="flex h-12 items-center justify-between">
+        <div className="flex h-16 items-center justify-between">
           {/* Logo - على اليمين */}
-          <Link href="/" className="flex items-center gap-2 scale-105">
-            <Image
-              src="/logo.png"
-              alt={`${SITE_CONFIG.name} logo`}
-              width={180}
-              height={32}
-              className="rounded-md object-contain h-6 w-auto scale-200"
-            /> 
-          </Link>
+            <Link href="/" className="flex items-center gap-3 md:gap-3.5">
+              <Image
+                src="/logo.png"
+                alt={`${SITE_CONFIG.name} logo`}
+                width={45}
+                height={70}
+                className="rounded-md object-contain"
+              /> 
+              <div className="text-center">
+                {/* Main Logo Text */}
+                <div className="flex items-baseline gap-0.5 justify-center mb-0.5">
+                  <span className="text-base md:text-lg font-black tracking-tight" style={{ color: '#22C55E' }}>
+                    TAHKEEM
+                  </span>
+                  <span className="text-base md:text-lg font-black tracking-tight" style={{ color: '#EF4444' }}>
+                    TECH
+                  </span>
+                </div>          
+                {/* Arabic Text */}
+                <div className="text-[8px] md:text-[9px] font-bold text-gray-900 leading-tight mb-0.5">
+                  مركز التحكيم التجاري و الرياضي
+                </div>
+                
+                {/* English Text */}
+                <div className="text-[7px] md:text-[8px] font-bold text-gray-800 tracking-wider">
+                  TRADE & SPORTS ARBITRATION CENTER
+                </div>
+              </div>
+            </Link>
 
           {/* Desktop Nav - في الوسط */}
           <nav
