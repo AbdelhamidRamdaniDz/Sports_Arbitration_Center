@@ -28,8 +28,6 @@ export function Headerlanding() {
   useEffect(() => {
     const onScroll = () => {
       const y = typeof window !== "undefined" ? window.scrollY : 0
-      // if we've scrolled past the top bar area, move the main header up and keep it
-      // until the page is scrolled back near the top (y <= 20)
       if (y > 20) {
         setMovedUp(true)
       } else {
@@ -111,21 +109,21 @@ export function Headerlanding() {
               <div className="text-center">
                 {/* Main Logo Text */}
                 <div className="flex items-baseline gap-1 justify-center">
-                  <span className="text-xl md:text-2xl font-black tracking-tight" style={{ color: '#22C55E' }}>
+                  <span className="text-sm md:text-2xl font-black tracking-tight" style={{ color: '#22C55E' }}>
                     TAHKEEM
                   </span>
-                  <span className="text-xl md:text-2xl font-black tracking-tight" style={{ color: '#EF4444' }}>
+                  <span className="text-sm md:text-2xl font-black tracking-tight" style={{ color: '#EF4444' }}>
                     TECH
                   </span>
                 </div>
                 
                 {/* Arabic Text */}
-                <div className="text-[11px] md:text-sm font-bold text-gray-900 leading-tight mb-0.5">
+                <div className="text-[9px] md:text-[11px] font-bold text-gray-900 leading-tight mb-0.5">
                   مركز التحكيم التجاري و الرياضي
                 </div>
                 
                 {/* English Text */}
-                <div className="text-[9px] md:text-[10px] font-bold text-gray-800 tracking-wider">
+                <div className="text-[7px] md:text-[9px] font-bold text-gray-800 tracking-wider">
                   TRADE & SPORTS ARBITRATION CENTER
                 </div>
               </div>
