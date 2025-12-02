@@ -194,7 +194,7 @@ export default function HigherEducation() {
             {/* Hero Background Image */}
             <div className="absolute inset-0 -z-10">
             <Image
-              src="/University.webp"
+              src="/univ.jpg"
               alt="University Campus"
               fill
               className="object-cover"

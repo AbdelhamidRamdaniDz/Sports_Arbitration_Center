@@ -130,8 +130,16 @@ export function Headerlanding() {
             </Link>
 
             {/* معلومات الاتصال - على اليسار */}
-            <div className="flex items-center gap-3 md:gap-4 text-[11px] md:text-xs text-corporate-green">
-              <a 
+            <div className="flex flex-col items-center gap-2">
+              <Image
+                src="/roua.jpg"
+                alt={`${SITE_CONFIG.name} logo`}
+                width={90}
+                height={80}
+                className="rounded-md object-contain"
+              /> 
+              <div className="flex items-center gap-3 md:gap-4 text-[11px] md:text-xs text-corporate-green">
+                <a 
                 href="mailto:info@sports-arbitration.dz" 
                 className="flex items-center gap-1.5 hover:opacity-80 transition-opacity"
               >
@@ -145,6 +153,7 @@ export function Headerlanding() {
                 <span className="hidden sm:inline ltr">+213 668631580</span>
                 <Phone className="h-3.5 w-3.5 md:h-4 md:w-4" />
               </a>
+              </div>
             </div>
           </div>
         </div>
