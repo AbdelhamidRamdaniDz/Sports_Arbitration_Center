@@ -30,7 +30,7 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative text-white overflow-hidden h-[500px] md:h-[600px] flex items-center">
+    <section className="relative text-white overflow-hidden h-[23rem] top-14 mb-10 flex items-center">
       <div className="absolute inset-0">
         <Image
           src="/hero-img.jpg"
@@ -38,14 +38,13 @@ export default function HeroSection() {
           fill
           priority={false}
           sizes="100vw"
-          className="object-cover  transition-transform duration-700 ease-out will-change-transform"
-          style={{ transform: `translateY(${parallaxY * 0.5}px) scale(1.05)` }}
+          className="object-contain w-full"
         />
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-br from-corporate-green via-green-700 to-emerald-900 opacity-90 mix-blend-multiply" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-      <div className="absolute inset-0 bg-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-br from-corporate-green via-green-700 to-emerald-900 opacity-60 mix-blend-multiply" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-black/10" />
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse" />
