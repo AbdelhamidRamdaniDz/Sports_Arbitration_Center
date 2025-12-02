@@ -25,7 +25,7 @@ export default function OmbudsmanPage() {
           <div className="mx-auto max-w-5xl text-center">
             <ScrollReveal direction="up" delay={120}>
               <h1 className="mb-4 text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
-                أمانة المظالم
+                 TSAC - OBSERVATORY
               </h1>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={180}>
