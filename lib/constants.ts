@@ -109,6 +109,7 @@ export const NAVIGATION_ITEMS = [
     href: "/servicesODR",
     children: [
       { title: "القاعات الخاصة", href: "/services/equipped-halls" },
+      { title: "Tahkeem Tech - ODR", href: "/services/Tahkeem-odr" },
     ],
   },
     {

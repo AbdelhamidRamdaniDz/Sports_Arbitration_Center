@@ -2,11 +2,9 @@
 import { useState } from "react"
 import { Header } from "@/components/header"
 import { usePhotoGallery } from "@/components/gallery/usePhotoGallery"
-import { GalleryPhoto } from "@/components/gallery/types"
 import { GalleryMasonry } from "@/components/media-gallery/GalleryMasonry"
 import { LightboxModal } from "@/components/media-gallery/LightboxModal"
 import { useFavorites } from "@/hooks/useFavorites"
-import { ShareButton } from "@/components/media-center/ShareButton"
 
 export default function PhotosGalleryPage() {
   const { photos, loading, error } = usePhotoGallery()
