@@ -101,7 +101,6 @@ export const NAVIGATION_ITEMS = [
     children: [
       { title: "الوساطة القانونية", href: "/services/legal-mediation" },
       { title: "الصلح", href: "/services/conciliation" },
-      { title: "أمانة المظالم", href: "/services/ombudsman" },
     ],
   },
     {
@@ -110,6 +109,8 @@ export const NAVIGATION_ITEMS = [
     children: [
       { title: "القاعات الخاصة", href: "/services/equipped-halls" },
       { title: "Tahkeem Tech - ODR", href: "/services/Tahkeem-odr" },
+      { title: "المرصد", href: "/services/ombudsman" },
+
     ],
   },
     {

@@ -9,18 +9,18 @@ export default function OmbudsmanPage() {
       <Header />
 
       {/* Hero Section with Background Image */}
-      <section className="relative overflow-hidden pt-20 pb-24 md:pt-32 md:pb-32">
+      <section className="relative overflow-hidden pt-8 pb-24 md:pt-10 md:pb-32">
         <div className="absolute inset-0 z-0">
           <img 
             src="/ombudsman.jpg" 
             alt="Observatory Background"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-emerald-50/20 to-white"></div>
+          
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="mx-auto max-w-5xl text-center">
+          <div className="mx-auto max-w-5xl text-right">
             <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
               <Shield className="w-4 h-4" />
               <span>منصة رصد وتحليل النزاعات</span>
@@ -30,7 +30,7 @@ export default function OmbudsmanPage() {
               المرصد – تحكيم تاك 
             </h1>
             
-            <p className="text-base font-semibold text-emerald-600 mb-3 tracking-wide">
+            <p className="text-base font-semibold text-emerald-400 mb-3 tracking-wide">
               TSAC - Dispute Resolution Observatory
             </p>
             
@@ -38,15 +38,15 @@ export default function OmbudsmanPage() {
               Insight. Prevention. Good Governance
             </p>
             
-            <p className="mx-auto mb-10 max-w-3xl text-xl leading-relaxed text-slate-700">
+            <p className="mb-10 max-w-3xl text-xl leading-relaxed text-slate-900 text-right">
               أداة ذكية لرصد وتحليل النزاعات في مختلف القطاعات، مع كشف مواطن الخلل بشكل استباقي قبل تفاقمها، ودعم الحوكمة الرشيدة والتحول الرقمي.
             </p>
             
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="flex flex-col items-end justify-end gap-4 sm:flex-row">
               <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">
                 استكشف المرصد
               </button>
-              <button className="border-2 border-emerald-300 text-emerald-700 hover:bg-emerald-50 px-8 py-4 rounded-lg text-lg font-semibold transition-all flex items-center gap-2">
+              <button className="bg-emerald-600 border-2 border-emerald-400 text-white hover:bg-emerald-50 hover:text-black px-8 py-4 rounded-lg text-lg font-semibold transition-all flex items-center gap-2">
                 <span>العودة للخدمات</span>
                 <ArrowLeft className="w-5 h-5" />
               </button>

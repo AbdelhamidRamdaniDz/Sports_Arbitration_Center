@@ -88,19 +88,19 @@ export default function ODRPage() {
       <Header />
       
       {/* Header Image */}
-      <div className="relative h-[50vh] w-full overflow-hidden">
+      <div className="relative h-[54vh] w-full overflow-hidden">
         <img 
           src="/tsac.jpg" 
           alt="Tahkeem Tech - ODR" 
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-emerald-900/50 flex items-center justify-center">
-          <div className="text-center text-white px-4 max-w-5xl animate-fade-in">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-emerald-900/50 flex items-center">
+          <div className="text-right text-white px-8 max-w-3xl animate-fade-in mr-12">
             <div className="inline-block mb-6 px-6 py-2 bg-emerald-600/20 backdrop-blur-sm border border-white/30 rounded-full">
-              <span className="text-sm md:text-base font-semibold">منصة رقمية متكاملة</span>
+              <span className="text-sm md:text-base font-semibold">Tahkeem Tech – ODR</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-2xl">Tahkeem Tech - ODR</h1>
-            <p className="text-xl md:text-3xl font-light mb-8 drop-shadow-lg">نقلة نوعية في تسوية النزاعات التجارية والرياضية</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <h1 className="text-2xl md:text-4xl font-bold mb-6 drop-shadow-2xl">TSAC — Online Dispute Resolution Service</h1>
+            <p className="text-base md:text-xl font-light mb-8 drop-shadow-lg">تحكيم ووساطة رقمية بالكامل  - نقلة نوعية في تسوية النزاعات التجارية والرياضية</p>
+            <div className="flex flex-col sm:flex-row gap-4">
               <a href="/forms" className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all shadow-2xl hover:shadow-emerald-500/50 hover:scale-105">
                 ابدأ الآن
               </a>
@@ -113,7 +113,7 @@ export default function ODRPage() {
       </div>
 
       {/* Introduction Section */}
-      <section className="py-20 md:py-28 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+      <section className="py-10 md:py-14 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-5">
           <div className="absolute top-20 right-20 w-72 h-72 bg-emerald-600 rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 left-20 w-96 h-96 bg-blue-600 rounded-full blur-3xl"></div>
@@ -158,7 +158,7 @@ export default function ODRPage() {
       </section>
 
       {/* Why Choose Section */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-gray-50 via-emerald-50/30 to-gray-50 relative">
+      <section className="py-10 md:py-14 bg-gradient-to-br from-gray-50 via-emerald-50/30 to-gray-50 relative">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-600 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-600 rounded-full blur-3xl"></div>
@@ -196,7 +196,7 @@ export default function ODRPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+      <section className="py-10 md:py-14 bg-white relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl">
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-200 to-transparent"></div>
         </div>
@@ -238,14 +238,14 @@ export default function ODRPage() {
       </section>
 
       {/* Security Section */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-emerald-50 via-white to-emerald-50 relative overflow-hidden">
+      <section className="py-10 md:py-14 bg-gradient-to-br from-emerald-50 via-white to-emerald-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-20 w-96 h-96 bg-emerald-600 rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-600 rounded-full blur-3xl"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <div className="inline-block mb-4 px-6 py-2 bg-emerald-600/10 backdrop-blur-sm border border-emerald-200 rounded-full">
                 <span className="text-sm font-semibold text-emerald-700">الأمان أولاً</span>
@@ -256,41 +256,53 @@ export default function ODRPage() {
               <p className="text-xl text-gray-700">الأمن السيبراني في قلب نظامنا</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {securityFeatures.map((feature, index) => (
-                <div 
-                  key={index} 
-                  className="group bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-emerald-200 hover:-translate-y-2 relative overflow-hidden"
-                >
-                  <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-emerald-600/5 to-transparent rounded-full -ml-20 -mt-20 group-hover:scale-150 transition-transform duration-500"></div>
-                  <div className="relative z-10 text-center">
-                    <div className="flex justify-center mb-6">
-                      <div className="relative">
-                        <div className="flex items-center justify-center h-20 w-20 rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-700 text-white shadow-xl shadow-emerald-600/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+              {/* Left Features */}
+              <div className="order-2 md:order-1">
+                <div className="space-y-6">
+                  {securityFeatures.map((feature, index) => (
+                    <div 
+                      key={index} 
+                      className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-emerald-200 relative overflow-hidden"
+                    >
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-600/5 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                      <div className="relative z-10">
+                        <div className="flex items-center justify-center h-16 w-16 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-700 text-white mb-6 shadow-lg shadow-emerald-600/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                           {feature.icon}
                         </div>
-                        <div className="absolute -inset-2 bg-emerald-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                        <h3 className="text-xl md:text-2xl font-bold text-emerald-600 mb-4 group-hover:text-emerald-700 transition-colors">{feature.title}</h3>
+                        <p className="text-gray-700 leading-relaxed text-base">{feature.description}</p>
                       </div>
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-emerald-600 mb-4 group-hover:text-emerald-700 transition-colors">{feature.title}</h3>
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">{feature.description}</p>
-                  </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              {/* Right Image */}
+              <div className="order-1 md:order-2">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                  <img 
+                    src="/secodr.jpg" 
+                    alt="الأمان والسرية" 
+                    className="w-full h-auto object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Dashboard Section */}
-      <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+      <section className="py-10 md:py-14 bg-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-emerald-600 rounded-full blur-3xl"></div>
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600 rounded-full blur-3xl"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <div className="inline-block mb-4 px-6 py-2 bg-emerald-600/10 backdrop-blur-sm border border-emerald-200 rounded-full">
                 <span className="text-sm font-semibold text-emerald-700">متابعة مباشرة</span>
@@ -303,19 +315,34 @@ export default function ODRPage() {
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-gray-50 to-white p-10 md:p-12 rounded-3xl shadow-2xl border border-gray-100">
-              <div className="space-y-6">
-                {dashboardFeatures.map((feature, index) => (
-                  <div 
-                    key={index} 
-                    className="group flex items-center gap-6 bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-emerald-200 hover:-translate-x-2"
-                  >
-                    <div className="flex items-center justify-center h-16 w-16 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-700 text-white shadow-lg shadow-emerald-600/30 flex-shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                      {feature.icon}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+              {/* Left Image */}
+              <div className="order-2 md:order-1">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                  <img 
+                    src="/dashodr.jpg" 
+                    alt="لوحة التحكم الشخصية" 
+                    className="w-full h-auto object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+              </div>
+
+              {/* Right Features */}
+              <div className="order-1 md:order-2">
+                <div className="space-y-6">
+                  {dashboardFeatures.map((feature, index) => (
+                    <div 
+                      key={index} 
+                      className="group flex items-start gap-4 bg-gradient-to-br from-emerald-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-emerald-100 hover:border-emerald-200"
+                    >
+                      <div className="flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-700 text-white shadow-lg shadow-emerald-600/30 flex-shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                        {feature.icon}
+                      </div>
+                      <p className="text-base md:text-lg text-gray-700 font-medium pt-1">{feature.text}</p>
                     </div>
-                    <p className="text-lg md:text-xl text-gray-700 font-medium">{feature.text}</p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -323,7 +350,7 @@ export default function ODRPage() {
       </section>
 
       {/* Vision Section */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800 text-white relative overflow-hidden">
+      <section className="py-10 md:py-14 bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
@@ -343,7 +370,7 @@ export default function ODRPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+      <section className="py-10 md:py-14 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl">
             <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-600 rounded-full blur-3xl"></div>

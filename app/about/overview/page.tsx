@@ -73,7 +73,7 @@ export default function OverviewPage() {
               <span className="text-sm font-medium">أول منصة رقمية للتحكيم في الجزائر</span>
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              مركز تحكيم تك <span className="text-green-200">(CTSA)</span>
+              مركز تحكيم تك <span className="text-green-200">(TSAC)</span>
             </h1>
             <p className="text-xl md:text-2xl text-green-50 leading-relaxed mb-8">
               مركز مستقل وموثوق، يقدّم بدائل رقمية لتسوية النزاعات التجارية والرياضية بشكل عادل وسريع
@@ -123,7 +123,7 @@ export default function OverviewPage() {
               </h2>
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p className="text-lg">
-                  يُعَدّ مركز تحكيم تك (CTSA) <strong className="text-corporate-green"> أول مركز إلكتروني ناشئ في الجزائر</strong> متخصص في تقديم خدمات التحكيم والوسائل البديلة لتسوية النزاعات التجارية والرياضية.
+                  يُعَدّ مركز تحكيم تك <strong className="text-corporate-green"> أول مركز إلكتروني ناشئ في الجزائر</strong> متخصص في تقديم خدمات التحكيم والوسائل البديلة لتسوية النزاعات التجارية والرياضية.
                 </p>
                 <p className="text-lg">
 يعتمد على منصة رقمية ذكية تُتيح للأطراف حلّ نزاعاتهم بسرعة ومرونة وشفافية، بفضل نظام يربطهم مباشرة بنخبة من المحكّمين والخبراء القانونيين، بعيدًا عن التعقيدات والإجراءات التقليدية، وفي بيئة قانونية آمنة وموثوقة.                </p>
